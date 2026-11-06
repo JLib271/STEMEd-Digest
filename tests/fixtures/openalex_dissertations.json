@@ -1,0 +1,193 @@
+{
+ "meta": {
+  "next_cursor": null
+ },
+ "results": [
+  {
+   "id": "https://openalex.org/W7213701927",
+   "doi": null,
+   "display_name": "What do students learn about chemistry? An exploration of students' lived experiences of laboratory learning activities",
+   "publication_date": "2026-09-15",
+   "created_date": "2026-09-20T00:00:00",
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Shauna Schechtel"
+     },
+     "institutions": []
+    }
+   ],
+   "primary_location": {
+    "source": {
+     "display_name": "QSpace (Queen's University Library)"
+    },
+    "landing_page_url": "https://hdl.handle.net/1974/36937"
+   },
+   "primary_topic": {
+    "id": "https://openalex.org/T10072",
+    "display_name": "Science Education and Pedagogy"
+   },
+   "abstract_inverted_index": {
+    "Students": [
+     0
+    ],
+    "built": [
+     1
+    ],
+    "concept": [
+     2
+    ],
+    "maps": [
+     3
+    ]
+   }
+  },
+  {
+   "id": "https://openalex.org/W7225298014",
+   "doi": "https://doi.org/10.25417/uic.34925520",
+   "display_name": "Can Medical School Communication Skills Performance Predict Future Milestone Attainment During Residency",
+   "publication_date": "2026-11-05",
+   "created_date": "2026-11-06T00:00:00",
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Kevin Wombacher"
+     },
+     "institutions": []
+    }
+   ],
+   "primary_location": {
+    "source": {
+     "display_name": "University of Illinois Chicago"
+    },
+    "landing_page_url": "https://doi.org/10.25417/uic.34925520"
+   },
+   "primary_topic": {
+    "id": "https://openalex.org/T10254",
+    "display_name": "Innovations in Medical Education"
+   },
+   "abstract_inverted_index": null
+  },
+  {
+   "id": "https://openalex.org/W7225033161",
+   "doi": null,
+   "display_name": "PENGARUH PENDEKATAN CULTURALLY RESPONSIVE TEACHING BERBANTUAN MEDIA CLASSPOINT TERHADAP PENINGKATAN KEMAMPUAN PEMAHAMAN MATEMATIS MURID SEKOLAH DASAR",
+   "publication_date": "2026-10-29",
+   "created_date": "2026-11-01T00:00:00",
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Adella Nur Annisa"
+     },
+     "institutions": []
+    }
+   ],
+   "primary_location": {
+    "source": {
+     "display_name": "Universitas Pasundan institutional repositories & scientific journals (Universitas Pasundan)"
+    },
+    "landing_page_url": "https://repository.unpas.ac.id/85637/1/COVER.pdf"
+   },
+   "primary_topic": {
+    "id": "https://openalex.org/T12522",
+    "display_name": "Mathematics Education and Pedagogy"
+   },
+   "abstract_inverted_index": null
+  },
+  {
+   "id": "https://openalex.org/W1542193176",
+   "doi": "https://doi.org/10.82444/warw.33485995",
+   "display_name": "Understanding the number line: conception and practice",
+   "publication_date": "2026-09-09",
+   "created_date": "2016-06-24T00:00:00",
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Maria Doritou"
+     },
+     "institutions": []
+    }
+   ],
+   "primary_location": {
+    "source": {
+     "display_name": "Warwick Research Archive Portal (University of Warwick)"
+    },
+    "landing_page_url": "http://wrap.warwick.ac.uk/2622/1/WRAP_THESIS_Doritou_2006.pdf"
+   },
+   "primary_topic": {
+    "id": "https://openalex.org/T10130",
+    "display_name": "Mathematics Education and Teaching Techniques"
+   },
+   "abstract_inverted_index": null
+  },
+  {
+   "id": "https://openalex.org/W7127650063",
+   "doi": "https://doi.org/10.7273/000007880",
+   "display_name": "FROM STUDENT TO NEWLY LICENSED REGISTERED NURSE",
+   "publication_date": "2027-01-01",
+   "created_date": "2026-02-06T00:00:00",
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Natasha Barrow"
+     },
+     "institutions": []
+    }
+   ],
+   "primary_location": {
+    "source": {
+     "display_name": "Washington State University"
+    },
+    "landing_page_url": "https://doi.org/10.7273/000007880"
+   },
+   "primary_topic": {
+    "id": "https://openalex.org/T10186",
+    "display_name": "Nursing education and management"
+   },
+   "abstract_inverted_index": null
+  },
+  {
+   "id": "https://openalex.org/W7221361952",
+   "doi": "https://doi.org/10.82444/warw.33633214",
+   "display_name": "Essays on environmentally friendly behaviour and environmental policy",
+   "publication_date": "2026-09-11",
+   "created_date": "2026-10-11T00:00:00",
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Luis A. Serra Barragán"
+     },
+     "institutions": []
+    }
+   ],
+   "primary_location": {
+    "source": {
+     "display_name": "University of Warwick"
+    },
+    "landing_page_url": "https://doi.org/10.82444/warw.33633214"
+   },
+   "primary_topic": {
+    "id": "https://openalex.org/T10898",
+    "display_name": "Environmental Education and Sustainability"
+   },
+   "abstract_inverted_index": null
+  },
+  {
+   "id": "https://openalex.org/W9999999999",
+   "doi": null,
+   "display_name": "Green consumer choices in three European cities",
+   "publication_date": "2026-10-20",
+   "created_date": "2026-10-25",
+   "authorships": [],
+   "primary_location": {
+    "source": null,
+    "landing_page_url": null
+   },
+   "primary_topic": {
+    "id": "https://openalex.org/T10841",
+    "display_name": "Pro-Environmental Behavior and Attitudes"
+   },
+   "abstract_inverted_index": null
+  }
+ ]
+}

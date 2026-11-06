@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>STEMEd+ Digest</title>
-<meta name="description" content="New work in STEM+ education research and practice: journal tables of contents and the STEMEd+ Commons Collection, in one place.">
+<meta name="description" content="New work in STEM+ education research and practice: journal tables of contents, preprints, dissertations, and the STEMEd+ Commons Collection, in one place.">
 <link rel="alternate" type="application/rss+xml" title="All new work" href="feeds/all.xml">
 <style>
   :root { --ink:#1d2433; --muted:#5b6475; --line:#dde2ea; --bg:#f7f8fa; --card:#fff; --accent:#1f5f8b; --soft:#e6f0f7; --softline:#c9dcea; }
@@ -39,6 +39,7 @@
   .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
   .tag { font-size: .75rem; padding: 2px 8px; border-radius: 999px; background: #eef0f3; color: var(--ink); font-weight: 600; }
   .tag.src { background: var(--soft); color: var(--accent); }
+  .tag.pre { background: #fdf3dc; color: #6b4a00; }
   .added { font-size: .78rem; color: var(--muted); margin-left: auto; }
   .more { text-align: center; margin: 14px 0 30px; }
   .more button { font: inherit; padding: 8px 16px; border-radius: 6px; border: 1px solid var(--accent); background: var(--card); color: var(--accent); cursor: pointer; }
@@ -82,8 +83,8 @@
     <div class="search"><label for="q">Search</label><input id="q" type="search" placeholder="Title, author, or journal" autocomplete="off"></div>
     <div><label for="keyword">Keyword</label><select id="keyword"><option value="">All</option></select></div>
     <div><label for="discipline">Discipline</label><select id="discipline"><option value="">All</option></select></div>
-    <div><label for="source">Source</label><select id="source"><option value="">All</option><option value="journal">Journals</option><option value="commons">STEMEd+ Commons</option></select></div>
-    <div><label for="venue">Journal or collection</label><select id="venue"><option value="">All</option></select></div>
+    <div><label for="source">Source</label><select id="source"><option value="">All</option><option value="journal">Journals</option><option value="commons">STEMEd+ Commons</option><option value="preprint">Preprints</option><option value="dissertation">Dissertations and theses</option></select></div>
+    <div><label for="venue">Journal, collection, or server</label><select id="venue"><option value="">All</option></select></div>
     <div><label for="days">Added in the last</label><select id="days"><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option><option value="365">12 months</option><option value="">Any time</option></select></div>
   </div>
   <p id="kwnote" class="kwnote" hidden></p>
@@ -96,11 +97,13 @@
   <div class="wrap">
     <h2>Journals followed</h2>
     <details id="jdetails"><summary id="jsummary">Show the journals</summary><ul id="journallist" class="jl"></ul></details>
+    <h2>Preprints and dissertations</h2>
+    <p id="others">Preprints come from <a href="https://edarxiv.org/">EdArXiv</a> (STEM+ preprints only) and <a href="https://arxiv.org/list/physics.ed-ph/recent">arXiv Physics Education</a>. Preprints have not been peer reviewed; one that is later published in a followed journal is listed once, as the journal article. Dissertations and theses come from university repositories through <a href="https://openalex.org/">OpenAlex</a>, limited to English-language work in STEM+ education topics; OpenAlex does not separate doctoral dissertations from master's theses.</p>
     <h2 id="feeds">RSS feeds</h2>
     <p>Follow new work in a feed reader:</p>
     <ul id="feedlist"></ul>
-    <p>Journal listings come from <a href="https://www.crossref.org/">Crossref</a>. STEMEd+ Commons listings come from <a href="https://works.hcommons.org/">Knowledge Commons Works</a>. Titles link to the original work; abstracts are not copied. <span id="updated"></span></p>
-    <p>Keywords are terms from HuMeta, a metadata profile for STEM+ education research, each linked to ERIC Thesaurus descriptors. They are matched in titles, in abstracts that publishers share with Crossref, and in STEMEd+ Commons keywords, so an article can be missing a keyword that fits it.</p>
+    <p>Journal listings come from <a href="https://www.crossref.org/">Crossref</a>; preprints from the <a href="https://osf.io/">OSF</a> and <a href="https://arxiv.org/">arXiv</a>; dissertations from <a href="https://openalex.org/">OpenAlex</a>. STEMEd+ Commons listings come from <a href="https://works.hcommons.org/">Knowledge Commons Works</a>. Titles link to the original work; abstracts are not copied. <span id="updated"></span></p>
+    <p>Keywords are terms from HuMeta, a metadata profile for STEM+ education research, each linked to ERIC Thesaurus descriptors. They are matched in titles, in abstracts that publishers and preprint servers share, and in author and STEMEd+ Commons keywords, so an article can be missing a keyword that fits it.</p>
     <p><a id="repo" href="#">About this site, the journal list, and the keywords</a></p>
   </div>
 </footer>
@@ -155,6 +158,8 @@
       li.appendChild(m);
       var tags = node('div', 'tags');
       if (i.source === 'commons') tags.appendChild(node('span', 'tag src', 'STEMEd+ Commons'));
+      if (i.source === 'preprint') tags.appendChild(node('span', 'tag pre', 'Preprint'));
+      if (i.source === 'dissertation') tags.appendChild(node('span', 'tag pre', 'Dissertation or thesis'));
       i.disciplines.forEach(function (x) { tags.appendChild(node('span', 'tag', x)); });
       i.keywords.forEach(function (k) {
         if (!state.kw[k]) return;
@@ -200,9 +205,10 @@
     state.jurl = {}; d.journals.forEach(function (j) { if (j.url) state.jurl[j.name] = j.url; });
     var venues = d.journals.map(function (j) { return j.name; }).sort(function (a, b) { return a.localeCompare(b); });
     var colls = []; d.items.forEach(function (i) { i.collections.forEach(function (c) { if (colls.indexOf(c) === -1) colls.push(c); }); });
-    fill(el('venue'), [d.commons.name].concat(colls.sort(), venues));
+    var servers = (d.preprint_servers || []).map(function (p) { return p.name; });
+    fill(el('venue'), [d.commons.name].concat(colls.sort(), servers, venues));
     var fl = el('feedlist');
-    [['All new work', 'all'], [d.commons.name, 'stemed-commons']].concat(d.disciplines.map(function (x) { return [x, slug(x)]; }))
+    [['All new work', 'all'], [d.commons.name, 'stemed-commons'], ['Preprints', 'preprints'], ['Dissertations and theses', 'dissertations']].concat(d.disciplines.map(function (x) { return [x, slug(x)]; }))
       .forEach(function (f) { var li = document.createElement('li'), a = node('a', '', f[0]); a.href = 'feeds/' + f[1] + '.xml'; li.appendChild(a); fl.appendChild(li); });
     var jl = el('journallist'), js = d.journals.slice().sort(function (a, b) { return a.name.replace(/^The /, '').localeCompare(b.name.replace(/^The /, '')); });
     js.forEach(function (j) {

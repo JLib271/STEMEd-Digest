@@ -65,6 +65,12 @@ def write_all(folder: Path, items: List[Item], site: dict, commons_cfg: dict, no
     _write(folder / "stemed-commons.xml", f"{site['title']}: {commons_cfg['name']}", commons_cfg["collection_url"],
            f"New works in the {commons_cfg['name']} Collection and its subcollections.",
            [i for i in items if i.source == "commons"], now)
+    _write(folder / "preprints.xml", f"{site['title']}: Preprints", link,
+           "New STEM+ education preprints from EdArXiv and arXiv Physics Education.",
+           [i for i in items if i.source == "preprint"], now)
+    _write(folder / "dissertations.xml", f"{site['title']}: Dissertations and theses", link,
+           "New STEM+ education dissertations and theses from university repositories, via OpenAlex.",
+           [i for i in items if i.source == "dissertation"], now)
     for d in DISCIPLINES:
         _write(folder / f"{slug(d)}.xml", f"{site['title']}: {d}", link, f"New work in {d} education.",
                [i for i in items if d in i.disciplines], now)

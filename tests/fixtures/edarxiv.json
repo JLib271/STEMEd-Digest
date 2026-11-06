@@ -1,0 +1,535 @@
+{
+ "data": [
+  {
+   "id": "z98uj_v1",
+   "type": "preprints",
+   "attributes": {
+    "title": "Flexible, student-designed assignments for teaching immunology: a classroom experience",
+    "description": "We describe a classroom activity and report student self-efficacy and exam results.",
+    "date_created": "2026-06-15T10:02:09.535818",
+    "date_published": "2026-11-01T12:00:00.000000",
+    "is_published": true,
+    "is_latest_version": true,
+    "date_withdrawn": null,
+    "tags": [
+     "constructivist approach in UG immunology",
+     "Creative assignment in STEM",
+     "Immunology teaching",
+     "Undergraduate immunology"
+    ],
+    "subjects": [
+     [
+      {
+       "id": "s",
+       "text": "Education"
+      }
+     ]
+    ],
+    "doi": "https://doi.org/10.1128/jmbe.00001-26"
+   },
+   "embeds": {
+    "contributors": {
+     "data": [
+      {
+       "attributes": {
+        "bibliographic": true,
+        "unregistered_contributor": null
+       },
+       "embeds": {
+        "users": {
+         "data": {
+          "attributes": {
+           "full_name": "Ana Ruiz"
+          }
+         }
+        }
+       }
+      },
+      {
+       "attributes": {
+        "bibliographic": false,
+        "unregistered_contributor": null
+       },
+       "embeds": {
+        "users": {
+         "data": {
+          "attributes": {
+           "full_name": "Not An Author"
+          }
+         }
+        }
+       }
+      },
+      {
+       "attributes": {
+        "bibliographic": true,
+        "unregistered_contributor": "Lee Chen"
+       },
+       "embeds": {
+        "users": {
+         "errors": [
+          {
+           "detail": "x"
+          }
+         ]
+        }
+       }
+      }
+     ]
+    }
+   },
+   "links": {
+    "html": "https://osf.io/preprints/edarxiv/z98uj_v1/"
+   }
+  },
+  {
+   "id": "7r4td_v1",
+   "type": "preprints",
+   "attributes": {
+    "title": "Feedback without marks: a mixed-methods study of optional formative problem sheets in first-year undergraduate mathematics",
+    "description": "",
+    "date_created": "2026-07-01T11:50:41.597751",
+    "date_published": "2026-11-02T12:00:00.000000",
+    "is_published": true,
+    "is_latest_version": true,
+    "date_withdrawn": null,
+    "tags": [],
+    "subjects": [
+     [
+      {
+       "id": "s",
+       "text": "Education"
+      },
+      {
+       "id": "s",
+       "text": "Science and Mathematics Education"
+      },
+      {
+       "id": "s",
+       "text": "Teacher Education and Professional Development"
+      },
+      {
+       "id": "s",
+       "text": "Higher Education and Teaching"
+      },
+      {
+       "id": "s",
+       "text": "Higher Education"
+      },
+      {
+       "id": "s",
+       "text": "Scholarship of Teaching and Learning"
+      }
+     ]
+    ],
+    "doi": null
+   },
+   "embeds": {
+    "contributors": {
+     "data": [
+      {
+       "attributes": {
+        "bibliographic": true,
+        "unregistered_contributor": null
+       },
+       "embeds": {
+        "users": {
+         "data": {
+          "attributes": {
+           "full_name": "Ana Ruiz"
+          }
+         }
+        }
+       }
+      },
+      {
+       "attributes": {
+        "bibliographic": false,
+        "unregistered_contributor": null
+       },
+       "embeds": {
+        "users": {
+         "data": {
+          "attributes": {
+           "full_name": "Not An Author"
+          }
+         }
+        }
+       }
+      },
+      {
+       "attributes": {
+        "bibliographic": true,
+        "unregistered_contributor": "Lee Chen"
+       },
+       "embeds": {
+        "users": {
+         "errors": [
+          {
+           "detail": "x"
+          }
+         ]
+        }
+       }
+      }
+     ]
+    }
+   },
+   "links": {
+    "html": "https://osf.io/preprints/edarxiv/7r4td_v1/"
+   }
+  },
+  {
+   "id": "34d5u_v1",
+   "type": "preprints",
+   "attributes": {
+    "title": "PAIDEIA: A Human-Centered Pedagogical Framework for Responsible Generative AI Integration in Ancient Greek Literature in Translation",
+    "description": "",
+    "date_created": "2026-10-31T09:28:10.987780",
+    "date_published": "2026-11-03T12:00:00.000000",
+    "is_published": true,
+    "is_latest_version": true,
+    "date_withdrawn": null,
+    "tags": [
+     "Human-Centered AI Generative AI AI literacy paideia critical thinking dialogic learning Ancient Greek Literature humanities education."
+    ],
+    "subjects": [
+     [
+      {
+       "id": "s",
+       "text": "Education"
+      }
+     ]
+    ],
+    "doi": null
+   },
+   "embeds": {
+    "contributors": {
+     "data": [
+      {
+       "attributes": {
+        "bibliographic": true,
+        "unregistered_contributor": null
+       },
+       "embeds": {
+        "users": {
+         "data": {
+          "attributes": {
+           "full_name": "Ana Ruiz"
+          }
+         }
+        }
+       }
+      },
+      {
+       "attributes": {
+        "bibliographic": false,
+        "unregistered_contributor": null
+       },
+       "embeds": {
+        "users": {
+         "data": {
+          "attributes": {
+           "full_name": "Not An Author"
+          }
+         }
+        }
+       }
+      },
+      {
+       "attributes": {
+        "bibliographic": true,
+        "unregistered_contributor": "Lee Chen"
+       },
+       "embeds": {
+        "users": {
+         "errors": [
+          {
+           "detail": "x"
+          }
+         ]
+        }
+       }
+      }
+     ]
+    }
+   },
+   "links": {
+    "html": "https://osf.io/preprints/edarxiv/34d5u_v1/"
+   }
+  },
+  {
+   "id": "2jscy_v1",
+   "type": "preprints",
+   "attributes": {
+    "title": "AI Literacy of Teachers: Prompt Engineering and Model Selection as Predictors of AI-Feedback Quality",
+    "description": "",
+    "date_created": "2026-07-29T13:01:24.487825",
+    "date_published": "2026-11-04T12:00:00.000000",
+    "is_published": true,
+    "is_latest_version": true,
+    "date_withdrawn": null,
+    "tags": [
+     "AI-Literacy",
+     "Feedback",
+     "Large Language Models (LLM)",
+     "Prompt Engineering",
+     "Teacher Education"
+    ],
+    "subjects": [
+     [
+      {
+       "id": "s",
+       "text": "Education"
+      },
+      {
+       "id": "s",
+       "text": "Teacher Education and Professional Development"
+      }
+     ]
+    ],
+    "doi": null
+   },
+   "embeds": {
+    "contributors": {
+     "data": [
+      {
+       "attributes": {
+        "bibliographic": true,
+        "unregistered_contributor": null
+       },
+       "embeds": {
+        "users": {
+         "data": {
+          "attributes": {
+           "full_name": "Ana Ruiz"
+          }
+         }
+        }
+       }
+      },
+      {
+       "attributes": {
+        "bibliographic": false,
+        "unregistered_contributor": null
+       },
+       "embeds": {
+        "users": {
+         "data": {
+          "attributes": {
+           "full_name": "Not An Author"
+          }
+         }
+        }
+       }
+      },
+      {
+       "attributes": {
+        "bibliographic": true,
+        "unregistered_contributor": "Lee Chen"
+       },
+       "embeds": {
+        "users": {
+         "errors": [
+          {
+           "detail": "x"
+          }
+         ]
+        }
+       }
+      }
+     ]
+    }
+   },
+   "links": {
+    "html": "https://osf.io/preprints/edarxiv/2jscy_v1/"
+   }
+  },
+  {
+   "id": "j3hqa_v1",
+   "type": "preprints",
+   "attributes": {
+    "title": "Distinguishing Disorder From Difference in School-Based Assessment: A Tutorial on TTL-MSM",
+    "description": "",
+    "date_created": "2026-10-04T21:45:31.769394",
+    "date_published": "2026-11-05T12:00:00.000000",
+    "is_published": true,
+    "is_latest_version": true,
+    "date_withdrawn": "2026-11-01T00:00:00",
+    "tags": [
+     "clinical decision-making framework",
+     "clinical decision rule",
+     "clinical reasoning",
+     "complex case assessment",
+     "convergence",
+     "culturally and linguistically diverse",
+     "disorder versus difference",
+     "dynamic assessment",
+     "educational impact",
+     "IDEA eligibility",
+     "implementation science",
+     "multi-source assessment",
+     "school-based practice",
+     "speech or language impairment",
+     "Testing-the-Limits with Multi-Source Model",
+     "TTL-MSM"
+    ],
+    "subjects": [
+     [
+      {
+       "id": "s",
+       "text": "Education"
+      },
+      {
+       "id": "s",
+       "text": "Special Education and Teaching"
+      },
+      {
+       "id": "s",
+       "text": "Educational Assessment, Evaluation, and Research"
+      }
+     ]
+    ],
+    "doi": null
+   },
+   "embeds": {
+    "contributors": {
+     "data": [
+      {
+       "attributes": {
+        "bibliographic": true,
+        "unregistered_contributor": null
+       },
+       "embeds": {
+        "users": {
+         "data": {
+          "attributes": {
+           "full_name": "Ana Ruiz"
+          }
+         }
+        }
+       }
+      },
+      {
+       "attributes": {
+        "bibliographic": false,
+        "unregistered_contributor": null
+       },
+       "embeds": {
+        "users": {
+         "data": {
+          "attributes": {
+           "full_name": "Not An Author"
+          }
+         }
+        }
+       }
+      },
+      {
+       "attributes": {
+        "bibliographic": true,
+        "unregistered_contributor": "Lee Chen"
+       },
+       "embeds": {
+        "users": {
+         "errors": [
+          {
+           "detail": "x"
+          }
+         ]
+        }
+       }
+      }
+     ]
+    }
+   },
+   "links": {
+    "html": "https://osf.io/preprints/edarxiv/j3hqa_v1/"
+   }
+  },
+  {
+   "id": "f294y_v1",
+   "type": "preprints",
+   "attributes": {
+    "title": "Use of AI in Education and Its Impact on Cognitive Skills: A Systematic Literature Review",
+    "description": "",
+    "date_created": "2026-10-27T19:33:23.300541",
+    "date_published": "2026-11-06T12:00:00.000000",
+    "is_published": true,
+    "is_latest_version": false,
+    "date_withdrawn": null,
+    "tags": [
+     "AI in Education",
+     "Cognitive Skills",
+     "Systematic Review"
+    ],
+    "subjects": [
+     [
+      {
+       "id": "s",
+       "text": "Education"
+      }
+     ]
+    ],
+    "doi": null
+   },
+   "embeds": {
+    "contributors": {
+     "data": [
+      {
+       "attributes": {
+        "bibliographic": true,
+        "unregistered_contributor": null
+       },
+       "embeds": {
+        "users": {
+         "data": {
+          "attributes": {
+           "full_name": "Ana Ruiz"
+          }
+         }
+        }
+       }
+      },
+      {
+       "attributes": {
+        "bibliographic": false,
+        "unregistered_contributor": null
+       },
+       "embeds": {
+        "users": {
+         "data": {
+          "attributes": {
+           "full_name": "Not An Author"
+          }
+         }
+        }
+       }
+      },
+      {
+       "attributes": {
+        "bibliographic": true,
+        "unregistered_contributor": "Lee Chen"
+       },
+       "embeds": {
+        "users": {
+         "errors": [
+          {
+           "detail": "x"
+          }
+         ]
+        }
+       }
+      }
+     ]
+    }
+   },
+   "links": {
+    "html": "https://osf.io/preprints/edarxiv/f294y_v1/"
+   }
+  }
+ ],
+ "links": {
+  "next": null
+ }
+}

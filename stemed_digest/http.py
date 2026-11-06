@@ -1,6 +1,7 @@
-"""Small JSON-over-HTTPS helper with retries (standard library only)."""
+"""Small HTTPS helpers with retries (standard library only)."""
 import json
 import os
+import re
 import time
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
@@ -17,14 +18,18 @@ def user_agent() -> str:
 
 
 def get_json(url: str, params: dict = None, tries: int = 4, timeout: int = 60) -> dict:
+    return json.loads(get_text(url, params, tries, timeout, accept="application/json"))
+
+
+def get_text(url: str, params: dict = None, tries: int = 4, timeout: int = 60, accept: str = "*/*") -> str:
     if params:
-        url = f"{url}?{urlencode(params)}"
+        url = f"{url}?{urlencode(params, safe='[]:|!,')}"
     last = None
     for attempt in range(tries):
         try:
-            req = Request(url, headers={"User-Agent": user_agent(), "Accept": "application/json"})
+            req = Request(url, headers={"User-Agent": user_agent(), "Accept": accept})
             with urlopen(req, timeout=timeout) as resp:
-                return json.load(resp)
+                return resp.read().decode("utf-8")
         except HTTPError as exc:
             last = exc
             if exc.code not in (429, 500, 502, 503, 504):
@@ -34,4 +39,5 @@ def get_json(url: str, params: dict = None, tries: int = 4, timeout: int = 60) -
             last = exc
             wait = 2 ** attempt * 3
         time.sleep(min(wait, 60))
-    raise RuntimeError(f"Giving up on {url}: {last}")
+    shown = re.sub(r"api_key=[^&]+", "api_key=***", url)
+    raise RuntimeError(f"Giving up on {shown}: {last}")

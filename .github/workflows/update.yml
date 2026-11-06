@@ -1,10 +1,13 @@
 name: Update and publish
 
-# Every day: run the tests, collect new journal articles and STEMEd+ Commons works,
+# Every day: run the tests, collect new journal articles, preprints, dissertations, and
+# STEMEd+ Commons works,
 # merge them with what the site already lists, and publish to GitHub Pages.
 # Turn on once: Settings -> Pages -> Source: GitHub Actions.
 # Optional: add a repository variable CONTACT_EMAIL (Settings -> Secrets and variables ->
 # Actions -> Variables) so Crossref can reach you and serve requests faster.
+# Recommended: add a repository secret OPENALEX_API_KEY (a free key from
+# https://openalex.org/settings/api) so dissertation lookups get their own daily allowance.
 
 on:
   schedule:
@@ -41,6 +44,7 @@ jobs:
       - name: Collect new work and build the site
         env:
           CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
         run: >-
           python -m stemed_digest
           --out output

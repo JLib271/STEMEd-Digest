@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/PmysIqF0qGTXVDG458ROK9q2RsY</id>
+  <title>arXiv Query: search_query=cat:physics.ed-ph&amp;id_list=&amp;start=0&amp;max_results=400</title>
+  <updated>2026-11-06T20:43:32Z</updated>
+  <opensearch:itemsPerPage>400</opensearch:itemsPerPage>
+  <opensearch:totalResults>4752</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2611.04148v1</id>
+    <title>Active Learning with Generative AI in Introductory Physics: A Multi-Institutional
+      Study of the P-A.I.R. Framework</title>
+    <updated>2026-11-03T01:40:22Z</updated>
+    <link href="https://arxiv.org/abs/2611.04148v1" rel="alternate" type="text/html"/>
+    <summary>We evaluated P-A.I.R. in 11 algebra- and calculus-based introductory physics sections at four U.S. institutions using a common end-of-semester survey. Most students reported improved conceptual understanding. Thematic analysis of open-ended responses showed that students valued AI primarily for conceptual clarification and structured problem solving.</summary>
+    <category term="physics.ed-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-11-03T01:40:22Z</published>
+    <arxiv:primary_category term="physics.ed-ph"/>
+    <author><name>Bilas Paul</name></author>
+    <author><name>Shantanu Chakraborty</name></author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2611.06943v2</id>
+    <title>Getting the picture - Subtractive color mixing with an inkjet printer</title>
+    <updated>2026-11-02T02:16:20Z</updated>
+    <summary>When teaching colors, physics teachers ask their students to ignore what is taught in art classes.</summary>
+    <published>2026-11-02T02:16:20Z</published>
+    <arxiv:journal_ref>Phys. Teach. 64 (8): 766-767</arxiv:journal_ref>
+    <author><name>David Marasco</name></author>
+    <arxiv:doi>10.1119/5.0349953</arxiv:doi>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2510.21000v1</id>
+    <title>An older preprint from before the window</title>
+    <summary>Old.</summary>
+    <published>2025-10-26T06:40:32Z</published>
+    <author><name>Someone Earlier</name></author>
+  </entry>
+</feed>

@@ -19,11 +19,11 @@ def utc_stamp(value: str) -> str:
 
 @dataclass
 class Item:
-    id: str                 # stable key: "doi:<doi>" or "kcworks:<record id>"
-    source: str             # "journal" or "commons"
+    id: str                 # stable key: "doi:<doi>", "kcworks:<id>", "osf:<id>", "arxiv:<id>", "openalex:<id>"
+    source: str             # "journal", "commons", "preprint" or "dissertation"
     title: str
     authors: List[str]
-    venue: str              # journal name, or "STEMEd+ Commons"
+    venue: str              # journal name, "STEMEd+ Commons", preprint server, or university
     url: str                # where readers go: the DOI link or the Commons record page
     added: str              # when it appeared (Crossref registration or Commons deposit), ISO 8601 UTC
     published: str = ""     # publication date as given by the source: YYYY, YYYY-MM or YYYY-MM-DD
@@ -31,6 +31,7 @@ class Item:
     disciplines: List[str] = field(default_factory=list)
     collections: List[str] = field(default_factory=list)   # Commons subcollection names
     keywords: List[str] = field(default_factory=list)      # ids from config/keywords.json (HuMeta terms)
+    version_of: str = ""    # preprints: DOI of the published article, when the server records one
 
     def to_dict(self) -> dict:
         return asdict(self)

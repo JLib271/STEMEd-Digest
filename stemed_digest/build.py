@@ -5,8 +5,8 @@
 Output (all static, served by GitHub Pages):
     index.html        searchable list
     items.json        everything currently listed (also the state for the next run)
-    digest.html/.md   the last week: "Recently added to STEMEd+ Commons", then journals
-    feeds/*.xml       RSS: all, STEMEd+ Commons, and one per discipline
+    digest.html/.md   the last week: "Recently added to STEMEd+ Commons", journals, preprints, dissertations
+    feeds/*.xml       RSS: all, STEMEd+ Commons, preprints, dissertations, and one per discipline
 """
 import argparse
 import datetime as dt
@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import Dict, List, Optional
 from urllib.request import Request, urlopen
 
-from . import commons, crossref, digest, feeds, keywords
+from . import commons, crossref, digest, dissertations, feeds, keywords, preprints
 from .disciplines import DISCIPLINES
 from .http import user_agent
 from .models import Item
@@ -57,11 +57,24 @@ def merge(previous: List[Item], fresh: List[Item], now: dt.datetime, keep_days: 
     return sorted(kept, key=lambda i: (i.added, i.id), reverse=True)
 
 
+def drop_preprints_of_listed_articles(items: List[Item]) -> List[Item]:
+    """A preprint whose published version is already listed from a followed journal is
+    shown once, as the journal article."""
+    articles = {i.id[4:] for i in items if i.source == "journal"}
+    return [i for i in items if not (i.source == "preprint" and i.version_of and i.version_of in articles)]
+
+
 def run(out: Path, previous: Optional[str], now: dt.datetime, fetch_journals=crossref.fetch_journal,
-        fetch_commons=commons.fetch_commons, allow_errors: bool = False) -> dict:
+        fetch_commons=commons.fetch_commons, fetch_edarxiv=None, fetch_arxiv=None, fetch_dissertations=None,
+        allow_errors: bool = False) -> dict:
+    fetch_edarxiv = fetch_edarxiv or preprints.fetch_edarxiv
+    fetch_arxiv = fetch_arxiv or preprints.fetch_arxiv
+    fetch_dissertations = fetch_dissertations or dissertations.fetch_dissertations
     site, journals, commons_cfg = load_config("site.json"), load_config("journals.json"), load_config("commons.json")
+    servers, diss_cfg = load_config("preprints.json"), load_config("dissertations.json")
     previous_items = load_previous(previous)
-    listed = {i.venue for i in previous_items if i.source == "journal"}
+    listed = {i.venue for i in previous_items if i.source in ("journal", "preprint")}
+    listed |= {i.source for i in previous_items}
     recent = (now - dt.timedelta(days=site["lookback_days"])).strftime("%Y-%m-%d")
     backfill = (now - dt.timedelta(days=site["keep_days"])).strftime("%Y-%m-%d")
     fresh: List[Item] = []
@@ -75,6 +88,20 @@ def run(out: Path, previous: Optional[str], now: dt.datetime, fetch_journals=cro
             status.append({"source": j["name"], "ok": True, "new": len(got)})
         except Exception as exc:  # noqa: BLE001
             status.append({"source": j["name"], "ok": False, "error": str(exc)[:200]})
+    # Preprint servers and dissertations, also backfilled the first time they run.
+    others = [
+        (servers["edarxiv"]["name"], lambda since: fetch_edarxiv(servers["edarxiv"], since)),
+        (servers["arxiv"]["name"], lambda since: fetch_arxiv(servers["arxiv"], since)),
+        (diss_cfg["name"], lambda since: fetch_dissertations(diss_cfg, since, now, site["keep_days"])),
+    ]
+    for name, fetch in others:
+        seen = name in listed or (name == diss_cfg["name"] and "dissertation" in listed)
+        try:
+            got = fetch(recent if seen else backfill)
+            fresh += got
+            status.append({"source": name, "ok": True, "new": len(got)})
+        except Exception as exc:  # noqa: BLE001
+            status.append({"source": name, "ok": False, "error": str(exc)[:200]})
     try:
         got = fetch_commons(commons_cfg)
         fresh += got
@@ -88,7 +115,7 @@ def run(out: Path, previous: Optional[str], now: dt.datetime, fetch_journals=cro
     if failed and not allow_errors:
         raise SystemExit(f"{len(failed)} source(s) failed; rerun with --allow-errors to publish anyway.")
 
-    items = merge(previous_items, fresh, now, site["keep_days"])
+    items = drop_preprints_of_listed_articles(merge(previous_items, fresh, now, site["keep_days"]))
     out.mkdir(parents=True, exist_ok=True)
     generated = now.strftime("%Y-%m-%dT%H:%M:%SZ")
     payload = {
@@ -101,6 +128,8 @@ def run(out: Path, previous: Optional[str], now: dt.datetime, fetch_journals=cro
         "keep_days": site["keep_days"],
         "journals": [{"name": j["name"], "publisher": j.get("publisher", ""), "society": j.get("society", ""),
                       "disciplines": j.get("disciplines", []), "url": j.get("url", "")} for j in journals["journals"]],
+        "preprint_servers": [{"name": v["name"], "url": v["url"]} for k, v in servers.items() if not k.startswith("_")],
+        "dissertations": {"name": diss_cfg["name"], "url": diss_cfg["url"]},
         "status": status,
         "items": [i.to_dict() for i in items],
     }
@@ -108,7 +137,8 @@ def run(out: Path, previous: Optional[str], now: dt.datetime, fetch_journals=cro
     shutil.copyfile(ROOT / "site" / "index.html", out / "index.html")
     feeds.write_all(out / "feeds", items, site, commons_cfg, now)
     digest.write(out, items, site, commons_cfg, now, {j["name"]: j["url"] for j in journals["journals"] if j.get("url")})
-    print(f"Wrote {len(items)} items ({sum(i.source == 'commons' for i in items)} from {commons_cfg['name']}); "
+    counts = ", ".join(f"{sum(i.source == s for i in items)} {s}" for s in ("journal", "commons", "preprint", "dissertation"))
+    print(f"Wrote {len(items)} items ({counts}); "
           f"{len(failed)} source(s) failed.")
     return payload
 
