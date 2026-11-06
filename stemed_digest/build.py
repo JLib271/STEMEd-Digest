@@ -100,14 +100,14 @@ def run(out: Path, previous: Optional[str], now: dt.datetime, fetch_journals=cro
         "keywords": keywords.summary(),
         "keep_days": site["keep_days"],
         "journals": [{"name": j["name"], "publisher": j.get("publisher", ""), "society": j.get("society", ""),
-                      "disciplines": j.get("disciplines", [])} for j in journals["journals"]],
+                      "disciplines": j.get("disciplines", []), "url": j.get("url", "")} for j in journals["journals"]],
         "status": status,
         "items": [i.to_dict() for i in items],
     }
     (out / "items.json").write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     shutil.copyfile(ROOT / "site" / "index.html", out / "index.html")
     feeds.write_all(out / "feeds", items, site, commons_cfg, now)
-    digest.write(out, items, site, commons_cfg, now)
+    digest.write(out, items, site, commons_cfg, now, {j["name"]: j["url"] for j in journals["journals"] if j.get("url")})
     print(f"Wrote {len(items)} items ({sum(i.source == 'commons' for i in items)} from {commons_cfg['name']}); "
           f"{len(failed)} source(s) failed.")
     return payload

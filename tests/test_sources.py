@@ -138,7 +138,7 @@ class BuildTests(unittest.TestCase):
             self.assertIn("Water Cycle Lesson Plan", commons_part)        # deposited Oct 30, within the week
             self.assertNotIn("Soil Science Lab", commons_part)           # deposited 2025
             self.assertIn("Add it to the [STEMEd+ Commons Collection]", commons_part)
-            self.assertIn("### Chemistry Education Research and Practice (4)", journal_part)
+            self.assertIn("### [Chemistry Education Research and Practice](https://pubs.rsc.org/en/journals/journalissues/rp) (4)", journal_part)
             self.assertLess(md.index("Recently added to STEMEd+ Commons"), md.index("New in journals"))
 
     def test_carries_over_previous_items_and_drops_old_journal_articles(self):
@@ -184,6 +184,20 @@ class BuildTests(unittest.TestCase):
         md = digest.to_markdown(d, build.load_config("site.json"), COMMONS_CFG)
         self.assertIn("Nothing new this week.", md)
         self.assertIn("Add it to the [STEMEd+ Commons Collection]", md)
+
+
+class JournalListTests(unittest.TestCase):
+    def test_every_journal_has_a_website(self):
+        for j in build.load_config("journals.json")["journals"]:
+            self.assertRegex(j.get("url", ""), r"^https://[^\s/]+\.[a-z]{2,}(/|$)", j["name"])
+
+    def test_digest_links_journal_names(self):
+        item = crossref.parse_works(CROSSREF, {"name": "J", "issn": "1756-1108", "disciplines": ["Chemistry"]})[0]
+        item.added = "2026-11-05T00:00:00Z"
+        site = build.load_config("site.json")
+        d = digest.build([item], site, COMMONS_CFG, NOW, {"J": "https://example.org/j"})
+        self.assertIn("### [J](https://example.org/j)", digest.to_markdown(d, site, COMMONS_CFG))
+        self.assertIn('<a href="https://example.org/j"', digest.to_html(d, site, COMMONS_CFG))
 
 
 class StampTests(unittest.TestCase):

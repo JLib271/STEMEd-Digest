@@ -47,6 +47,7 @@
   footer h2 { font-size: 1rem; color: var(--ink); margin: 0 0 6px; }
   footer ul { margin: 6px 0 12px; padding-left: 18px; columns: 2; }
   footer ul.jl { columns: 1; } footer ul.jl li { margin: 3px 0; } footer ul.jl .s { color: var(--muted); }
+  .meta a.jw { color: var(--muted); }
   footer details { margin: 0 0 16px; } footer summary { cursor: pointer; color: var(--accent); }
   .warn { font-size: .85rem; color: #8a5a00; margin: 0 0 8px; }
   .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -105,7 +106,7 @@
 </footer>
 <script>
 (function () {
-  var PAGE = 100, state = { d: null, shown: PAGE, kw: {} };
+  var PAGE = 100, state = { d: null, shown: PAGE, kw: {}, jurl: {} };
   var el = function (id) { return document.getElementById(id); };
   function node(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
   function slug(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
@@ -149,7 +150,9 @@
     items.slice(0, state.shown).forEach(function (i) {
       var li = document.createElement('li');
       li.appendChild(link(i.url, i.title, 't'));
-      li.appendChild(node('div', 'meta', meta(i)));
+      var m = node('div', 'meta', meta(i));
+      if (i.source === 'journal' && state.jurl[i.venue]) { m.appendChild(document.createTextNode(' · ')); m.appendChild(link(state.jurl[i.venue], 'Journal website', 'jw')); }
+      li.appendChild(m);
       var tags = node('div', 'tags');
       if (i.source === 'commons') tags.appendChild(node('span', 'tag src', 'STEMEd+ Commons'));
       i.disciplines.forEach(function (x) { tags.appendChild(node('span', 'tag', x)); });
@@ -194,6 +197,7 @@
       el('keyword').appendChild(og);
     });
     var h = /keyword=([^&]+)/.exec(location.hash); if (h && state.kw[decodeURIComponent(h[1])]) { el('keyword').value = decodeURIComponent(h[1]); el('days').value = ''; }
+    state.jurl = {}; d.journals.forEach(function (j) { if (j.url) state.jurl[j.name] = j.url; });
     var venues = d.journals.map(function (j) { return j.name; }).sort(function (a, b) { return a.localeCompare(b); });
     var colls = []; d.items.forEach(function (i) { i.collections.forEach(function (c) { if (colls.indexOf(c) === -1) colls.push(c); }); });
     fill(el('venue'), [d.commons.name].concat(colls.sort(), venues));
@@ -202,7 +206,7 @@
       .forEach(function (f) { var li = document.createElement('li'), a = node('a', '', f[0]); a.href = 'feeds/' + f[1] + '.xml'; li.appendChild(a); fl.appendChild(li); });
     var jl = el('journallist'), js = d.journals.slice().sort(function (a, b) { return a.name.replace(/^The /, '').localeCompare(b.name.replace(/^The /, '')); });
     js.forEach(function (j) {
-      var li = node('li', '', j.name); li.appendChild(node('span', 's', ' · ' + (j.society ? j.society : j.publisher)));
+      var li = node('li'); li.appendChild(j.url ? link(j.url, j.name) : document.createTextNode(j.name)); li.appendChild(node('span', 's', ' · ' + (j.society ? j.society : j.publisher)));
       jl.appendChild(li);
     });
     el('jsummary').textContent = 'Show all ' + js.length + ' journals (' + js.filter(function (j) { return j.society; }).length +

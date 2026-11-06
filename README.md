@@ -22,8 +22,8 @@ Everything is tagged with the same ten disciplines as
 
 | | |
 |---|---|
-| **Website** | Search and filter by keyword, discipline, journal or collection, source, and date added. New STEMEd+ Commons works are featured at the top. Click a keyword on any listing to see everything with that keyword; the page address then links straight to that view. |
-| **Weekly digest** | [`digest.html`](https://jlib271.github.io/STEMEd-Digest/digest.html) covers the last seven days. It opens with **Recently added to STEMEd+ Commons**, with an invitation to share work there, then lists new journal articles by journal. [`digest.md`](https://jlib271.github.io/STEMEd-Digest/digest.md) is the same digest, ready to paste into a STEMEd+ Commons post, newsletter, or email. |
+| **Website** | Search and filter by keyword, discipline, journal or collection, source, and date added. New STEMEd+ Commons works are featured at the top. Click a keyword on any listing to see everything with that keyword; the page address then links straight to that view. Every journal article has a **Journal website** link, and the journal names in the "Journals followed" list link to each journal's home page. |
+| **Weekly digest** | [`digest.html`](https://jlib271.github.io/STEMEd-Digest/digest.html) covers the last seven days. It opens with **Recently added to STEMEd+ Commons**, with an invitation to share work there, then lists new journal articles by journal, each journal name linking to its website. [`digest.md`](https://jlib271.github.io/STEMEd-Digest/digest.md) is the same digest, ready to paste into a STEMEd+ Commons post, newsletter, or email. |
 | **RSS feeds** | One for everything, one for STEMEd+ Commons, and one per discipline, in [`feeds/`](https://jlib271.github.io/STEMEd-Digest/feeds/all.xml). |
 
 The site updates itself every day.
@@ -83,7 +83,7 @@ Use the [Suggest a journal](../../issues/new?template=suggest_journal.yml) form.
 should publish STEM+ teaching or education research and come from a professional society or
 an established publisher; journals from MDPI, Frontiers, or predatory publishers are not added. To add it
 yourself, add an entry to [`config/journals.json`](config/journals.json) with the ISSN that
-Crossref lists new articles under. Some journals use their online ISSN and others their
+Crossref lists new articles under and the journal's home page (`url`) on its publisher's site. Some journals use their online ISSN and others their
 print ISSN; Academic Medicine, for example, moved to Oxford University Press in 2026 and
 lists new articles under 1938-808X.
 
@@ -108,7 +108,7 @@ identified requests from a faster pool. Without it, requests are anonymous.
 
 | File | What it controls |
 |---|---|
-| `config/journals.json` | The journals, their ISSNs, sponsoring societies, and disciplines. `classify_titles` also tags articles by words in their titles, for journals that cover many fields. |
+| `config/journals.json` | The journals, their ISSNs, home pages, sponsoring societies, and disciplines. `classify_titles` also tags articles by words in their titles, for journals that cover many fields. |
 | `config/commons.json` | The STEMEd+ Commons collection, and disciplines for whole subcollections (Entomology Education → Bioscience, STEM in Agricultural Education → Agriculture). |
 | `config/keywords.json` | The HuMeta keywords, their ERIC descriptors, and match phrases. |
 | `config/site.json` | Title, how many days to look back each run (14), how long to keep journal articles (365 days), and how many days the digest covers (7). |

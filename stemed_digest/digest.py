@@ -8,7 +8,7 @@ import datetime as dt
 import html
 from collections import OrderedDict
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 
 from .feeds import describe
 from .models import Item
@@ -28,14 +28,14 @@ def _dates(now: dt.datetime, days: int) -> str:
     return f"{start:%B} {start.day} to {now:%B} {now.day}, {now.year}"
 
 
-def build(items: List[Item], site: dict, commons_cfg: dict, now: dt.datetime) -> dict:
+def build(items: List[Item], site: dict, commons_cfg: dict, now: dt.datetime, journal_urls: Optional[dict] = None) -> dict:
     days = site["digest_days"]
     recent = window(items, now, days)
     from_commons = [i for i in recent if i.source == "commons"]
     by_journal: "OrderedDict[str, List[Item]]" = OrderedDict()
     for i in sorted((i for i in recent if i.source == "journal"), key=lambda i: (i.venue.lower(), i.title.lower())):
         by_journal.setdefault(i.venue, []).append(i)
-    return {"dates": _dates(now, days), "commons": from_commons, "journals": by_journal,
+    return {"dates": _dates(now, days), "commons": from_commons, "journals": by_journal, "journal_urls": journal_urls or {},
             "journal_count": sum(len(v) for v in by_journal.values())}
 
 
@@ -53,7 +53,9 @@ def to_markdown(d: dict, site: dict, commons_cfg: dict) -> str:
     if not d["journals"]:
         out.append("No new journal articles this week.")
     for venue, its in d["journals"].items():
-        out += [f"### {venue} ({len(its)})", ""] + [f"- [{_md_escape(i.title)}]({i.url}). {describe(i)}" for i in its] + [""]
+        url = d.get("journal_urls", {}).get(venue)
+        heading = f"[{_md_escape(venue)}]({url})" if url else venue
+        out += [f"### {heading} ({len(its)})", ""] + [f"- [{_md_escape(i.title)}]({i.url}). {describe(i)}" for i in its] + [""]
     return "\n".join(out).rstrip() + "\n"
 
 
@@ -67,8 +69,16 @@ def to_html(d: dict, site: dict, commons_cfg: dict) -> str:
     curl = html.escape(commons_cfg["collection_url"])
     cname = html.escape(commons_cfg["name"])
     commons = "".join(_li(i) for i in d["commons"]) or "<li class=\"none\">Nothing new this week.</li>"
+    urls = d.get("journal_urls", {})
+
+    def heading(v: str) -> str:
+        if not urls.get(v):
+            return html.escape(v)
+        return (f'<a href="{html.escape(urls[v])}" target="_blank" rel="noopener noreferrer" '
+                f'title="Journal website">{html.escape(v)}</a>')
+
     journals = "".join(
-        f"<h3>{html.escape(v)} <span class=\"n\">({len(its)})</span></h3><ul>{''.join(_li(i) for i in its)}</ul>"
+        f"<h3>{heading(v)} <span class=\"n\">({len(its)})</span></h3><ul>{''.join(_li(i) for i in its)}</ul>"
         for v, its in d["journals"].items()) or "<p class=\"none\">No new journal articles this week.</p>"
     return f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -93,7 +103,8 @@ def to_html(d: dict, site: dict, commons_cfg: dict) -> str:
 """
 
 
-def write(out: Path, items: List[Item], site: dict, commons_cfg: dict, now: dt.datetime) -> None:
-    d = build(items, site, commons_cfg, now)
+def write(out: Path, items: List[Item], site: dict, commons_cfg: dict, now: dt.datetime,
+          journal_urls: Optional[dict] = None) -> None:
+    d = build(items, site, commons_cfg, now, journal_urls)
     (out / "digest.md").write_text(to_markdown(d, site, commons_cfg), encoding="utf-8")
     (out / "digest.html").write_text(to_html(d, site, commons_cfg), encoding="utf-8")
