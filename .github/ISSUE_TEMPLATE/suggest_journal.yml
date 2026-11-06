@@ -1,0 +1,45 @@
+name: Suggest a journal
+description: Suggest a journal that publishes STEM+ education research or practice.
+title: "Add journal: <journal name>"
+labels: ["suggest journal"]
+body:
+  - type: input
+    id: journal
+    attributes:
+      label: Journal name
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Journal website
+    validations:
+      required: true
+  - type: input
+    id: issn
+    attributes:
+      label: ISSN (optional)
+      description: Print or online ISSN, if you know it. We'll check which one Crossref uses.
+  - type: dropdown
+    id: disciplines
+    attributes:
+      label: Discipline
+      multiple: true
+      options:
+        - Agriculture
+        - Bioscience
+        - Chemistry
+        - Earth Science
+        - Engineering
+        - Health Education
+        - Learning Science
+        - Mathematics
+        - Physics
+        - Science Education
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why include it?
+      description: For example, who reads it, or what kind of STEM+ education work it publishes.

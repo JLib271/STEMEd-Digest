@@ -1,0 +1,23 @@
+{
+  "_about": "Journals to follow. issn: the ISSN that Crossref lists new articles under (checked 2026-11-06). disciplines: categories every article gets. classify_titles: also tag articles by words in their titles (for journals that cover many fields).",
+  "journals": [
+    {"name": "CBE—Life Sciences Education", "issn": "1931-7913", "publisher": "American Society for Cell Biology", "disciplines": ["Bioscience"]},
+    {"name": "Journal of Microbiology & Biology Education", "issn": "1935-7885", "publisher": "American Society for Microbiology", "disciplines": ["Bioscience"]},
+    {"name": "Journal of Chemical Education", "issn": "0021-9584", "publisher": "American Chemical Society", "disciplines": ["Chemistry"]},
+    {"name": "Chemistry Education Research and Practice", "issn": "1756-1108", "publisher": "Royal Society of Chemistry", "disciplines": ["Chemistry"]},
+    {"name": "Physical Review Physics Education Research", "issn": "2469-9896", "publisher": "American Physical Society", "disciplines": ["Physics"]},
+    {"name": "Journal of Geoscience Education", "issn": "1089-9995", "publisher": "Taylor & Francis", "disciplines": ["Earth Science"]},
+    {"name": "Journal for Research in Mathematics Education", "issn": "0021-8251", "publisher": "National Council of Teachers of Mathematics", "disciplines": ["Mathematics"]},
+    {"name": "Educational Studies in Mathematics", "issn": "0013-1954", "publisher": "Springer", "disciplines": ["Mathematics"]},
+    {"name": "Journal of Engineering Education", "issn": "1069-4730", "publisher": "Wiley", "disciplines": ["Engineering"]},
+    {"name": "Journal of Agricultural Education", "issn": "1042-0541", "publisher": "American Association for Agricultural Education", "disciplines": ["Agriculture"]},
+    {"name": "Journal of Research in Science Teaching", "issn": "0022-4308", "publisher": "Wiley", "disciplines": ["Science Education"], "classify_titles": true},
+    {"name": "Science Education", "issn": "0036-8326", "publisher": "Wiley", "disciplines": ["Science Education"], "classify_titles": true},
+    {"name": "International Journal of Science Education", "issn": "0950-0693", "publisher": "Taylor & Francis", "disciplines": ["Science Education"], "classify_titles": true},
+    {"name": "International Journal of STEM Education", "issn": "2196-7822", "publisher": "Springer", "disciplines": ["Science Education"], "classify_titles": true},
+    {"name": "Journal of the Learning Sciences", "issn": "1050-8406", "publisher": "Taylor & Francis", "disciplines": ["Learning Science"], "classify_titles": true},
+    {"name": "Medical Education", "issn": "0308-0110", "publisher": "Wiley", "disciplines": ["Health Education"]},
+    {"name": "Academic Medicine", "issn": "1938-808X", "publisher": "Oxford University Press", "disciplines": ["Health Education"]},
+    {"name": "Advances in Health Sciences Education", "issn": "1382-4996", "publisher": "Springer", "disciplines": ["Health Education"]}
+  ]
+}

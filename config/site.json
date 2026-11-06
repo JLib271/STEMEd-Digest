@@ -1,0 +1,9 @@
+{
+  "title": "STEMEd+ Digest",
+  "tagline": "New work in STEM+ education research and practice: journal tables of contents and the STEMEd+ Commons Collection, in one place.",
+  "repo_url": "https://github.com/JLib271/STEMEd-Digest",
+  "commons_home": "https://stemedplus.hcommons.org/",
+  "lookback_days": 14,
+  "keep_days": 180,
+  "digest_days": 7
+}

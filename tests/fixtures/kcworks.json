@@ -1,0 +1,58 @@
+{
+  "_about": "Trimmed copies of real Knowledge Commons Works API responses for the stemedplus collection, captured 2026-11-06.",
+  "subcommunities": {"hits": {"total": 2, "hits": [
+    {"id": "2dc8c91d-a329-48a6-a9c2-5eb9a2d9845a", "slug": "steminagriculturaleducation", "metadata": {"title": "STEM in Agricultural Education"}},
+    {"id": "2ccf00eb-0744-4115-8ecb-02fe3d15c288", "slug": "entomologyeducation", "metadata": {"title": "Entomology Education (EntEd)"}}
+  ]}},
+  "records": {
+    "stemedplus": {"hits": {"total": 2, "hits": [
+      {
+        "id": "wnm5z-00x75",
+        "created": "2026-10-31T16:20:46.345325+00:00",
+        "links": {"self_html": "https://works.hcommons.org/records/wnm5z-00x75"},
+        "pids": {"doi": {"identifier": "10.17613/wnm5z-00x75"}},
+        "parent": {"communities": {"ids": ["6c1f413b-0a62-46e6-9699-4b33fc3ff957"]}},
+        "custom_fields": {"kcr:user_defined_tags": ["concept inventory", "geoscience", "Rasch"]},
+        "metadata": {
+          "title": "The Geoscience Concept Inventory: Application of Rasch Analysis to Concept Inventory Development in Higher Education",
+          "publication_date": "2006",
+          "resource_type": {"id": "textDocument-bookSection", "title": {"de": "Buchabteilung", "en": "Book section"}},
+          "creators": [{"person_or_org": {"name": "Julie C Libarkin"}}, {"person_or_org": {"name": "Anderson, Steven W"}}],
+          "subjects": []
+        }
+      },
+      {
+        "id": "6xc17-xze35",
+        "created": "2026-10-30T18:23:35.300940+00:00",
+        "links": {"self_html": "https://works.hcommons.org/records/6xc17-xze35"},
+        "pids": {"doi": {"identifier": "10.17613/6xc17-xze35"}},
+        "parent": {"communities": {"ids": ["2dc8c91d-a329-48a6-a9c2-5eb9a2d9845a", "6c1f413b-0a62-46e6-9699-4b33fc3ff957"]}},
+        "custom_fields": {},
+        "metadata": {
+          "title": "Water Cycle Lesson Plan",
+          "publication_date": "2026-10-30",
+          "resource_type": {"id": "instructionalResource-curriculum", "title": {"en": "Curriculum"}},
+          "creators": [{"person_or_org": {"name": "Aaron McKim"}}],
+          "subjects": []
+        }
+      }
+    ]}},
+    "steminagriculturaleducation": {"hits": {"total": 2, "hits": [
+      {
+        "id": "6xc17-xze35",
+        "created": "2026-10-30T18:23:35.300940+00:00",
+        "links": {"self_html": "https://works.hcommons.org/records/6xc17-xze35"},
+        "parent": {"communities": {"ids": ["2dc8c91d-a329-48a6-a9c2-5eb9a2d9845a", "6c1f413b-0a62-46e6-9699-4b33fc3ff957"]}},
+        "metadata": {"title": "Water Cycle Lesson Plan", "publication_date": "2026-10-30", "resource_type": {"title": {"en": "Curriculum"}}, "creators": [{"person_or_org": {"name": "Aaron McKim"}}]}
+      },
+      {
+        "id": "agonly-0001",
+        "created": "2025-03-02T10:00:00+00:00",
+        "links": {"self_html": "https://works.hcommons.org/records/agonly-0001"},
+        "parent": {"communities": {"ids": ["2dc8c91d-a329-48a6-a9c2-5eb9a2d9845a"]}},
+        "metadata": {"title": "Soil Science Lab for Agriscience Teachers", "publication_date": "2025", "resource_type": {"title": {"en": "Lesson"}}, "creators": [{"person_or_org": {"name": "Ag Teacher"}}]}
+      }
+    ]}},
+    "entomologyeducation": {"hits": {"total": 0, "hits": []}}
+  }
+}

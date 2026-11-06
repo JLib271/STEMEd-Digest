@@ -1,0 +1,53 @@
+name: Update and publish
+
+# Every day: run the tests, collect new journal articles and STEMEd+ Commons works,
+# merge them with what the site already lists, and publish to GitHub Pages.
+# Turn on once: Settings -> Pages -> Source: GitHub Actions.
+# Optional: add a repository variable CONTACT_EMAIL (Settings -> Secrets and variables ->
+# Actions -> Variables) so Crossref can reach you and serve requests faster.
+
+on:
+  schedule:
+    - cron: "23 10 * * *"
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Run tests
+        run: python -m unittest discover -s tests -t . -v
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v6
+      - name: Collect new work and build the site
+        env:
+          CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
+        run: >-
+          python -m stemed_digest
+          --out output
+          --previous "${{ steps.pages.outputs.base_url }}"
+          --allow-errors
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: output
+      - id: deployment
+        uses: actions/deploy-pages@v5

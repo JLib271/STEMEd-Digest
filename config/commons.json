@@ -1,0 +1,11 @@
+{
+  "_about": "STEMEd+ Commons Collection on Knowledge Commons Works. Subcollections are found automatically on every run. subcollection_disciplines: categories for every work in a subcollection; other works are tagged by words in their titles and keywords.",
+  "name": "STEMEd+ Commons",
+  "api": "https://works.hcommons.org/api",
+  "collection": "stemedplus",
+  "collection_url": "https://works.hcommons.org/collections/stemedplus/",
+  "subcollection_disciplines": {
+    "entomologyeducation": ["Bioscience"],
+    "steminagriculturaleducation": ["Agriculture"]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "_about": "Shapes copied from real Crossref /journals/{issn}/works responses on 2026-11-06 (author lists shortened), plus edge cases seen in those responses.",
+  "items": [
+    {
+      "DOI": "10.1187/cbe.25-10-0224",
+      "URL": "https://doi.org/10.1187/cbe.25-10-0224",
+      "type": "journal-article",
+      "title": ["Instructor Development of Technological Pedagogical Content Knowledge (TPACK) Self-Efficacy within a PoP-CURE Professional Development Community of Practice"],
+      "author": [
+        {"given": "Amy K.", "family": "Dunbar-Wallis", "sequence": "first"},
+        {"given": "Lisa", "family": "Corwin", "sequence": "additional"}
+      ],
+      "container-title": ["CBE—Life Sciences Education"],
+      "created": {"date-parts": [[2026, 10, 23]], "date-time": "2026-10-23T17:13:38Z"},
+      "published": {"date-parts": [[2026, 12, 1]]}
+    },
+    {
+      "DOI": "10.1021/ACS.JCHEMED.6C00001",
+      "URL": "https://doi.org/10.1021/acs.jchemed.6c00001",
+      "type": "journal-article",
+      "title": ["Catalytic Hydrolysis\nof Ammonia Borane: An Integrated\nUndergraduate Experiment on <i>Hydrogen</i> Production"],
+      "author": [{"given": "A.", "family": "Chemist"}],
+      "created": {"date-time": "2026-11-06T14:01:39Z"},
+      "published": {"date-parts": [[2026, 11, 6]]}
+    },
+    {
+      "DOI": "10.1039/d6rp00001a",
+      "URL": "https://doi.org/10.1039/d6rp00001a",
+      "type": "journal-article",
+      "title": ["Flipped classroom learning in K-12 redox chemistry"],
+      "author": [{"name": "CERP Consortium"}],
+      "created": {"date-time": "2026-11-06T12:17:52Z"},
+      "published": {"date-parts": [[2026]]}
+    },
+    {"DOI": "10.5951/jresematheduc-2026-0001", "type": "journal-article", "title": ["Acknowledgment"], "created": {"date-time": "2026-11-06T08:01:22Z"}},
+    {"DOI": "10.1002/jee.70001", "type": "journal-article", "title": ["Issue Information"], "created": {"date-time": "2026-11-05T08:00:00Z"}},
+    {"DOI": "10.1039/d6rp90012g", "type": "journal-article", "title": ["Correction: Students’ epistemological resources"], "created": {"date-time": "2026-11-04T08:00:00Z"}},
+    {"DOI": "10.1002/sce.99999", "type": "peer-review", "title": ["Review of: something"], "created": {"date-time": "2026-11-04T08:00:00Z"}},
+    {"DOI": "10.1007/s10649-026-10584-4", "type": "journal-article", "title": ["Book Review: Jinfa Cai &amp; Roza Leikin (Eds.)"], "created": {"date-time": "2026-11-06T05:36:41Z"}, "published": {"date-parts": [[2026, 11, 6]]}},
+    {"DOI": "10.1002/jee.v116.1", "type": "journal-issue", "created": {"date-time": "2026-11-06T05:34:56Z"}},
+    {"DOI": "10.1002/tea.70002", "type": "journal-article", "title": ["Medical students and physics problem solving"], "created": {"date-time": "2026-11-05T10:00:00Z"}, "published": {"date-parts": [[2026, 11]]}}
+  ]
+}
