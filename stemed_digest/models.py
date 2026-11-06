@@ -30,6 +30,7 @@ class Item:
     kind: str = ""          # e.g. "Journal article", "Curriculum", "Book section"
     disciplines: List[str] = field(default_factory=list)
     collections: List[str] = field(default_factory=list)   # Commons subcollection names
+    keywords: List[str] = field(default_factory=list)      # ids from config/keywords.json (HuMeta terms)
 
     def to_dict(self) -> dict:
         return asdict(self)

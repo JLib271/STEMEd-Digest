@@ -8,12 +8,14 @@ import html
 import re
 from typing import Iterable, List
 
+from . import keywords
 from .disciplines import DISCIPLINES, matching_disciplines
 from .http import get_json
 from .models import Item, utc_stamp
 
 API = "https://api.crossref.org"
-FIELDS = "DOI,URL,title,author,container-title,created,published,issued,type"
+FIELDS = "DOI,URL,title,author,container-title,created,published,issued,type,abstract"
+# Abstracts are used only to match keywords. They are never stored or shown.
 
 # Issue furniture and notices that are not research or practice articles.
 SKIP_TITLE = re.compile(
@@ -69,6 +71,7 @@ def parse_works(works: Iterable[dict], journal: dict) -> List[Item]:
             published=_date(w.get("published") or w.get("issued") or {}),
             kind="Journal article",
             disciplines=[d for d in DISCIPLINES if d in disciplines],
+            keywords=keywords.match([title, html.unescape(w.get("abstract") or "")]),
         ))
     return items
 

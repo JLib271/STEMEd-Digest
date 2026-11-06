@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import Dict, List, Optional
 from urllib.request import Request, urlopen
 
-from . import commons, crossref, digest, feeds
+from . import commons, crossref, digest, feeds, keywords
 from .disciplines import DISCIPLINES
 from .http import user_agent
 from .models import Item
@@ -91,6 +91,8 @@ def run(out: Path, previous: Optional[str], now: dt.datetime, fetch_journals=cro
         "site": {k: site[k] for k in ("title", "tagline", "repo_url", "commons_home")},
         "commons": {"name": commons_cfg["name"], "url": commons_cfg["collection_url"]},
         "disciplines": list(DISCIPLINES),
+        "keyword_groups": keywords.load()[0]["groups"],
+        "keywords": keywords.summary(),
         "journals": [{"name": j["name"], "publisher": j.get("publisher", "")} for j in journals["journals"]],
         "status": status,
         "items": [i.to_dict() for i in items],

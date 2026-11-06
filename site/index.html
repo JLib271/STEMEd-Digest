@@ -27,7 +27,7 @@
   .strip .c a { font-weight: 600; text-decoration: none; } .strip .c a:hover { text-decoration: underline; }
   .strip .c .m { color: var(--muted); font-size: .82rem; margin-top: 3px; }
   .commons .invite { margin: 12px 0 0; font-size: .92rem; }
-  .controls { display: grid; grid-template-columns: 2fr 1fr 1fr 1.3fr 1fr; gap: 12px; margin: 20px 0 8px; }
+  .controls { display: grid; grid-template-columns: 1.6fr 1.4fr 1fr 1fr 1.2fr 0.9fr; gap: 12px; margin: 20px 0 8px; }
   label { display: block; font-size: .8rem; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
   input, select { width: 100%; padding: 9px 10px; font: inherit; border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--ink); }
   input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
@@ -48,6 +48,10 @@
   footer ul { margin: 6px 0 12px; padding-left: 18px; columns: 2; }
   .warn { font-size: .85rem; color: #8a5a00; margin: 0 0 8px; }
   .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .tag.kw { background: #fff; border: 1px solid var(--line); color: var(--accent); font-weight: 500; cursor: pointer; }
+  .tag.kw:hover, .tag.kw:focus { border-color: var(--accent); outline: none; }
+  .tag.kw[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .kwnote { font-size: .85rem; color: var(--muted); margin: 0 0 6px; }
   @media (max-width: 860px) { .controls { grid-template-columns: 1fr 1fr; } .controls .search { grid-column: 1 / -1; } footer ul { columns: 1; } }
 </style>
 </head>
@@ -73,11 +77,13 @@
 <main class="wrap">
   <div class="controls" role="search">
     <div class="search"><label for="q">Search</label><input id="q" type="search" placeholder="Title, author, or journal" autocomplete="off"></div>
+    <div><label for="keyword">Keyword</label><select id="keyword"><option value="">All</option></select></div>
     <div><label for="discipline">Discipline</label><select id="discipline"><option value="">All</option></select></div>
     <div><label for="source">Source</label><select id="source"><option value="">All</option><option value="journal">Journals</option><option value="commons">STEMEd+ Commons</option></select></div>
     <div><label for="venue">Journal or collection</label><select id="venue"><option value="">All</option></select></div>
     <div><label for="days">Added in the last</label><select id="days"><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option><option value="">Any time</option></select></div>
   </div>
+  <p id="kwnote" class="kwnote" hidden></p>
   <p id="warn" class="warn" hidden></p>
   <p id="count" aria-live="polite"></p>
   <ol id="list"></ol>
@@ -89,12 +95,13 @@
     <p>Follow new work in a feed reader:</p>
     <ul id="feedlist"></ul>
     <p>Journal listings come from <a href="https://www.crossref.org/">Crossref</a>. STEMEd+ Commons listings come from <a href="https://works.hcommons.org/">Knowledge Commons Works</a>. Titles link to the original work; abstracts are not copied. <span id="updated"></span></p>
-    <p><a id="repo" href="#">About this site and the journal list</a></p>
+    <p>Keywords are terms from HuMeta, a metadata profile for STEM+ education research, each linked to ERIC Thesaurus descriptors. They are matched in titles, in abstracts that publishers share with Crossref, and in STEMEd+ Commons keywords, so an article can be missing a keyword that fits it.</p>
+    <p><a id="repo" href="#">About this site, the journal list, and the keywords</a></p>
   </div>
 </footer>
 <script>
 (function () {
-  var PAGE = 100, state = { d: null, shown: PAGE };
+  var PAGE = 100, state = { d: null, shown: PAGE, kw: {} };
   var el = function (id) { return document.getElementById(id); };
   function node(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
   function slug(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
@@ -111,14 +118,27 @@
   }
   function cutoff() { var d = el('days').value; return d ? new Date(Date.now() - d * 864e5).toISOString().slice(0, 19) + 'Z' : ''; }
   function filtered() {
-    var q = el('q').value.trim().toLowerCase(), disc = el('discipline').value, src = el('source').value, v = el('venue').value, c = cutoff();
+    var q = el('q').value.trim().toLowerCase(), kw = el('keyword').value, disc = el('discipline').value, src = el('source').value, v = el('venue').value, c = cutoff();
     return state.d.items.filter(function (i) {
       return (!q || (i.title + ' ' + i.authors.join(' ') + ' ' + i.venue + ' ' + i.collections.join(' ')).toLowerCase().indexOf(q) !== -1) &&
-        (!disc || i.disciplines.indexOf(disc) !== -1) && (!src || i.source === src) &&
+        (!kw || i.keywords.indexOf(kw) !== -1) && (!disc || i.disciplines.indexOf(disc) !== -1) && (!src || i.source === src) &&
         (!v || i.venue === v || i.collections.indexOf(v) !== -1) && (!c || i.added >= c);
     });
   }
+  function keywordNote() {
+    var k = state.kw[el('keyword').value], n = el('kwnote');
+    if (!k) { n.hidden = true; return; }
+    n.textContent = k.label + ': HuMeta ' + k.humeta.join(', ') + (k.eric.length ? '. ERIC: ' + k.eric.join('; ') + '.' : '.');
+    n.hidden = false;
+  }
+  function changed() {
+    state.shown = PAGE;
+    var k = el('keyword').value;
+    try { history.replaceState(null, '', k ? '#keyword=' + encodeURIComponent(k) : location.pathname + location.search); } catch (e) {}
+    render();
+  }
   function render() {
+    keywordNote();
     var items = filtered(), list = el('list'); list.innerHTML = '';
     el('count').textContent = items.length + (items.length === 1 ? ' item' : ' items');
     if (!items.length) { list.appendChild(node('li', 'empty', 'Nothing matches. Try a longer time range or clear a filter.')); el('more').hidden = true; return; }
@@ -129,6 +149,13 @@
       var tags = node('div', 'tags');
       if (i.source === 'commons') tags.appendChild(node('span', 'tag src', 'STEMEd+ Commons'));
       i.disciplines.forEach(function (x) { tags.appendChild(node('span', 'tag', x)); });
+      i.keywords.forEach(function (k) {
+        if (!state.kw[k]) return;
+        var b = node('button', 'tag kw', state.kw[k].label); b.type = 'button'; b.setAttribute('aria-pressed', el('keyword').value === k ? 'true' : 'false');
+        b.title = 'Show only ' + state.kw[k].label;
+        b.addEventListener('click', function () { el('keyword').value = el('keyword').value === k ? '' : k; changed(); });
+        tags.appendChild(b);
+      });
       tags.appendChild(node('span', 'added', 'Added ' + day(i.added)));
       li.appendChild(tags); list.appendChild(li);
     });
@@ -153,6 +180,16 @@
     var counts = {}; d.items.forEach(function (i) { i.disciplines.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; }); });
     var labels = {}; d.disciplines.forEach(function (x) { labels[x] = x + ' (' + (counts[x] || 0) + ')'; });
     fill(el('discipline'), d.disciplines, labels);
+    state.kw = {}; var kc = {};
+    d.items.forEach(function (i) { (i.keywords || []).forEach(function (k) { kc[k] = (kc[k] || 0) + 1; }); });
+    d.keyword_groups.forEach(function (g) {
+      var og = document.createElement('optgroup'); og.label = g;
+      d.keywords.filter(function (k) { return k.group === g; }).sort(function (a, b) { return a.label.localeCompare(b.label); }).forEach(function (k) {
+        state.kw[k.id] = k; var o = node('option', '', k.label + ' (' + (kc[k.id] || 0) + ')'); o.value = k.id; og.appendChild(o);
+      });
+      el('keyword').appendChild(og);
+    });
+    var h = /keyword=([^&]+)/.exec(location.hash); if (h && state.kw[decodeURIComponent(h[1])]) { el('keyword').value = decodeURIComponent(h[1]); el('days').value = ''; }
     var venues = d.journals.map(function (j) { return j.name; }).sort(function (a, b) { return a.localeCompare(b); });
     var colls = []; d.items.forEach(function (i) { i.collections.forEach(function (c) { if (colls.indexOf(c) === -1) colls.push(c); }); });
     fill(el('venue'), [d.commons.name].concat(colls.sort(), venues));
@@ -164,7 +201,7 @@
     el('updated').textContent = 'Last updated ' + day(d.generated) + '.';
     strip(d);
     document.querySelectorAll('footer a[href^="http"]').forEach(function (a) { if (a.target !== '_blank') ext(a); });
-    ['q', 'discipline', 'source', 'venue', 'days'].forEach(function (id) { el(id).addEventListener('input', function () { state.shown = PAGE; render(); }); });
+    ['q', 'keyword', 'discipline', 'source', 'venue', 'days'].forEach(function (id) { el(id).addEventListener('input', changed); });
     el('more').addEventListener('click', function () { state.shown += PAGE; render(); });
     render();
   }).catch(function () { el('count').textContent = 'The list could not be loaded.'; });

@@ -1,0 +1,1533 @@
+{
+ "_about": "Keywords for tagging articles and works. Each keyword is one or more HuMeta terms (vocabulary + term id), with HuMeta's verified ERIC descriptors. 'match' phrases are matched case-insensitively as whole words in titles, abstracts (journals; used for matching only, never shown), and keywords (STEMEd+ Commons). A trailing * matches any ending. 'match_case_sensitive' phrases (acronyms) must match exactly. scripts/sync_humeta.py refreshes the HuMeta labels and ERIC descriptors from a HuMeta checkout.",
+ "humeta_version": "1.0.0-draft.1",
+ "groups": [
+  "What is studied",
+  "Research approach",
+  "Teaching and settings"
+ ],
+ "keywords": [
+  {
+   "id": "construct:conceptual_understanding",
+   "label": "Conceptual understanding",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "conceptual_understanding",
+     "label": "Conceptual understanding"
+    }
+   ],
+   "eric": [
+    "Scientific Concepts",
+    "Misconceptions",
+    "Concept Formation"
+   ],
+   "match": [
+    "conceptual understanding",
+    "conceptual knowledge",
+    "conceptual change",
+    "concept inventor*",
+    "misconception*",
+    "alternative conception*"
+   ]
+  },
+  {
+   "id": "construct:climate_change_conceptual_understanding",
+   "label": "Climate change conceptual understanding",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "climate_change_conceptual_understanding",
+     "label": "Climate change conceptual understanding"
+    }
+   ],
+   "eric": [
+    "Climate",
+    "Scientific Concepts"
+   ],
+   "match": [
+    "climate change knowledge",
+    "climate literacy",
+    "climate change misconception*",
+    "climate change understanding",
+    "understanding of climate change",
+    "climate change education"
+   ]
+  },
+  {
+   "id": "construct:problem_solving",
+   "label": "Problem solving",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "problem_solving",
+     "label": "Problem solving"
+    }
+   ],
+   "eric": [
+    "Problem Solving"
+   ],
+   "match": [
+    "problem solving",
+    "problem-solving"
+   ]
+  },
+  {
+   "id": "construct:scientific_reasoning",
+   "label": "Scientific reasoning",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "scientific_reasoning",
+     "label": "Scientific reasoning"
+    }
+   ],
+   "eric": [
+    "Science Process Skills",
+    "Scientific Literacy"
+   ],
+   "match": [
+    "scientific reasoning",
+    "scientific thinking",
+    "inquiry skill*",
+    "experimentation strateg*",
+    "reasoning skill*"
+   ]
+  },
+  {
+   "id": "construct:quantitative_reasoning",
+   "label": "Quantitative reasoning",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "quantitative_reasoning",
+     "label": "Quantitative reasoning"
+    }
+   ],
+   "eric": [
+    "Numeracy",
+    "Mathematical Logic"
+   ],
+   "match": [
+    "quantitative reasoning",
+    "quantitative literacy",
+    "quantitative skill*",
+    "numeracy",
+    "graph interpretation",
+    "graphing"
+   ]
+  },
+  {
+   "id": "construct:critical_thinking",
+   "label": "Critical thinking",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "critical_thinking",
+     "label": "Critical thinking"
+    }
+   ],
+   "eric": [
+    "Critical Thinking"
+   ],
+   "match": [
+    "critical thinking"
+   ]
+  },
+  {
+   "id": "construct:self_efficacy",
+   "label": "Self-efficacy",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "self_efficacy",
+     "label": "Self-efficacy"
+    }
+   ],
+   "eric": [
+    "Self Efficacy"
+   ],
+   "match": [
+    "self-efficacy",
+    "self efficacy",
+    "perceived competence",
+    "competence belief*"
+   ]
+  },
+  {
+   "id": "construct:interest",
+   "label": "Interest",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "interest",
+     "label": "Interest"
+    }
+   ],
+   "eric": [
+    "Student Interests"
+   ],
+   "match": [
+    "situational interest",
+    "individual interest",
+    "personal interest",
+    "learning interest",
+    "student interest",
+    "career interest*",
+    "interest in science",
+    "interest in STEM",
+    "interest in mathematics",
+    "interest in chemistry",
+    "interest in physics"
+   ]
+  },
+  {
+   "id": "construct:task_value",
+   "label": "Task value",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "task_value",
+     "label": "Task value"
+    }
+   ],
+   "eric": [
+    "Values",
+    "Expectation"
+   ],
+   "match": [
+    "task value*",
+    "utility value*",
+    "expectancy-value",
+    "expectancy value",
+    "perceived cost*"
+   ]
+  },
+  {
+   "id": "construct:goal_orientation",
+   "label": "Goal orientation",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "goal_orientation",
+     "label": "Goal orientation"
+    }
+   ],
+   "eric": [
+    "Goal Orientation"
+   ],
+   "match": [
+    "achievement goal*",
+    "goal orientation*",
+    "mastery goal*",
+    "performance goal*"
+   ]
+  },
+  {
+   "id": "construct:anxiety",
+   "label": "Academic anxiety",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "anxiety",
+     "label": "Academic anxiety"
+    }
+   ],
+   "eric": [
+    "Anxiety",
+    "Test Anxiety",
+    "Mathematics Anxiety"
+   ],
+   "match": [
+    "math anxiety",
+    "mathematics anxiety",
+    "test anxiety",
+    "science anxiety",
+    "statistics anxiety",
+    "chemistry anxiety",
+    "academic anxiety"
+   ]
+  },
+  {
+   "id": "construct:attitude_toward_subject",
+   "label": "Attitude toward the subject or behavior",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "attitude_toward_subject",
+     "label": "Attitude toward the subject or behavior"
+    }
+   ],
+   "eric": [
+    "Scientific Attitudes",
+    "Student Attitudes"
+   ],
+   "match": [
+    "attitude toward*",
+    "attitudes toward*",
+    "attitude towards",
+    "attitudes towards"
+   ]
+  },
+  {
+   "id": "construct:behavioral_intention",
+   "label": "Behavioral intention",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "behavioral_intention",
+     "label": "Behavioral intention"
+    }
+   ],
+   "eric": [
+    "Intention",
+    "Academic Persistence"
+   ],
+   "match": [
+    "persistence intention*",
+    "career intention*",
+    "intent to persist",
+    "intention to persist",
+    "intent to pursue",
+    "intention to pursue",
+    "intentions to use",
+    "intention to use"
+   ]
+  },
+  {
+   "id": "construct:mindset",
+   "label": "Mindset / beliefs about ability",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "mindset",
+     "label": "Mindset / beliefs about ability"
+    }
+   ],
+   "eric": [
+    "Beliefs",
+    "Self Concept"
+   ],
+   "match": [
+    "mindset*",
+    "implicit theor*",
+    "brilliance belief*",
+    "lay theor*"
+   ]
+  },
+  {
+   "id": "construct:sense_of_belonging",
+   "label": "Sense of belonging",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "sense_of_belonging",
+     "label": "Sense of belonging"
+    }
+   ],
+   "eric": [
+    "Sense of Belonging"
+   ],
+   "match": [
+    "belonging",
+    "social fit",
+    "belonging uncertainty"
+   ]
+  },
+  {
+   "id": "construct:disciplinary_identity",
+   "label": "Disciplinary identity",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "disciplinary_identity",
+     "label": "Disciplinary identity"
+    }
+   ],
+   "eric": [
+    "Professional Identity",
+    "Identification (Psychology)"
+   ],
+   "match": [
+    "science identity",
+    "STEM identity",
+    "physics identity",
+    "math identity",
+    "mathematics identity",
+    "chemistry identity",
+    "engineering identity",
+    "biology identity",
+    "disciplinary identity",
+    "professional identity",
+    "researcher identity",
+    "teacher identity",
+    "professional identity formation",
+    "professional formation"
+   ]
+  },
+  {
+   "id": "construct:stereotype_perception",
+   "label": "Perceived stereotypes and climate",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "stereotype_perception",
+     "label": "Perceived stereotypes and climate"
+    }
+   ],
+   "eric": [
+    "Stereotypes",
+    "Educational Environment"
+   ],
+   "match": [
+    "stereotype*",
+    "chilly climate",
+    "inclusive climate",
+    "perceived bias",
+    "microaggression*"
+   ]
+  },
+  {
+   "id": "construct:community_connectedness",
+   "label": "Classroom community",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "community_connectedness",
+     "label": "Classroom community"
+    }
+   ],
+   "eric": [
+    "Sense of Community"
+   ],
+   "match": [
+    "classroom community",
+    "sense of community",
+    "peer support",
+    "connectedness",
+    "community of practice",
+    "communities of practice"
+   ]
+  },
+  {
+   "id": "construct:epistemological_beliefs",
+   "label": "Beliefs about the discipline and learning it",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "epistemological_beliefs",
+     "label": "Beliefs about the discipline and learning it"
+    }
+   ],
+   "eric": [
+    "Epistemology",
+    "Beliefs"
+   ],
+   "match": [
+    "epistemolog*",
+    "epistemic belief*",
+    "epistemic cognition",
+    "expert-like",
+    "beliefs about learning",
+    "onto-epistemic"
+   ]
+  },
+  {
+   "id": "construct:nature_of_science",
+   "label": "Understanding of the nature of science",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "nature_of_science",
+     "label": "Understanding of the nature of science"
+    }
+   ],
+   "eric": [
+    "Scientific Literacy",
+    "Epistemology"
+   ],
+   "match": [
+    "nature of science",
+    "nature of scientific inquiry",
+    "views of science"
+   ]
+  },
+  {
+   "id": "construct:real_world_relevance",
+   "label": "Perceived real-world relevance",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "real_world_relevance",
+     "label": "Perceived real-world relevance"
+    }
+   ],
+   "eric": [
+    "Relevance (Education)"
+   ],
+   "match": [
+    "real-world relevance",
+    "real world relevance",
+    "real-world connection*",
+    "real world connection*",
+    "everyday relevance",
+    "socioscientific"
+   ]
+  },
+  {
+   "id": "construct:self_regulated_learning",
+   "label": "Self-regulated learning",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "self_regulated_learning",
+     "label": "Self-regulated learning"
+    }
+   ],
+   "eric": [
+    "Metacognition",
+    "Self Management"
+   ],
+   "match": [
+    "self-regulated learning",
+    "self-regulation",
+    "self regulation",
+    "metacogniti*"
+   ]
+  },
+  {
+   "id": "construct:learning_strategies",
+   "label": "Study and learning strategies",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "learning_strategies",
+     "label": "Study and learning strategies"
+    }
+   ],
+   "eric": [
+    "Learning Strategies",
+    "Study Habits"
+   ],
+   "match": [
+    "study strateg*",
+    "study habit*",
+    "learning strateg*",
+    "help-seeking",
+    "help seeking",
+    "retrieval practice",
+    "self-explanation"
+   ]
+  },
+  {
+   "id": "construct:engagement",
+   "label": "Engagement",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "engagement",
+     "label": "Engagement"
+    }
+   ],
+   "eric": [
+    "Learner Engagement"
+   ],
+   "match": [
+    "student engagement",
+    "learner engagement",
+    "trainee engagement",
+    "reading engagement",
+    "video engagement",
+    "behavioral engagement",
+    "cognitive engagement",
+    "emotional engagement",
+    "affective engagement",
+    "engagement in learning",
+    "classroom engagement",
+    "engagement"
+   ]
+  },
+  {
+   "id": "construct:teaching_practices",
+   "label": "Teaching practices",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "teaching_practices",
+     "label": "Teaching practices"
+    }
+   ],
+   "eric": [
+    "Teaching Methods"
+   ],
+   "match": [
+    "teaching practice*",
+    "instructional practice*",
+    "instructional change",
+    "evidence-based teaching",
+    "evidence-based instructional practice*",
+    "teaching strateg*",
+    "instructional strateg*"
+   ]
+  },
+  {
+   "id": "construct:teaching_beliefs",
+   "label": "Instructor beliefs about teaching",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "teaching_beliefs",
+     "label": "Instructor beliefs about teaching"
+    }
+   ],
+   "eric": [
+    "Teacher Attitudes",
+    "Beliefs"
+   ],
+   "match": [
+    "teaching belief*",
+    "pedagogical belief*",
+    "teacher belief*",
+    "teachers' belief*",
+    "instructor belief*",
+    "beliefs about teaching"
+   ]
+  },
+  {
+   "id": "construct:learning_environment",
+   "label": "Learning environment perceptions",
+   "group": "What is studied",
+   "humeta": [
+    {
+     "vocabulary": "construct",
+     "term": "learning_environment",
+     "label": "Learning environment perceptions"
+    }
+   ],
+   "eric": [
+    "Classroom Environment",
+    "Educational Environment"
+   ],
+   "match": [
+    "classroom climate",
+    "course climate",
+    "learning climate",
+    "clinical learning environment"
+   ]
+  },
+  {
+   "id": "study_design:quasi_experimental",
+   "label": "Quasi-experimental",
+   "group": "Research approach",
+   "humeta": [
+    {
+     "vocabulary": "study_design",
+     "term": "quasi_experimental",
+     "label": "Quasi-experimental"
+    }
+   ],
+   "eric": [
+    "Quasiexperimental Design"
+   ],
+   "match": [
+    "quasi-experiment*",
+    "quasi experiment*",
+    "quasiexperiment*"
+   ]
+  },
+  {
+   "id": "study_design:randomized_experiment",
+   "label": "Randomized experiment",
+   "group": "Research approach",
+   "humeta": [
+    {
+     "vocabulary": "study_design",
+     "term": "randomized_experiment",
+     "label": "Randomized experiment"
+    }
+   ],
+   "eric": [
+    "Randomized Controlled Trials"
+   ],
+   "match": [
+    "randomized controlled trial*",
+    "randomised controlled trial*",
+    "randomized experiment*",
+    "randomized trial*",
+    "randomised trial*",
+    "randomized control trial*"
+   ],
+   "match_case_sensitive": [
+    "RCT",
+    "RCTs"
+   ]
+  },
+  {
+   "id": "study_design:longitudinal",
+   "label": "Longitudinal",
+   "group": "Research approach",
+   "humeta": [
+    {
+     "vocabulary": "study_design",
+     "term": "longitudinal",
+     "label": "Longitudinal"
+    }
+   ],
+   "eric": [
+    "Longitudinal Studies"
+   ],
+   "match": [
+    "longitudinal",
+    "multi-year",
+    "multi-semester"
+   ]
+  },
+  {
+   "id": "study_design:qualitative",
+   "label": "Qualitative",
+   "group": "Research approach",
+   "humeta": [
+    {
+     "vocabulary": "study_design",
+     "term": "qualitative",
+     "label": "Qualitative"
+    }
+   ],
+   "eric": [
+    "Qualitative Research"
+   ],
+   "match": [
+    "qualitative",
+    "phenomenolog*",
+    "grounded theory",
+    "thematic analysis"
+   ]
+  },
+  {
+   "id": "study_design:mixed_methods",
+   "label": "Mixed methods",
+   "group": "Research approach",
+   "humeta": [
+    {
+     "vocabulary": "study_design",
+     "term": "mixed_methods",
+     "label": "Mixed methods"
+    }
+   ],
+   "eric": [
+    "Mixed Methods Research"
+   ],
+   "match": [
+    "mixed-method*",
+    "mixed method*"
+   ]
+  },
+  {
+   "id": "study_design:case_study",
+   "label": "Case study",
+   "group": "Research approach",
+   "humeta": [
+    {
+     "vocabulary": "study_design",
+     "term": "case_study",
+     "label": "Case study"
+    }
+   ],
+   "eric": [
+    "Case Studies"
+   ],
+   "match": [
+    "case study",
+    "case studies"
+   ]
+  },
+  {
+   "id": "study_design:design_based",
+   "label": "Design-based research",
+   "group": "Research approach",
+   "humeta": [
+    {
+     "vocabulary": "study_design",
+     "term": "design_based",
+     "label": "Design-based research"
+    }
+   ],
+   "eric": [
+    "Research Design"
+   ],
+   "match": [
+    "design-based research",
+    "design based research",
+    "design research"
+   ]
+  },
+  {
+   "id": "study_design:program_evaluation",
+   "label": "Program evaluation",
+   "group": "Research approach",
+   "humeta": [
+    {
+     "vocabulary": "study_design",
+     "term": "program_evaluation",
+     "label": "Program evaluation"
+    }
+   ],
+   "eric": [
+    "Program Evaluation"
+   ],
+   "match": [
+    "program evaluation",
+    "programme evaluation",
+    "evaluation of a program",
+    "evaluation of the program",
+    "program outcomes"
+   ]
+  },
+  {
+   "id": "study_design:instrument_development",
+   "label": "Instrument development or validation",
+   "group": "Research approach",
+   "humeta": [
+    {
+     "vocabulary": "study_design",
+     "term": "instrument_development",
+     "label": "Instrument development or validation"
+    },
+    {
+     "vocabulary": "measurement_evidence",
+     "term": "internal_structure",
+     "label": "Evidence based on internal structure"
+    },
+    {
+     "vocabulary": "measurement_evidence",
+     "term": "reliability",
+     "label": "Reliability / precision"
+    },
+    {
+     "vocabulary": "measurement_evidence",
+     "term": "irt_scaling",
+     "label": "Item response theory scaling"
+    }
+   ],
+   "eric": [
+    "Test Construction",
+    "Psychometrics",
+    "Construct Validity",
+    "Factor Analysis",
+    "Test Reliability",
+    "Item Response Theory"
+   ],
+   "match": [
+    "instrument development",
+    "development and validation",
+    "validation study",
+    "validity evidence",
+    "validating",
+    "psychometric*",
+    "scale development",
+    "concept inventor*",
+    "rasch",
+    "item response theory",
+    "measurement invariance",
+    "rubric*"
+   ]
+  },
+  {
+   "id": "study_design:meta_analysis",
+   "label": "Meta-analysis or systematic review",
+   "group": "Research approach",
+   "humeta": [
+    {
+     "vocabulary": "study_design",
+     "term": "meta_analysis",
+     "label": "Meta-analysis or systematic review"
+    }
+   ],
+   "eric": [
+    "Meta Analysis"
+   ],
+   "match": [
+    "meta-analys*",
+    "meta analys*",
+    "systematic review*",
+    "scoping review*",
+    "systematic literature review*",
+    "integrative review*",
+    "bibliometric"
+   ]
+  },
+  {
+   "id": "study_design:replication",
+   "label": "Replication",
+   "group": "Research approach",
+   "humeta": [
+    {
+     "vocabulary": "study_design",
+     "term": "replication",
+     "label": "Replication"
+    }
+   ],
+   "eric": [
+    "Replication (Evaluation)"
+   ],
+   "match": [
+    "replication stud*",
+    "replicating",
+    "replication of"
+   ]
+  },
+  {
+   "id": "study_design:ethnographic",
+   "label": "Ethnographic study",
+   "group": "Research approach",
+   "humeta": [
+    {
+     "vocabulary": "study_design",
+     "term": "ethnographic",
+     "label": "Ethnographic study"
+    },
+    {
+     "vocabulary": "data_collection_method",
+     "term": "ethnography",
+     "label": "Ethnography / participant observation"
+    }
+   ],
+   "eric": [],
+   "match": [
+    "ethnograph*",
+    "fieldnotes",
+    "field notes",
+    "participant observation"
+   ]
+  },
+  {
+   "id": "data_collection_method:survey",
+   "label": "Survey or questionnaire",
+   "group": "Research approach",
+   "humeta": [
+    {
+     "vocabulary": "data_collection_method",
+     "term": "survey",
+     "label": "Survey or questionnaire"
+    }
+   ],
+   "eric": [
+    "Questionnaires",
+    "Surveys"
+   ],
+   "match": [
+    "survey",
+    "surveys",
+    "questionnaire*"
+   ]
+  },
+  {
+   "id": "data_collection_method:interview",
+   "label": "Interview",
+   "group": "Research approach",
+   "humeta": [
+    {
+     "vocabulary": "data_collection_method",
+     "term": "interview",
+     "label": "Interview"
+    }
+   ],
+   "eric": [
+    "Interviews"
+   ],
+   "match": [
+    "interview*"
+   ]
+  },
+  {
+   "id": "data_collection_method:focus_group",
+   "label": "Focus group",
+   "group": "Research approach",
+   "humeta": [
+    {
+     "vocabulary": "data_collection_method",
+     "term": "focus_group",
+     "label": "Focus group"
+    }
+   ],
+   "eric": [
+    "Focus Groups"
+   ],
+   "match": [
+    "focus group*"
+   ]
+  },
+  {
+   "id": "data_collection_method:observation",
+   "label": "Observation (non-participant)",
+   "group": "Research approach",
+   "humeta": [
+    {
+     "vocabulary": "data_collection_method",
+     "term": "observation",
+     "label": "Observation (non-participant)"
+    }
+   ],
+   "eric": [
+    "Observation",
+    "Classroom Observation Techniques"
+   ],
+   "match": [
+    "classroom observation*",
+    "observation protocol*",
+    "observational stud*",
+    "video analysis"
+   ]
+  },
+  {
+   "id": "data_collection_method:learning_analytics",
+   "label": "Learning analytics or system log data",
+   "group": "Research approach",
+   "humeta": [
+    {
+     "vocabulary": "data_collection_method",
+     "term": "learning_analytics",
+     "label": "Learning analytics or system log data"
+    }
+   ],
+   "eric": [
+    "Learning Analytics"
+   ],
+   "match": [
+    "learning analytics",
+    "log data",
+    "clickstream",
+    "trace data",
+    "educational data mining"
+   ]
+  },
+  {
+   "id": "pedagogy:active_learning",
+   "label": "Active learning",
+   "group": "Teaching and settings",
+   "humeta": [
+    {
+     "vocabulary": "pedagogy",
+     "term": "active_learning",
+     "label": "Active learning"
+    }
+   ],
+   "eric": [
+    "Active Learning"
+   ],
+   "match": [
+    "active learning",
+    "active-learning",
+    "peer instruction",
+    "collaborative learning",
+    "cooperative learning",
+    "group work"
+   ],
+   "match_case_sensitive": [
+    "POGIL"
+   ]
+  },
+  {
+   "id": "pedagogy:inquiry_based",
+   "label": "Inquiry-based",
+   "group": "Teaching and settings",
+   "humeta": [
+    {
+     "vocabulary": "pedagogy",
+     "term": "inquiry_based",
+     "label": "Inquiry-based"
+    }
+   ],
+   "eric": [
+    "Inquiry"
+   ],
+   "match": [
+    "inquiry-based",
+    "inquiry based",
+    "guided inquiry",
+    "open inquiry",
+    "inquiry-oriented",
+    "inquiry learning"
+   ]
+  },
+  {
+   "id": "pedagogy:problem_project_based",
+   "label": "Problem- or project-based",
+   "group": "Teaching and settings",
+   "humeta": [
+    {
+     "vocabulary": "pedagogy",
+     "term": "problem_project_based",
+     "label": "Problem- or project-based"
+    }
+   ],
+   "eric": [
+    "Problem Based Learning"
+   ],
+   "match": [
+    "problem-based learning",
+    "problem based learning",
+    "project-based learning",
+    "project based learning",
+    "case-based learning",
+    "case based learning"
+   ],
+   "match_case_sensitive": [
+    "PBL"
+   ]
+  },
+  {
+   "id": "pedagogy:flipped",
+   "label": "Flipped classroom",
+   "group": "Teaching and settings",
+   "humeta": [
+    {
+     "vocabulary": "pedagogy",
+     "term": "flipped",
+     "label": "Flipped classroom"
+    }
+   ],
+   "eric": [
+    "Flipped Classroom"
+   ],
+   "match": [
+    "flipped classroom*",
+    "flipped learning",
+    "flipped course*",
+    "flipped instruction",
+    "flipping the classroom",
+    "flipped"
+   ]
+  },
+  {
+   "id": "pedagogy:student_centered",
+   "label": "Student-centered",
+   "group": "Teaching and settings",
+   "humeta": [
+    {
+     "vocabulary": "pedagogy",
+     "term": "student_centered",
+     "label": "Student-centered"
+    }
+   ],
+   "eric": [
+    "Student Centered Learning"
+   ],
+   "match": [
+    "student-centered",
+    "student centered",
+    "learner-centered",
+    "learner centered",
+    "student-centred"
+   ]
+  },
+  {
+   "id": "pedagogy:research_experience",
+   "label": "Course-based or apprenticed research experiences",
+   "group": "Teaching and settings",
+   "humeta": [
+    {
+     "vocabulary": "pedagogy",
+     "term": "research_experience",
+     "label": "Course-based or apprenticed research experience"
+    }
+   ],
+   "eric": [
+    "Undergraduate Study"
+   ],
+   "match": [
+    "course-based undergraduate research*",
+    "course-based research",
+    "undergraduate research experience*",
+    "undergraduate research",
+    "research experience*",
+    "research apprenticeship*"
+   ],
+   "match_case_sensitive": [
+    "CURE",
+    "CUREs"
+   ]
+  },
+  {
+   "id": "learning_environment:laboratory",
+   "label": "Laboratory",
+   "group": "Teaching and settings",
+   "humeta": [
+    {
+     "vocabulary": "learning_environment",
+     "term": "laboratory",
+     "label": "Laboratory"
+    }
+   ],
+   "eric": [
+    "Laboratories",
+    "Science Laboratories"
+   ],
+   "match": [
+    "laborator*",
+    "lab course*",
+    "teaching lab*",
+    "undergraduate lab*",
+    "lab activit*",
+    "practical work",
+    "lab experiment*"
+   ]
+  },
+  {
+   "id": "learning_environment:field",
+   "label": "Field course, field trip, or field site",
+   "group": "Teaching and settings",
+   "humeta": [
+    {
+     "vocabulary": "learning_environment",
+     "term": "field",
+     "label": "Field course, field trip, or field site"
+    }
+   ],
+   "eric": [
+    "Field Trips"
+   ],
+   "match": [
+    "field course*",
+    "field trip*",
+    "fieldwork",
+    "field work",
+    "field-based",
+    "field camp*",
+    "field school*",
+    "outdoor learning",
+    "math walk*"
+   ]
+  },
+  {
+   "id": "learning_environment:online_course",
+   "label": "Online learning",
+   "group": "Teaching and settings",
+   "humeta": [
+    {
+     "vocabulary": "learning_environment",
+     "term": "online_course",
+     "label": "Online course environment"
+    },
+    {
+     "vocabulary": "modality",
+     "term": "online_synchronous",
+     "label": "Online, synchronous"
+    },
+    {
+     "vocabulary": "modality",
+     "term": "online_asynchronous",
+     "label": "Online, asynchronous"
+    }
+   ],
+   "eric": [
+    "Online Courses",
+    "Synchronous Communication",
+    "Asynchronous Communication"
+   ],
+   "match": [
+    "online learning",
+    "online course*",
+    "online instruction",
+    "online teaching",
+    "remote instruction",
+    "remote learning",
+    "remote teaching",
+    "distance learning",
+    "distance education",
+    "e-learning",
+    "virtual learning",
+    "MOOC*"
+   ]
+  },
+  {
+   "id": "modality:hybrid",
+   "label": "Hybrid / blended",
+   "group": "Teaching and settings",
+   "humeta": [
+    {
+     "vocabulary": "modality",
+     "term": "hybrid",
+     "label": "Hybrid / blended"
+    }
+   ],
+   "eric": [
+    "Blended Learning"
+   ],
+   "match": [
+    "hybrid course*",
+    "hybrid learning",
+    "hybrid instruction",
+    "blended learning",
+    "blended course*",
+    "hyflex"
+   ]
+  },
+  {
+   "id": "learning_environment:large_lecture",
+   "label": "Lectures and large classes",
+   "group": "Teaching and settings",
+   "humeta": [
+    {
+     "vocabulary": "learning_environment",
+     "term": "large_lecture",
+     "label": "Large lecture class"
+    },
+    {
+     "vocabulary": "pedagogy",
+     "term": "lecture_based",
+     "label": "Lecture-based"
+    }
+   ],
+   "eric": [
+    "Large Group Instruction",
+    "Lecture Method"
+   ],
+   "match": [
+    "lecture*",
+    "large class*",
+    "large-enrollment",
+    "large enrollment"
+   ]
+  },
+  {
+   "id": "education_level:primary",
+   "label": "K–12",
+   "group": "Teaching and settings",
+   "humeta": [
+    {
+     "vocabulary": "education_level",
+     "term": "primary",
+     "label": "Primary / elementary (ISCED 1)"
+    },
+    {
+     "vocabulary": "education_level",
+     "term": "lower_secondary",
+     "label": "Lower secondary / middle grades (ISCED 2)"
+    },
+    {
+     "vocabulary": "education_level",
+     "term": "upper_secondary",
+     "label": "Upper secondary / high school (ISCED 3)"
+    },
+    {
+     "vocabulary": "learning_environment",
+     "term": "k12_classroom",
+     "label": "K-12 classroom"
+    }
+   ],
+   "eric": [
+    "Elementary Education",
+    "Middle Schools",
+    "Secondary Education",
+    "High Schools"
+   ],
+   "match": [
+    "K-12",
+    "K–12",
+    "K12",
+    "high school*",
+    "secondary school*",
+    "secondary education",
+    "secondary science",
+    "secondary mathematics",
+    "secondary chemistry",
+    "middle school*",
+    "middle grades",
+    "elementary",
+    "primary school*",
+    "junior high",
+    "senior high"
+   ]
+  },
+  {
+   "id": "education_level:short_cycle_tertiary",
+   "label": "Community and two-year colleges",
+   "group": "Teaching and settings",
+   "humeta": [
+    {
+     "vocabulary": "education_level",
+     "term": "short_cycle_tertiary",
+     "label": "Short-cycle tertiary, e.g. associate degree (ISCED 5)"
+    }
+   ],
+   "eric": [
+    "Two Year Colleges",
+    "Postsecondary Education"
+   ],
+   "match": [
+    "community college*",
+    "two-year college*",
+    "two year college*",
+    "2-year college*",
+    "technical college*"
+   ]
+  },
+  {
+   "id": "education_level:bachelors",
+   "label": "Undergraduate education",
+   "group": "Teaching and settings",
+   "humeta": [
+    {
+     "vocabulary": "education_level",
+     "term": "bachelors",
+     "label": "Bachelor's or equivalent (ISCED 6)"
+    }
+   ],
+   "eric": [
+    "Higher Education",
+    "Postsecondary Education",
+    "Undergraduate Students"
+   ],
+   "match": [
+    "undergraduate*",
+    "introductory course*",
+    "introductory biology",
+    "introductory chemistry",
+    "introductory physics",
+    "general chemistry",
+    "organic chemistry",
+    "college students",
+    "university students",
+    "first-year",
+    "first year students",
+    "gateway course*"
+   ]
+  },
+  {
+   "id": "education_level:masters",
+   "label": "Graduate education",
+   "group": "Teaching and settings",
+   "humeta": [
+    {
+     "vocabulary": "education_level",
+     "term": "masters",
+     "label": "Master's or equivalent (ISCED 7)"
+    },
+    {
+     "vocabulary": "education_level",
+     "term": "doctoral",
+     "label": "Doctoral or equivalent (ISCED 8)"
+    }
+   ],
+   "eric": [
+    "Higher Education",
+    "Graduate Students"
+   ],
+   "match": [
+    "graduate students",
+    "graduate student",
+    "graduate education",
+    "graduate program*",
+    "graduate training",
+    "doctoral",
+    "PhD students",
+    "master's students",
+    "postdoc*"
+   ]
+  },
+  {
+   "id": "education_level:informal_learning",
+   "label": "Informal and out-of-school learning",
+   "group": "Teaching and settings",
+   "humeta": [
+    {
+     "vocabulary": "education_level",
+     "term": "informal_learning",
+     "label": "Informal or out-of-school learning (not an ISCED level)"
+    },
+    {
+     "vocabulary": "learning_environment",
+     "term": "museum_exhibit",
+     "label": "Museum, exhibit, or science center"
+    },
+    {
+     "vocabulary": "learning_environment",
+     "term": "out_of_school_program",
+     "label": "Afterschool, summer, or out-of-school program"
+    }
+   ],
+   "eric": [
+    "Informal Education",
+    "Museums",
+    "After School Programs",
+    "Summer Programs"
+   ],
+   "match": [
+    "informal learning",
+    "informal science",
+    "informal education",
+    "museum*",
+    "science center*",
+    "science centre*",
+    "afterschool",
+    "after-school",
+    "out-of-school",
+    "summer camp*",
+    "summer program*",
+    "citizen science",
+    "public engagement",
+    "outreach"
+   ]
+  },
+  {
+   "id": "participant_role:educators",
+   "label": "Teachers and teacher education",
+   "group": "Teaching and settings",
+   "humeta": [
+    {
+     "vocabulary": "participant_role",
+     "term": "educators",
+     "label": "Teachers, instructors, or teaching assistants"
+    }
+   ],
+   "eric": [],
+   "match": [
+    "preservice teacher*",
+    "pre-service teacher*",
+    "prospective teacher*",
+    "in-service teacher*",
+    "inservice teacher*",
+    "teacher education",
+    "teacher preparation",
+    "teacher professional development",
+    "professional development",
+    "teachers",
+    "teacher",
+    "teaching assistant*",
+    "faculty development",
+    "graduate teaching assistant*"
+   ],
+   "match_case_sensitive": [
+    "GTA",
+    "GTAs"
+   ]
+  }
+ ]
+}

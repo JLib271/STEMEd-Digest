@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import List
 from xml.etree import ElementTree as ET
 
+from . import keywords as kw
 from .disciplines import DISCIPLINES
 from .models import Item
 
@@ -39,6 +40,7 @@ def _write(path: Path, title: str, link: str, description: str, items: List[Item
     ET.SubElement(ch, "link").text = link
     ET.SubElement(ch, "description").text = description
     ET.SubElement(ch, "lastBuildDate").text = format_datetime(now)
+    labels = {k["id"]: k["label"] for k in kw.summary()}
     for item in items[:FEED_SIZE]:
         e = ET.SubElement(ch, "item")
         ET.SubElement(e, "title").text = item.title
@@ -49,6 +51,9 @@ def _write(path: Path, title: str, link: str, description: str, items: List[Item
             ET.SubElement(e, "pubDate").text = _rfc822(item.added)
         for d in item.disciplines:
             ET.SubElement(e, "category").text = d
+        for k in item.keywords:
+            if k in labels:
+                ET.SubElement(e, "category", domain="https://github.com/JLib271/HuMeta").text = labels[k]
     ET.indent(rss)
     path.write_bytes(b'<?xml version="1.0" encoding="utf-8"?>\n' + ET.tostring(rss, encoding="utf-8") + b"\n")
 

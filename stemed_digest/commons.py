@@ -8,6 +8,7 @@ discovered on each run, so new ones are picked up without changing the config.
 import html
 from typing import Dict, List
 
+from . import keywords
 from .disciplines import DISCIPLINES, matching_disciplines
 from .http import get_json
 from .models import Item, utc_stamp
@@ -63,6 +64,7 @@ def parse_record(hit: dict, config: dict, subs_by_id: Dict[str, dict]) -> Item:
         kind=(rtype.get("title") or {}).get("en", ""),
         disciplines=[d for d in DISCIPLINES if d in disciplines],
         collections=[s["title"] for s in in_subs],
+        keywords=keywords.match([md.get("title", "")] + tags + subjects),
     )
 
 

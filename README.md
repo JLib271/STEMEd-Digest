@@ -19,7 +19,7 @@ Everything is tagged with the same ten disciplines as
 
 | | |
 |---|---|
-| **Website** | Search and filter by discipline, journal or collection, source, and date added. New STEMEd+ Commons works are featured at the top. |
+| **Website** | Search and filter by keyword, discipline, journal or collection, source, and date added. New STEMEd+ Commons works are featured at the top. Click a keyword on any listing to see everything with that keyword; the page address then links straight to that view. |
 | **Weekly digest** | [`digest.html`](https://jlib271.github.io/STEMEd-Digest/digest.html) covers the last seven days. It opens with **Recently added to STEMEd+ Commons**, with an invitation to share work there, then lists new journal articles by journal. [`digest.md`](https://jlib271.github.io/STEMEd-Digest/digest.md) is the same digest, ready to paste into a STEMEd+ Commons post, newsletter, or email. |
 | **RSS feeds** | One for everything, one for STEMEd+ Commons, and one per discipline, in [`feeds/`](https://jlib271.github.io/STEMEd-Digest/feeds/all.xml). |
 
@@ -42,6 +42,30 @@ Only titles, authors, dates, and links are listed. Abstracts are not copied; eve
 links to the original work.
 
 Journal articles stay listed for 180 days. STEMEd+ Commons works stay listed permanently.
+
+## Keywords
+
+Listings are tagged with 61 keywords taken from **HuMeta**, the metadata profile for
+STEM+ education research, so the digest describes work in the same terms that datasets and
+instruments are described with. Each keyword is one or more HuMeta terms, with HuMeta's
+verified ERIC Thesaurus descriptors. They come in three groups:
+
+* **What is studied:** HuMeta constructs, such as self-efficacy, sense of belonging, conceptual
+  understanding, and disciplinary identity
+* **Research approach:** study designs and data collection methods, such as quasi-experimental,
+  qualitative, instrument development or validation, interviews, and systematic reviews
+* **Teaching and settings:** teaching approaches, learning environments, education levels, and
+  participants, such as active learning, flipped classrooms, CUREs, laboratories, K–12, and
+  teacher education
+
+Keywords are matched in titles, in abstracts that publishers share with Crossref (used only for
+matching, never stored or shown), and in the keywords of STEMEd+ Commons works. Matching is
+automatic, so a listing can miss a keyword that fits it or, less often, get one that doesn't.
+
+The keywords live in [`config/keywords.json`](config/keywords.json): each has its HuMeta terms,
+ERIC descriptors, and the phrases that count as a match, built from HuMeta's synonyms. To pick
+up changes to HuMeta's labels or ERIC links, run `python scripts/sync_humeta.py <path to HuMeta>`.
+It never changes the match phrases, which are edited by hand.
 
 ## Suggest a journal
 
@@ -74,6 +98,7 @@ identified requests from a faster pool. Without it, requests are anonymous.
 |---|---|
 | `config/journals.json` | The journals, their ISSNs and disciplines. `classify_titles` also tags articles by words in their titles, for journals that cover many fields. |
 | `config/commons.json` | The STEMEd+ Commons collection, and disciplines for whole subcollections (Entomology Education → Bioscience, STEM in Agricultural Education → Agriculture). |
+| `config/keywords.json` | The HuMeta keywords, their ERIC descriptors, and match phrases. |
 | `config/site.json` | Title, how many days to look back each run, how long to keep journal articles, and how many days the digest covers. |
 
 ## License
