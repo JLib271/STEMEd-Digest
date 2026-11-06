@@ -46,6 +46,8 @@
   footer { background: var(--card); border-top: 1px solid var(--line); padding: 20px 0 30px; font-size: .9rem; color: var(--muted); }
   footer h2 { font-size: 1rem; color: var(--ink); margin: 0 0 6px; }
   footer ul { margin: 6px 0 12px; padding-left: 18px; columns: 2; }
+  footer ul.jl { columns: 1; } footer ul.jl li { margin: 3px 0; } footer ul.jl .s { color: var(--muted); }
+  footer details { margin: 0 0 16px; } footer summary { cursor: pointer; color: var(--accent); }
   .warn { font-size: .85rem; color: #8a5a00; margin: 0 0 8px; }
   .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .tag.kw { background: #fff; border: 1px solid var(--line); color: var(--accent); font-weight: 500; cursor: pointer; }
@@ -81,7 +83,7 @@
     <div><label for="discipline">Discipline</label><select id="discipline"><option value="">All</option></select></div>
     <div><label for="source">Source</label><select id="source"><option value="">All</option><option value="journal">Journals</option><option value="commons">STEMEd+ Commons</option></select></div>
     <div><label for="venue">Journal or collection</label><select id="venue"><option value="">All</option></select></div>
-    <div><label for="days">Added in the last</label><select id="days"><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option><option value="">Any time</option></select></div>
+    <div><label for="days">Added in the last</label><select id="days"><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option><option value="365">12 months</option><option value="">Any time</option></select></div>
   </div>
   <p id="kwnote" class="kwnote" hidden></p>
   <p id="warn" class="warn" hidden></p>
@@ -91,6 +93,8 @@
 </main>
 <footer>
   <div class="wrap">
+    <h2>Journals followed</h2>
+    <details id="jdetails"><summary id="jsummary">Show the journals</summary><ul id="journallist" class="jl"></ul></details>
     <h2 id="feeds">RSS feeds</h2>
     <p>Follow new work in a feed reader:</p>
     <ul id="feedlist"></ul>
@@ -196,6 +200,13 @@
     var fl = el('feedlist');
     [['All new work', 'all'], [d.commons.name, 'stemed-commons']].concat(d.disciplines.map(function (x) { return [x, slug(x)]; }))
       .forEach(function (f) { var li = document.createElement('li'), a = node('a', '', f[0]); a.href = 'feeds/' + f[1] + '.xml'; li.appendChild(a); fl.appendChild(li); });
+    var jl = el('journallist'), js = d.journals.slice().sort(function (a, b) { return a.name.replace(/^The /, '').localeCompare(b.name.replace(/^The /, '')); });
+    js.forEach(function (j) {
+      var li = node('li', '', j.name); li.appendChild(node('span', 's', ' · ' + (j.society ? j.society : j.publisher)));
+      jl.appendChild(li);
+    });
+    el('jsummary').textContent = 'Show all ' + js.length + ' journals (' + js.filter(function (j) { return j.society; }).length +
+      ' sponsored by professional societies). Articles stay listed for ' + Math.round((d.keep_days || 365) / 30.4) + ' months.';
     var bad = d.status.filter(function (s) { return !s.ok; }).map(function (s) { return s.source; });
     if (bad.length) { el('warn').textContent = 'Last update could not reach: ' + bad.join(', ') + '. Their earlier listings are still shown.'; el('warn').hidden = false; }
     el('updated').textContent = 'Last updated ' + day(d.generated) + '.';

@@ -60,10 +60,15 @@ def merge(previous: List[Item], fresh: List[Item], now: dt.datetime, keep_days: 
 def run(out: Path, previous: Optional[str], now: dt.datetime, fetch_journals=crossref.fetch_journal,
         fetch_commons=commons.fetch_commons, allow_errors: bool = False) -> dict:
     site, journals, commons_cfg = load_config("site.json"), load_config("journals.json"), load_config("commons.json")
-    since = (now - dt.timedelta(days=site["lookback_days"])).strftime("%Y-%m-%d")
+    previous_items = load_previous(previous)
+    listed = {i.venue for i in previous_items if i.source == "journal"}
+    recent = (now - dt.timedelta(days=site["lookback_days"])).strftime("%Y-%m-%d")
+    backfill = (now - dt.timedelta(days=site["keep_days"])).strftime("%Y-%m-%d")
     fresh: List[Item] = []
     status = []
     for j in journals["journals"]:
+        # A journal with nothing listed yet (first run, or newly added) gets the whole window.
+        since = recent if j["name"] in listed else backfill
         try:
             got = fetch_journals(j, since)
             fresh += got
@@ -83,7 +88,7 @@ def run(out: Path, previous: Optional[str], now: dt.datetime, fetch_journals=cro
     if failed and not allow_errors:
         raise SystemExit(f"{len(failed)} source(s) failed; rerun with --allow-errors to publish anyway.")
 
-    items = merge(load_previous(previous), fresh, now, site["keep_days"])
+    items = merge(previous_items, fresh, now, site["keep_days"])
     out.mkdir(parents=True, exist_ok=True)
     generated = now.strftime("%Y-%m-%dT%H:%M:%SZ")
     payload = {
@@ -93,11 +98,13 @@ def run(out: Path, previous: Optional[str], now: dt.datetime, fetch_journals=cro
         "disciplines": list(DISCIPLINES),
         "keyword_groups": keywords.load()[0]["groups"],
         "keywords": keywords.summary(),
-        "journals": [{"name": j["name"], "publisher": j.get("publisher", "")} for j in journals["journals"]],
+        "keep_days": site["keep_days"],
+        "journals": [{"name": j["name"], "publisher": j.get("publisher", ""), "society": j.get("society", ""),
+                      "disciplines": j.get("disciplines", [])} for j in journals["journals"]],
         "status": status,
         "items": [i.to_dict() for i in items],
     }
-    (out / "items.json").write_text(json.dumps(payload, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    (out / "items.json").write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     shutil.copyfile(ROOT / "site" / "index.html", out / "index.html")
     feeds.write_all(out / "feeds", items, site, commons_cfg, now)
     digest.write(out, items, site, commons_cfg, now)

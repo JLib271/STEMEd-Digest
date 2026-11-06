@@ -2,9 +2,12 @@
 
 New work in STEM+ education research and practice, in one place:
 
-* **Journal tables of contents** from 18 journals across biology, chemistry, physics,
-  earth science, mathematics, engineering, agriculture, science education, learning
-  sciences, and medical and health professions education
+* **Journal tables of contents** from 68 teaching and education research journals across
+  biology, chemistry, physics, earth and environmental science, mathematics and statistics,
+  engineering and computing, agriculture, science education, learning sciences, and medical
+  and health professions education. 43 are sponsored by professional societies (NABT,
+  AAPT, ASEE, NCTM, AMEE, AACP, and more); all come from established publishers, and
+  none from MDPI, Frontiers, or predatory publishers.
 * **The [STEMEd+ Commons Collection](https://works.hcommons.org/collections/stemedplus/)**
   and all of its subcollections on Knowledge Commons Works, including papers, chapters,
   lesson plans, instruments, figures, and data
@@ -41,7 +44,14 @@ The site updates itself every day.
 Only titles, authors, dates, and links are listed. Abstracts are not copied; every title
 links to the original work.
 
-Journal articles stay listed for 180 days. STEMEd+ Commons works stay listed permanently.
+Journal articles stay listed for 12 months, about one volume year even for quarterly
+journals. STEMEd+ Commons works stay listed permanently. A journal added to the list gets its
+last 12 months on the next run; after that, each daily run looks back 14 days.
+
+Some publishers re-register old issues with Crossref (in 2026, *Journal of Nursing Education*
+re-registered articles back to 1962, and *American Journal of Pharmaceutical Education* back to
+1937). Anything published more than a year before it was registered is skipped, so back
+issues never show up as new.
 
 ## Keywords
 
@@ -69,7 +79,9 @@ It never changes the match phrases, which are edited by hand.
 
 ## Suggest a journal
 
-Use the [Suggest a journal](../../issues/new?template=suggest_journal.yml) form. To add it
+Use the [Suggest a journal](../../issues/new?template=suggest_journal.yml) form. Journals
+should publish STEM+ teaching or education research and come from a professional society or
+an established publisher; journals from MDPI, Frontiers, or predatory publishers are not added. To add it
 yourself, add an entry to [`config/journals.json`](config/journals.json) with the ISSN that
 Crossref lists new articles under. Some journals use their online ISSN and others their
 print ISSN; Academic Medicine, for example, moved to Oxford University Press in 2026 and
@@ -96,10 +108,10 @@ identified requests from a faster pool. Without it, requests are anonymous.
 
 | File | What it controls |
 |---|---|
-| `config/journals.json` | The journals, their ISSNs and disciplines. `classify_titles` also tags articles by words in their titles, for journals that cover many fields. |
+| `config/journals.json` | The journals, their ISSNs, sponsoring societies, and disciplines. `classify_titles` also tags articles by words in their titles, for journals that cover many fields. |
 | `config/commons.json` | The STEMEd+ Commons collection, and disciplines for whole subcollections (Entomology Education → Bioscience, STEM in Agricultural Education → Agriculture). |
 | `config/keywords.json` | The HuMeta keywords, their ERIC descriptors, and match phrases. |
-| `config/site.json` | Title, how many days to look back each run, how long to keep journal articles, and how many days the digest covers. |
+| `config/site.json` | Title, how many days to look back each run (14), how long to keep journal articles (365 days), and how many days the digest covers (7). |
 
 ## License
 

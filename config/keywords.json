@@ -918,7 +918,10 @@
      "label": "Ethnography / participant observation"
     }
    ],
-   "eric": [],
+   "eric": [
+    "Ethnography",
+    "Participant Observation"
+   ],
    "match": [
     "ethnograph*",
     "fieldnotes",
@@ -1507,7 +1510,11 @@
      "label": "Teachers, instructors, or teaching assistants"
     }
    ],
-   "eric": [],
+   "eric": [
+    "Teachers",
+    "College Faculty",
+    "Teaching Assistants"
+   ],
    "match": [
     "preservice teacher*",
     "pre-service teacher*",

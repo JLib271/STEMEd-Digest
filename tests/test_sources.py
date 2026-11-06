@@ -62,8 +62,29 @@ class CrossrefTests(unittest.TestCase):
             crossref.fetch_journal({"name": "X", "issn": "1756-1108"}, "2026-10-23")
         url, params = get.call_args[0]
         self.assertEqual(url, "https://api.crossref.org/journals/1756-1108/works")
-        self.assertEqual(params["filter"], "from-created-date:2026-10-23")
-        self.assertEqual(params["sort"], "created")
+        self.assertEqual(params["filter"], "from-created-date:2026-10-23,type:journal-article")
+        self.assertEqual(params["cursor"], "*")
+
+    def test_fetch_follows_the_cursor_through_every_page(self):
+        def work(n):
+            return {"DOI": f"10.1/{n}", "type": "journal-article", "title": [f"Article {n}"],
+                    "created": {"date-time": "2026-11-01T00:00:00Z"}, "published": {"date-parts": [[2026]]}}
+        pages = [{"message": {"items": [work(1), work(2)], "next-cursor": "c2"}},
+                 {"message": {"items": [work(3), work(4)], "next-cursor": "c3"}},
+                 {"message": {"items": [work(5)], "next-cursor": "c4"}}]
+        with mock.patch.object(crossref, "get_json", side_effect=pages) as get:
+            items = crossref.fetch_journal({"name": "X", "issn": "1"}, "2025-11-06", rows=2)
+        self.assertEqual(len(items), 5)
+        self.assertEqual([c[0][1]["cursor"] for c in get.call_args_list], ["*", "c2", "c3"])
+
+    def test_skips_back_catalog_re_registrations(self):
+        old = {"DOI": "10.3928/old", "type": "journal-article", "title": ["Nursing Education in 1968"],
+               "created": {"date-parts": [[2026, 3, 1]], "date-time": "2026-03-01T00:00:00Z"},
+               "published": {"date-parts": [[1968, 5]]}}
+        last_year = dict(old, DOI="10.3928/ok", title=["Published last year, registered this year"],
+                         published={"date-parts": [[2025, 12]]})
+        items = crossref.parse_works([old, last_year], {"name": "J", "disciplines": []})
+        self.assertEqual([i.id for i in items], ["doi:10.3928/ok"])
 
 
 class CommonsTests(unittest.TestCase):
@@ -124,7 +145,7 @@ class BuildTests(unittest.TestCase):
         old = [Item(id="doi:10.1/kept", source="journal", title="Kept", authors=[], venue="J", url="u",
                     added="2026-09-01T00:00:00Z"),
                Item(id="doi:10.1/dropped", source="journal", title="Too old", authors=[], venue="J", url="u",
-                    added="2025-01-01T00:00:00Z")]
+                    added="2025-06-01T00:00:00Z")]
         with tempfile.TemporaryDirectory() as tmp:
             prev = Path(tmp) / "prev.json"
             prev.write_text(json.dumps({"items": [i.to_dict() for i in old]}), encoding="utf-8")
@@ -132,6 +153,21 @@ class BuildTests(unittest.TestCase):
         self.assertIn("doi:10.1/kept", ids)
         self.assertNotIn("doi:10.1/dropped", ids)
         self.assertIn("kcworks:agonly-0001", ids)      # Commons works are never dropped for age
+
+    def test_new_journals_get_the_whole_window_and_listed_ones_a_short_lookback(self):
+        asked = {}
+        def record(journal, since):
+            asked[journal["name"]] = since
+            return []
+        listed = Item(id="doi:10.1/a", source="journal", title="A", authors=[], venue="Medical Education", url="u",
+                      added="2026-10-01T00:00:00Z")
+        with tempfile.TemporaryDirectory() as tmp:
+            prev = Path(tmp) / "prev.json"
+            prev.write_text(json.dumps({"items": [listed.to_dict()]}), encoding="utf-8")
+            with mock.patch.object(commons, "get_json", side_effect=fake_kc_get):
+                build.run(Path(tmp) / "out", str(prev), NOW, fetch_journals=record)
+        self.assertEqual(asked["Medical Education"], "2026-10-23")      # 14-day lookback
+        self.assertEqual(asked["Medical Teacher"], "2025-11-06")        # never listed: full 365 days
 
     def test_failed_source_stops_the_build_unless_allowed(self):
         def broken(journal, since):

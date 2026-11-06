@@ -48,10 +48,26 @@ def _authors(work: dict) -> List[str]:
     return names
 
 
+def _year(holder: dict) -> int:
+    try:
+        return int(holder["date-parts"][0][0])
+    except (KeyError, IndexError, TypeError, ValueError):
+        return 0
+
+
+def is_back_catalog(work: dict) -> bool:
+    """Publishers sometimes re-register old issues (in 2026, Journal of Nursing Education
+    re-registered articles back to 1962). Anything published more than a year before it
+    was registered is an old article, not a new one."""
+    published = _year(work.get("published") or work.get("issued") or {})
+    registered = _year(work.get("created") or {}) or int((work.get("created") or {}).get("date-time", "0")[:4] or 0)
+    return bool(published and registered and published < registered - 1)
+
+
 def parse_works(works: Iterable[dict], journal: dict) -> List[Item]:
     items = []
     for w in works:
-        if w.get("type") != "journal-article":
+        if w.get("type") != "journal-article" or is_back_catalog(w):
             continue
         title = _clean((w.get("title") or [""])[0])
         if not title or SKIP_TITLE.match(title):
@@ -76,10 +92,17 @@ def parse_works(works: Iterable[dict], journal: dict) -> List[Item]:
     return items
 
 
-def fetch_journal(journal: dict, since: str, rows: int = 1000) -> List[Item]:
-    """Articles registered on or after `since` (YYYY-MM-DD)."""
-    data = get_json(f"{API}/journals/{journal['issn']}/works", {
-        "filter": f"from-created-date:{since}",
-        "sort": "created", "order": "desc", "rows": rows, "select": FIELDS,
-    })
-    return parse_works(data["message"]["items"], journal)
+def fetch_journal(journal: dict, since: str, rows: int = 1000, max_pages: int = 20) -> List[Item]:
+    """Articles registered on or after `since` (YYYY-MM-DD), following Crossref's cursor
+    through as many pages as needed (a busy journal registers well over 1,000 a year)."""
+    works, cursor = [], "*"
+    for _ in range(max_pages):
+        data = get_json(f"{API}/journals/{journal['issn']}/works", {
+            "filter": f"from-created-date:{since},type:journal-article",
+            "rows": rows, "select": FIELDS, "cursor": cursor,
+        })["message"]
+        works.extend(data["items"])
+        cursor = data.get("next-cursor")
+        if not data["items"] or len(data["items"]) < rows or not cursor:
+            break
+    return parse_works(works, journal)

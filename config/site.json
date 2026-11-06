@@ -4,6 +4,6 @@
   "repo_url": "https://github.com/JLib271/STEMEd-Digest",
   "commons_home": "https://stemedplus.hcommons.org/",
   "lookback_days": 14,
-  "keep_days": 180,
+  "keep_days": 365,
   "digest_days": 7
 }
