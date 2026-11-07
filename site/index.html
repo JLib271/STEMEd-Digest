@@ -47,7 +47,7 @@
   footer { background: var(--card); border-top: 1px solid var(--line); padding: 20px 0 30px; font-size: .9rem; color: var(--muted); }
   footer h2 { font-size: 1rem; color: var(--ink); margin: 0 0 6px; }
   footer ul { margin: 6px 0 12px; padding-left: 18px; columns: 2; }
-  footer ul.jl { columns: 1; } footer ul.jl li { margin: 3px 0; } footer ul.jl .s { color: var(--muted); }
+  footer ul.jl, footer ul#more { columns: 1; } footer ul.jl li { margin: 3px 0; } footer ul.jl .s { color: var(--muted); }
   .meta a.jw { color: var(--muted); }
   footer details { margin: 0 0 16px; } footer summary { cursor: pointer; color: var(--accent); }
   .warn { font-size: .85rem; color: #8a5a00; margin: 0 0 8px; }
@@ -99,6 +99,12 @@
     <details id="jdetails"><summary id="jsummary">Show the journals</summary><ul id="journallist" class="jl"></ul></details>
     <h2>Preprints and dissertations</h2>
     <p id="others">Preprints come from <a href="https://edarxiv.org/">EdArXiv</a> (STEM+ preprints only) and <a href="https://arxiv.org/list/physics.ed-ph/recent">arXiv Physics Education</a>. Preprints have not been peer reviewed; one that is later published in a followed journal is listed once, as the journal article. Dissertations and theses come from university repositories through <a href="https://openalex.org/">OpenAlex</a>, limited to English-language work in STEM+ education topics; OpenAlex does not separate doctoral dissertations from master's theses.</p>
+    <h2><a id="morehead" class="more-link" href="https://stemedplus.hcommons.org/">More from STEMEd+ Commons</a></h2>
+    <ul id="more">
+      <li><a class="more-link" href="https://jlib271.github.io/stemed-funding/">STEMEd+ Funding</a>: open calls and deadlines for STEM+ education</li>
+      <li><a class="more-link" href="https://jlib271.github.io/stem-ed-research-programs/">STEM+ Education Research Graduate Programs</a>: where to study STEM+ education research</li>
+      <li><a class="more-link" href="https://jlib271.github.io/stemed-jobs/">STEMEd+ Jobs</a>: positions in STEM+ education</li>
+    </ul>
     <h2 id="feeds">RSS feeds</h2>
     <p>Follow new work in a feed reader:</p>
     <ul id="feedlist"></ul>
@@ -189,6 +195,7 @@
     el('repo').href = d.site.repo_url; ext(el('repo'));
     el('suggest').href = d.site.repo_url + '/issues/new?template=suggest_journal.yml'; ext(el('suggest'));
     el('deposit').href = d.commons.url; ext(el('deposit'));
+    document.querySelectorAll('a.more-link').forEach(ext);
     var counts = {}; d.items.forEach(function (i) { i.disciplines.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; }); });
     var labels = {}; d.disciplines.forEach(function (x) { labels[x] = x + ' (' + (counts[x] || 0) + ')'; });
     fill(el('discipline'), d.disciplines, labels);
