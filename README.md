@@ -2,13 +2,14 @@
 
 New work in STEM+ education research and practice, in one place:
 
-* **Journal tables of contents** from 86 journals: teaching and education research journals across
+* **Journal tables of contents** from 92 journals: teaching and education research journals across
   biology, chemistry, physics, earth and environmental science, mathematics and statistics,
   engineering and computing, agriculture, science education, learning sciences, and medical
   and health professions education, plus journals in the history and philosophy of science
   (Isis, Philosophy of Science, Social Studies of Science, and others) and in science and health
   communication (Science Communication, Public Understanding of Science, JCOM, Health
-  Communication, and others). 52 are sponsored by professional societies (NABT,
+  Communication, and others), and in human dimensions of natural resources (Human Dimensions of
+  Wildlife, Society & Natural Resources, Ecology and Society, People and Nature, and others). 54 are sponsored by professional societies (NABT,
   AAPT, ASEE, NCTM, AMEE, AACP, and more); all come from established publishers, and
   none from MDPI, Frontiers, or predatory publishers.
 * **The [STEMEd+ Commons Collection](https://works.hcommons.org/collections/stemedplus/)**
@@ -24,8 +25,8 @@ New work in STEM+ education research and practice, in one place:
 Everything is tagged with the same disciplines as
 [STEMEd+ Jobs](https://github.com/JLib271/stemed-jobs) and the
 [STEM+ Education Research Graduate Programs](https://github.com/JLib271/stem-ed-research-programs) list.
-Most disciplines mean education in a field; History & Philosophy of Science and Science & Health
-Communication also cover those fields themselves.
+Most disciplines mean education in a field; History & Philosophy of Science, Human Dimensions, and
+Science & Health Communication also cover those fields themselves.
 
 🔎 **Website:** https://jlib271.github.io/STEMEd-Digest/ (once GitHub Pages is turned on)
 

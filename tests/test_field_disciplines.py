@@ -15,7 +15,10 @@ class FieldDisciplineTests(unittest.TestCase):
         self.assertEqual(feeds.slug("Earth Science"), "earth-science")
 
     def test_field_disciplines_come_from_the_shared_list(self):
-        self.assertEqual(feeds.FIELD_DISCIPLINES, ("History & Philosophy of Science", "Science & Health Communication"))
+        self.assertEqual(
+            feeds.FIELD_DISCIPLINES,
+            ("History & Philosophy of Science", "Human Dimensions", "Science & Health Communication"),
+        )
 
     def test_every_configured_discipline_exists(self):
         journals = json.loads((ROOT / "config" / "journals.json").read_text())["journals"]
@@ -27,6 +30,7 @@ class FieldDisciplineTests(unittest.TestCase):
         self.assertLessEqual(used, set(DISCIPLINES))
         self.assertIn("History & Philosophy of Science", used)
         self.assertIn("Science & Health Communication", used)
+        self.assertIn("Human Dimensions", used)
 
     def test_issns_are_unique(self):
         journals = json.loads((ROOT / "config" / "journals.json").read_text())["journals"]
