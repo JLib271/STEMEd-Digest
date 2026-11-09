@@ -1,5 +1,5 @@
 {
-  "_about": "Preprint servers. EdArXiv covers all of education, so only STEM+ preprints are kept: a STEM+ field or word in the title, or the 'Science and Mathematics Education' subject with one in the keywords. arXiv's physics.ed-ph category is all physics education and is kept whole. A preprint whose published version is already listed from a followed journal is shown once, as the journal article.",
+  "_about": "Preprint servers. EdArXiv covers all of education, so only STEM+ preprints are kept: a STEM+ field or word in the title, or the 'Science and Mathematics Education' subject with one in the keywords. arXiv's physics.ed-ph category (physics education) and physics.hist-ph category (history and philosophy of physics) are kept whole. A preprint whose published version is already listed from a followed journal is shown once, as the journal article.",
   "edarxiv": {
     "name": "EdArXiv",
     "url": "https://edarxiv.org/",
@@ -13,5 +13,12 @@
     "api": "https://export.arxiv.org/api/query",
     "category": "physics.ed-ph",
     "disciplines": ["Physics"]
+  },
+  "arxiv_hist_ph": {
+    "name": "arXiv History and Philosophy of Physics",
+    "url": "https://arxiv.org/list/physics.hist-ph/recent",
+    "api": "https://export.arxiv.org/api/query",
+    "category": "physics.hist-ph",
+    "disciplines": ["History & Philosophy of Science", "Physics"]
   }
 }

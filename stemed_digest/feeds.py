@@ -7,14 +7,18 @@ from typing import List
 from xml.etree import ElementTree as ET
 
 from . import keywords as kw
+from . import stemedplus_disciplines as shared
 from .disciplines import DISCIPLINES
+
+FIELD_DISCIPLINES = shared.field_labels()  # disciplines that include the field itself
 from .models import Item
 
 FEED_SIZE = 200
 
 
 def slug(text: str) -> str:
-    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+    """"History & Philosophy of Science" -> "history-and-philosophy-of-science"."""
+    return re.sub(r"[^a-z0-9]+", "-", text.lower().replace("&", " and ")).strip("-")
 
 
 def _rfc822(stamp: str) -> str:
@@ -66,11 +70,11 @@ def write_all(folder: Path, items: List[Item], site: dict, commons_cfg: dict, no
            f"New works in the {commons_cfg['name']} Collection and its subcollections.",
            [i for i in items if i.source == "commons"], now)
     _write(folder / "preprints.xml", f"{site['title']}: Preprints", link,
-           "New STEM+ education preprints from EdArXiv and arXiv Physics Education.",
+           "New STEM+ education preprints from EdArXiv, arXiv Physics Education, and arXiv History and Philosophy of Physics.",
            [i for i in items if i.source == "preprint"], now)
     _write(folder / "dissertations.xml", f"{site['title']}: Dissertations and theses", link,
            "New STEM+ education dissertations and theses from university repositories, via OpenAlex.",
            [i for i in items if i.source == "dissertation"], now)
     for d in DISCIPLINES:
-        _write(folder / f"{slug(d)}.xml", f"{site['title']}: {d}", link, f"New work in {d} education.",
+        _write(folder / f"{slug(d)}.xml", f"{site['title']}: {d}", link, f"New work in {d}." if d in FIELD_DISCIPLINES else f"New work in {d} education.",
                [i for i in items if d in i.disciplines], now)

@@ -92,6 +92,7 @@ def run(out: Path, previous: Optional[str], now: dt.datetime, fetch_journals=cro
     others = [
         (servers["edarxiv"]["name"], lambda since: fetch_edarxiv(servers["edarxiv"], since)),
         (servers["arxiv"]["name"], lambda since: fetch_arxiv(servers["arxiv"], since)),
+        (servers["arxiv_hist_ph"]["name"], lambda since: fetch_arxiv(servers["arxiv_hist_ph"], since)),
         (diss_cfg["name"], lambda since: fetch_dissertations(diss_cfg, since, now, site["keep_days"])),
     ]
     for name, fetch in others:

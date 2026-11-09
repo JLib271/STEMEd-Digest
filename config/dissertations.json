@@ -1,5 +1,5 @@
 {
-  "_about": "Dissertations and theses from OpenAlex (https://openalex.org), which collects them from university repositories. A work is kept when its main OpenAlex topic is one of the STEM+ education topics below (each mapped to the disciplines it gets), it is in English, and OpenAlex first indexed it within the time window (older records that a repository re-dated are skipped). OpenAlex does not separate doctoral from master's work, so both appear. Set the OPENALEX_API_KEY repository secret to use your own free OpenAlex key.",
+  "_about": "Dissertations and theses from OpenAlex (https://openalex.org), which collects them from university repositories. A work is kept when its main OpenAlex topic is one of the topics below (STEM+ education topics, plus history and philosophy of science and science and health communication topics, checked against OpenAlex on 2026-11-08) (each mapped to the disciplines it gets), it is in English, and OpenAlex first indexed it within the time window (older records that a repository re-dated are skipped). OpenAlex does not separate doctoral from master's work, so both appear. Set the OPENALEX_API_KEY repository secret to use your own free OpenAlex key.",
   "name": "Dissertations and theses",
   "url": "https://openalex.org/",
   "api": "https://api.openalex.org/works",
@@ -32,6 +32,18 @@
     "T11744": {"label": "Health Sciences Research and Education", "disciplines": ["Health Education"]},
     "T10186": {"label": "Nursing education and management", "disciplines": ["Health Education"]},
     "T13457": {"label": "Dental Education, Practice, Research", "disciplines": ["Health Education"]},
-    "T13036": {"label": "Veterinary Practice and Education Studies", "disciplines": ["Health Education"]}
+    "T13036": {"label": "Veterinary Practice and Education Studies", "disciplines": ["Health Education"]},
+    "T14475": {"label": "History of Science and Medicine", "disciplines": ["History & Philosophy of Science"]},
+    "T12471": {"label": "History of Science and Natural History", "disciplines": ["History & Philosophy of Science"]},
+    "T11137": {"label": "Historical Philosophy and Science", "disciplines": ["History & Philosophy of Science"]},
+    "T13558": {"label": "Logic and Philosophy of Science", "disciplines": ["History & Philosophy of Science"]},
+    "T10778": {"label": "Philosophy of Biology and Scientific Explanation", "disciplines": ["History & Philosophy of Science", "Bioscience"]},
+    "T14511": {"label": "Medicine, History, and Philosophy", "disciplines": ["History & Philosophy of Science"]},
+    "T13641": {"label": "Historical Studies and Socio-cultural Analysis", "disciplines": ["History & Philosophy of Science"]},
+    "T12445": {"label": "Twentieth Century Scientific Developments", "disciplines": ["History & Philosophy of Science"]},
+    "T14442": {"label": "Historical Studies in Science", "disciplines": ["History & Philosophy of Science"]},
+    "T13297": {"label": "History and advancements in chemistry", "disciplines": ["History & Philosophy of Science", "Chemistry"]},
+    "T11488": {"label": "Climate Change Communication and Perception", "disciplines": ["Science & Health Communication"]},
+    "T12214": {"label": "Media Influence and Health", "disciplines": ["Science & Health Communication"]}
   }
 }

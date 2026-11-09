@@ -2,23 +2,30 @@
 
 New work in STEM+ education research and practice, in one place:
 
-* **Journal tables of contents** from 68 teaching and education research journals across
+* **Journal tables of contents** from 86 journals: teaching and education research journals across
   biology, chemistry, physics, earth and environmental science, mathematics and statistics,
   engineering and computing, agriculture, science education, learning sciences, and medical
-  and health professions education. 43 are sponsored by professional societies (NABT,
+  and health professions education, plus journals in the history and philosophy of science
+  (Isis, Philosophy of Science, Social Studies of Science, and others) and in science and health
+  communication (Science Communication, Public Understanding of Science, JCOM, Health
+  Communication, and others). 52 are sponsored by professional societies (NABT,
   AAPT, ASEE, NCTM, AMEE, AACP, and more); all come from established publishers, and
   none from MDPI, Frontiers, or predatory publishers.
 * **The [STEMEd+ Commons Collection](https://works.hcommons.org/collections/stemedplus/)**
   and all of its subcollections on Knowledge Commons Works, including papers, chapters,
   lesson plans, instruments, figures, and data
-* **Preprints** from [EdArXiv](https://edarxiv.org/) (STEM+ education preprints only) and
-  [arXiv Physics Education](https://arxiv.org/list/physics.ed-ph/recent)
-* **Dissertations and theses** in STEM+ education from university repositories, found
+* **Preprints** from [EdArXiv](https://edarxiv.org/) (STEM+ education preprints only),
+  [arXiv Physics Education](https://arxiv.org/list/physics.ed-ph/recent), and
+  [arXiv History and Philosophy of Physics](https://arxiv.org/list/physics.hist-ph/recent)
+* **Dissertations and theses** in STEM+ education, the history and philosophy of science, and
+  science and health communication from university repositories, found
   through [OpenAlex](https://openalex.org/)
 
-Everything is tagged with the same ten disciplines as
+Everything is tagged with the same disciplines as
 [STEMEd+ Jobs](https://github.com/JLib271/stemed-jobs) and the
 [STEM+ Education Research Graduate Programs](https://github.com/JLib271/stem-ed-research-programs) list.
+Most disciplines mean education in a field; History & Philosophy of Science and Science & Health
+Communication also cover those fields themselves.
 
 🔎 **Website:** https://jlib271.github.io/STEMEd-Digest/ (once GitHub Pages is turned on)
 
@@ -46,7 +53,7 @@ The site updates itself every day.
   still gets noticed.
 
 * **Preprints:** EdArXiv through the [OSF API](https://developer.osf.io/), and arXiv's
-  physics.ed-ph category through the [arXiv API](https://info.arxiv.org/help/api/).
+  physics.ed-ph and physics.hist-ph categories through the [arXiv API](https://info.arxiv.org/help/api/).
   EdArXiv covers all of education, so a preprint is kept only when its title names a STEM+
   field or word (chemistry, nursing, STEM, mathematics, programming, and so on), or when the
   author filed it under *Science and Mathematics Education* and its keywords name one. Phrases
@@ -144,12 +151,14 @@ that happens the site keeps its earlier dissertation listings and shows a notice
 |---|---|
 | `config/journals.json` | The journals, their ISSNs, home pages, sponsoring societies, and disciplines. `classify_titles` also tags articles by words in their titles, for journals that cover many fields. |
 | `config/commons.json` | The STEMEd+ Commons collection, and disciplines for whole subcollections (Entomology Education → Bioscience, STEM in Agricultural Education → Agriculture). |
-| `config/preprints.json` | The preprint servers: EdArXiv (with the subjects that count as STEM+) and the arXiv category. |
-| `config/dissertations.json` | The OpenAlex topics that count as STEM+ education, the disciplines each gets, the language, and repositories to skip. |
+| `config/preprints.json` | The preprint servers: EdArXiv (with the subjects that count as STEM+) and the two arXiv categories. |
+| `config/dissertations.json` | The OpenAlex topics that are followed, the disciplines each gets, the language, and repositories to skip. |
 | `config/keywords.json` | The HuMeta keywords, their ERIC descriptors, and match phrases. |
 | `config/site.json` | Title, how many days to look back each run (14), how long to keep journal articles, preprints, and dissertations (365 days), and how many days the digest covers (7). |
 
 ## License
 
-Code: MIT. The discipline rules in `stemed_digest/disciplines.py` are copied from
-[STEMEd+ Jobs](https://github.com/JLib271/stemed-jobs) (MIT).
+Code: MIT. The disciplines (labels, definitions, and matching words) come from the STEMEd+
+discipline list shared across STEMEd+ Commons, kept in [HuMeta](https://github.com/JLib271/HuMeta)
+(`standard/humeta/stemedplus_disciplines.json`) and stored here as
+`stemed_digest/stemedplus_disciplines.json`; each build refreshes the stored copy.

@@ -32,9 +32,11 @@ body:
         - Earth Science
         - Engineering
         - Health Education
+        - History & Philosophy of Science (including history of medicine and science and technology studies)
         - Learning Science
         - Mathematics
         - Physics
+        - Science & Health Communication (including risk and climate communication, public engagement, and science journalism)
         - Science Education
     validations:
       required: true
