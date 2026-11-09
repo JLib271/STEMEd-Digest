@@ -115,8 +115,10 @@ def to_html(d: dict, site: dict, commons_cfg: dict) -> str:
  ul {{ padding-left: 20px; margin: 6px 0; }} li {{ margin: 8px 0; }} a {{ color: #1f5f8b; }} .by {{ color: #5b6475; font-size: .9rem; }}
  .commons {{ background: #e6f0f7; border: 1px solid #c9dcea; border-radius: 8px; padding: 6px 18px 14px; }}
  .invite {{ margin: 10px 0 0; }} .note {{ color: #5b6475; font-size: .9rem; margin: 0 0 6px; }} .none {{ color: #5b6475; list-style: none; }}
+ .stemedplus {{ display: inline-block; margin: 0 0 8px; }} .stemedplus img {{ display: block; height: 48px; width: auto; }}
  footer {{ margin-top: 30px; font-size: .9rem; color: #5b6475; }}
 </style></head><body><main>
+<a class="stemedplus" href="https://stemedplus.org" title="STEMEd+ Commons"><img src="stemedplus-commons-logo.png" alt="STEMEd+ Commons" width="139" height="48"></a>
 <h1>{html.escape(title)}</h1>
 <p class="lede">{html.escape(_lede(d, commons_cfg["name"]))}</p>
 <section class="commons"><h2>Recently added to {cname}</h2><ul>{commons}</ul>

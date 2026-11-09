@@ -136,6 +136,7 @@ def run(out: Path, previous: Optional[str], now: dt.datetime, fetch_journals=cro
     }
     (out / "items.json").write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     shutil.copyfile(ROOT / "site" / "index.html", out / "index.html")
+    shutil.copyfile(ROOT / "site" / "stemedplus-commons-logo.png", out / "stemedplus-commons-logo.png")
     feeds.write_all(out / "feeds", items, site, commons_cfg, now)
     digest.write(out, items, site, commons_cfg, now, {j["name"]: j["url"] for j in journals["journals"] if j.get("url")})
     counts = ", ".join(f"{sum(i.source == s for i in items)} {s}" for s in ("journal", "commons", "preprint", "dissertation"))
