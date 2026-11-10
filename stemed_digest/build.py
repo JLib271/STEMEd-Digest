@@ -136,7 +136,8 @@ def run(out: Path, previous: Optional[str], now: dt.datetime, fetch_journals=cro
     }
     (out / "items.json").write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     shutil.copyfile(ROOT / "site" / "index.html", out / "index.html")
-    shutil.copyfile(ROOT / "site" / "stemedplus-commons-logo.png", out / "stemedplus-commons-logo.png")
+    for name in ("stemedplus-commons-logo.png", "stemedplus-commons-logo-white.png", "stemedplus-theme.css", "manrope.woff"):
+        shutil.copyfile(ROOT / "site" / name, out / name)
     feeds.write_all(out / "feeds", items, site, commons_cfg, now)
     digest.write(out, items, site, commons_cfg, now, {j["name"]: j["url"] for j in journals["journals"] if j.get("url")})
     counts = ", ".join(f"{sum(i.source == s for i in items)} {s}" for s in ("journal", "commons", "preprint", "dissertation"))
