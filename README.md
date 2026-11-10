@@ -1,6 +1,6 @@
 # STEMEd+ Digest
 
-New work in STEM+ education research and practice, in one place:
+A rolling twelve months of new work in STEM+ education research and practice, in one place (items older than a year drop off):
 
 * **Journal tables of contents** from 92 journals: teaching and education research journals across
   biology, chemistry, physics, earth and environmental science, mathematics and statistics,
