@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where to publish your teaching work · STEMEd+ Digest</title>
+<meta name="description" content="Journals, teaching-materials journals, and conference proceedings that publish STEM+ teaching innovations and the scholarship of teaching and learning (SoTL), with scope, review, open access, and fees. Plus a first-timer's guide.">
+<style>
+  :root { --ink:#1d2433; --muted:#5b6475; --line:#dde2ea; --bg:#f7f8fa; --card:#fff; --accent:#1f5f8b; --soft:#e6f0f7; --softline:#c9dcea; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .stemedplus { display: inline-block; margin: 0 0 8px; } .stemedplus img { display: block; height: 48px; width: auto; }
+  header { background: var(--card); border-bottom: 1px solid var(--line); }
+  header .wrap { padding-top: 26px; padding-bottom: 20px; }
+  h1 { font-size: 1.7rem; margin: 0 0 6px; letter-spacing: -0.01em; }
+  header p { margin: 0; color: var(--muted); max-width: 70ch; }
+  .links { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .btn { display: inline-block; padding: 8px 14px; border-radius: 6px; background: var(--accent); color: #fff; font-weight: 600; text-decoration: none; }
+  .btn.secondary { background: var(--card); color: var(--accent); border: 1px solid var(--accent); }
+  a { color: var(--accent); }
+  .commons { background: var(--soft); border-bottom: 1px solid var(--softline); }
+  .commons .wrap { padding-top: 18px; padding-bottom: 18px; }
+  .commons h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  .strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+  .strip .c { background: var(--card); border: 1px solid var(--softline); border-radius: 8px; padding: 10px 12px; font-size: .92rem; }
+  .strip .c a { font-weight: 600; text-decoration: none; } .strip .c a:hover { text-decoration: underline; }
+  .strip .c .m { color: var(--muted); font-size: .82rem; margin-top: 3px; }
+  .commons .invite { margin: 12px 0 0; font-size: .92rem; }
+  .controls { display: grid; grid-template-columns: 1.6fr 1.4fr 1fr 1fr 1.2fr 0.9fr; gap: 12px; margin: 20px 0 8px; }
+  label { display: block; font-size: .8rem; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
+  input, select { width: 100%; padding: 9px 10px; font: inherit; border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--ink); }
+  input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  #count { color: var(--muted); font-size: .9rem; margin: 6px 0 12px; }
+  ol#list { list-style: none; margin: 0; padding: 0; }
+  ol#list li { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; margin-bottom: 8px; }
+  .t { font-weight: 600; text-decoration: none; } .t:hover { text-decoration: underline; }
+  .meta { color: var(--muted); font-size: .88rem; margin-top: 3px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .tag { font-size: .75rem; padding: 2px 8px; border-radius: 999px; background: #eef0f3; color: var(--ink); font-weight: 600; }
+  .tag.src { background: var(--soft); color: var(--accent); }
+  .tag.pre { background: #fdf3dc; color: #6b4a00; }
+  .added { font-size: .78rem; color: var(--muted); margin-left: auto; }
+  .more { text-align: center; margin: 14px 0 30px; }
+  .more button { font: inherit; padding: 8px 16px; border-radius: 6px; border: 1px solid var(--accent); background: var(--card); color: var(--accent); cursor: pointer; }
+  .empty { padding: 26px; text-align: center; color: var(--muted); }
+  footer { background: var(--card); border-top: 1px solid var(--line); padding: 20px 0 30px; font-size: .9rem; color: var(--muted); }
+  footer h2 { font-size: 1rem; color: var(--ink); margin: 0 0 6px; }
+  footer ul { margin: 6px 0 12px; padding-left: 18px; columns: 2; }
+  footer ul.jl, footer ul#more { columns: 1; } footer ul.jl li { margin: 3px 0; } footer ul.jl .s { color: var(--muted); }
+  .meta a.jw { color: var(--muted); }
+  footer details { margin: 0 0 16px; } footer summary { cursor: pointer; color: var(--accent); }
+  .warn { font-size: .85rem; color: #8a5a00; margin: 0 0 8px; }
+  .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .tag.kw { background: #fff; border: 1px solid var(--line); color: var(--accent); font-weight: 500; cursor: pointer; }
+  .tag.kw:hover, .tag.kw:focus { border-color: var(--accent); outline: none; }
+  .tag.kw[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .kwnote { font-size: .85rem; color: var(--muted); margin: 0 0 6px; }
+  @media (max-width: 860px) { .controls { grid-template-columns: 1fr 1fr; } .controls .search { grid-column: 1 / -1; } footer ul { columns: 1; } }
+  .join { background: #e6f0f7; border: 1px solid #c9dcea; border-radius: 8px; padding: 10px 14px; font-size: .93rem; color: #1d2433; }
+  .join p { margin: 4px 0; }
+  .join-top { margin: 14px 0 0; }
+  .join-bottom { margin: 0 0 16px; }
+  .controls.v { grid-template-columns: 1.6fr 1.2fr 1.2fr 1.3fr 1fr; align-items: end; }
+  .chk { display: flex; gap: 8px; align-items: center; font-size: .92rem; padding-bottom: 9px; } .chk input { width: auto; }
+  ol#list .scope { margin: 6px 0 0; font-size: .95rem; }
+  dl.facts { display: grid; grid-template-columns: max-content 1fr; gap: 2px 12px; margin: 8px 0 0; font-size: .88rem; }
+  dl.facts dt { color: var(--muted); font-weight: 600; } dl.facts dd { margin: 0; }
+  .tag.first { background: #e3f4e8; color: #1d5b31; }
+  .tag.open { background: #fdf3dc; color: #6b4a00; }
+  .onramp { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 16px 20px; margin: 20px 0; }
+  .onramp h2 { font-size: 1.2rem; margin: 0 0 8px; } .onramp h3 { font-size: 1rem; margin: 16px 0 4px; }
+  .onramp p, .onramp li { max-width: 80ch; } .onramp ol, .onramp ul { padding-left: 20px; } .onramp li { margin: 4px 0; }
+  .note { font-size: .88rem; color: var(--muted); }
+  @media (max-width: 860px) { .controls.v { grid-template-columns: 1fr 1fr; } }
+</style>
+<link rel="stylesheet" href="stemedplus-theme.css">
+</head>
+<body>
+<div class="sp-bar"><div class="sp-in"><a class="sp-logo" href="https://stemedplus.org/"><img src="stemedplus-commons-logo-white.png" alt="STEMEd+ Commons home" width="263" height="91"></a><input type="checkbox" id="sp-menu-toggle" class="sp-toggle"><label for="sp-menu-toggle" class="sp-burger"><span class="sp-burger-icon" aria-hidden="true"></span>Menu</label><nav class="sp-nav" aria-label="STEMEd+ Commons"><ul class="sp-top"><li class="sp-has"><a href="https://stemedplus.org/stemed-features/">Features</a><svg class="sp-chev" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.5 4L6 8L10.5 4" stroke="currentColor" stroke-width="1.5"/></svg><ul class="sp-sub"><li><a href="https://works.hcommons.org/collections/stemedplus/records?q=&amp;l=list&amp;p=1&amp;s=10&amp;sort=newest">STEMEd+ Library</a></li><li><a href="https://stemedplus.org/sites/">STEMEd+ Sites</a></li><li><a href="https://stemedplus.profile.hcommons.org/members/">STEMEd+ Members</a></li><li><a href="https://stemedplus.org/stemed-groups/">STEMEd+ Groups</a></li></ul></li><li class="sp-has sp-here"><a href="https://stemedplus.org/stemed-resources/">Resources</a><svg class="sp-chev" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.5 4L6 8L10.5 4" stroke="currentColor" stroke-width="1.5"/></svg><ul class="sp-sub"><li><a href="https://theseekershub.stemedplus.org/">The Seekers’ Hub: A Job Board</a></li><li><a href="https://stemedplus.org/stemed-collaborators/">Find Collaborators</a></li><li><a href="https://jlib271.github.io/stemed-funding/">Find Funding</a></li><li><a href="https://jlib271.github.io/STEMEd-Digest/" aria-current="page">STEMEd+ Digest</a></li><li><a href="https://jlib271.github.io/stem-ed-research-programs/">STEMEd+ Graduate Programs</a></li><li><a href="https://jlib271.github.io/stemed-conferences/">STEMEd+ Conferences</a></li><li><a href="https://jlib271.github.io/stemed-professional-learning/">STEMEd+ Professional Learning</a></li><li><a href="https://jlib271.github.io/stemed-faculty-development/">STEMEd+ Faculty Development</a></li><li><a href="https://jlib271.github.io/stemed-deadlines/">STEMEd+ Deadlines</a></li></ul></li><li class="sp-has"><a href="https://stemedplus.org/about/">Learn More</a><svg class="sp-chev" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.5 4L6 8L10.5 4" stroke="currentColor" stroke-width="1.5"/></svg><ul class="sp-sub"><li><a href="https://stemedplus.org/about/">About</a></li><li><a href="https://stemedplus.org/learn-more/">Governance</a></li><li><a href="https://stemedplus.org/vision-research/">Vision &amp; Research</a></li><li><a href="https://support.hcommons.org/">Help &amp; Support</a></li></ul></li><li><a href="https://stemedplus.org/collaborate/">Partner with Us</a></li><li><a href="https://stemedplus.org/contact-us/">Contact Us</a></li><li><a href="https://stemedplus.org/join-stemed/">Join STEMEd+</a></li><li><a href="https://stemedplus.org/stemed-commons-frequently-asked-questions/">Get Started &amp; FAQs</a></li></ul></nav><a class="sp-login" href="https://stemedplus.org/wp-login.php">Log in</a></div></div>
+<header>
+  <div class="wrap">
+    <h1>Where to publish your teaching work</h1>
+    <p>Journals, teaching-materials journals, and conference proceedings that publish STEM+ teaching innovations and the scholarship of teaching and learning (SoTL), with what each takes, how it reviews, whether it is open access, and what it costs authors.</p>
+    <div class="links">
+      <a class="btn" href="#onramp">First time? Start here</a>
+      <a class="btn secondary" href="#list" id="firstbtn">Good first venues</a>
+      <a class="btn secondary" href="./">STEMEd+ Digest</a>
+      <a class="btn secondary" href="classroom.html">For the classroom (monthly)</a>
+      <a class="btn secondary" id="suggest" href="https://github.com/JLib271/STEMEd-Digest/issues/new?title=Publishing+venue%3A+">Suggest a venue or a correction</a>
+    </div>
+  </div>
+</header>
+<div class="wrap"><div class="join join-top" role="note"><p><strong>STEMEd+ Digest is part of STEMEd+ Commons.</strong> Join free to deposit instruments in the <a href="https://works.hcommons.org/collections/humetainstrumentlibrary/" target="_blank" rel="noopener noreferrer">HuMeta Instrument Library collection<span class="vh"> (opens in a new tab)</span></a>, share your work in the <a href="https://works.hcommons.org/collections/stemedplus/" target="_blank" rel="noopener noreferrer">STEMEd+ collection<span class="vh"> (opens in a new tab)</span></a>, follow new work, and connect with STEM+ education researchers. You can sign in with GitHub, Google, ORCID, or your institution.</p><p><a href="https://stemedplus.hcommons.org/" target="_blank" rel="noopener noreferrer">Visit STEMEd+ Commons<span class="vh"> (opens in a new tab)</span></a> · <a href="https://support.hcommons.org/profiles/login-and-registration/" target="_blank" rel="noopener noreferrer">How to join<span class="vh"> (opens in a new tab)</span></a></p></div></div>
+<main class="wrap">
+  <p class="note"><strong>Scope.</strong> Venues that regularly publish teaching innovations, classroom materials, or SoTL in STEM+ fields, from K-12 through graduate and health-professions teaching. Education research journals that do not take practice papers are in the <a href="./">Digest</a> instead. Fees change: entries marked “confirmed” were checked against the journal, DOAJ, or the society in the month shown; for the rest, check the journal's own page before you budget.</p>
+  <div class="controls v" role="search">
+    <div><label for="q">Search</label><input id="q" type="search" placeholder="Journal, publisher, or topic" autocomplete="off"></div>
+    <div><label for="disc">Discipline</label><select id="disc"><option value="">All</option></select></div>
+    <div><label for="kind">Kind of venue</label><select id="kind"><option value="">All</option></select></div>
+    <div><label for="access">Access and fees</label><select id="access"><option value="">All</option><option value="free">No author fee</option></select></div>
+    <div class="chk"><input type="checkbox" id="first"><label for="first" style="margin:0;color:var(--ink)">Good first venues</label></div>
+  </div>
+  <p id="count" aria-live="polite"></p>
+  <ol id="list"></ol>
+
+  <section class="onramp" id="onramp" aria-labelledby="onramp-h">
+    <h2 id="onramp-h">First time publishing about your teaching?</h2>
+    <p>Writing about a course you teach is a different kind of paper from your disciplinary research, but you already have most of what you need: a problem you noticed, a change you made, and some evidence of what happened. These steps get you from a good classroom idea to a submission.</p>
+
+    <h3>1. Decide what kind of paper you have</h3>
+    <ul>
+      <li><strong>A teaching idea or activity that worked:</strong> a practitioner journal (marked “Practitioner journal or magazine”) or a teaching-materials journal such as CourseSource or MedEdPORTAL, where the lesson itself is the publication.</li>
+      <li><strong>A change you studied with data on student learning or attitudes:</strong> a SoTL or discipline-based education research journal.</li>
+      <li><strong>Early results or work in progress:</strong> a conference poster with a proceedings paper (PERC, ASEE work-in-progress papers, SIGCSE experience reports). These are reviewed, citable, and a common first step.</li>
+    </ul>
+
+    <h3>2. Talk to your IRB before you collect data</h3>
+    <p>If you plan to publish anything drawn from your students (grades, survey answers, work samples, interviews), it is human subjects research, and your institution's Institutional Review Board (IRB) decides how it is reviewed. Many classroom studies qualify as <em>exempt</em> under the federal Common Rule category for research in established educational settings on normal educational practices, but only the IRB can make that call, and getting approval before you collect data is far easier than asking to use data afterward. A few habits make approval easy:</p>
+    <ul>
+      <li>Apply before the term starts; exempt reviews are often quick, but not same-week.</li>
+      <li>Have someone other than the instructor collect consent, and hold consent forms until grades are in, so students do not feel pressured.</li>
+      <li>Remove names and IDs before analysis. Student records are also covered by <a href="https://studentprivacy.ed.gov/" target="_blank" rel="noopener noreferrer">FERPA<span class="vh"> (opens in a new tab)</span></a>.</li>
+      <li>Ask your teaching center: many have a template protocol for classroom research.</li>
+    </ul>
+    <p class="note">Background: the Common Rule's exempt categories are at <a href="https://www.hhs.gov/ohrp/regulations-and-policy/regulations/45-cfr-46/index.html" target="_blank" rel="noopener noreferrer">HHS Office for Human Research Protections<span class="vh"> (opens in a new tab)</span></a>. Rules outside the US differ; ask your ethics board.</p>
+
+    <h3>3. Treat your teaching as research</h3>
+    <p>The <a href="https://www.cirtl.net/" target="_blank" rel="noopener noreferrer">CIRTL Network<span class="vh"> (opens in a new tab)</span></a> calls this <em>teaching-as-research</em>: define what you want students to learn, find out what is already known, design the change, collect evidence, and reflect and share. Its free online courses walk graduate students and postdocs through a full teaching-as-research project, and many member campuses run local versions. The same cycle is the skeleton of most SoTL papers.</p>
+
+    <h3>4. Find a call for papers</h3>
+    <ul>
+      <li>Special issues and themed calls are announced on journal home pages and in society newsletters; they are often more open to first-time authors.</li>
+      <li>Conference calls for posters and proceedings papers are in <a href="https://jlib271.github.io/stemed-conferences/">STEMEd+ Conferences</a>, and their deadlines in <a href="https://jlib271.github.io/stemed-deadlines/">STEMEd+ Deadlines</a>.</li>
+      <li>Read a few recent articles in the venue you choose, and follow its article types and length limits closely.</li>
+    </ul>
+
+    <h3>5. Get support</h3>
+    <ul>
+      <li>Writing groups, SoTL fellowships, and teaching-as-research programs are listed in <a href="https://jlib271.github.io/stemed-faculty-development/">STEMEd+ Faculty Development</a>.</li>
+      <li>If an article fee is a barrier, ask the journal for a waiver before you submit, and ask your library: many have open-access agreements that cover fees.</li>
+      <li>Share a preprint or your materials in the <a href="https://works.hcommons.org/collections/stemedplus/" target="_blank" rel="noopener noreferrer">STEMEd+ Commons collection<span class="vh"> (opens in a new tab)</span></a> to get feedback and a citable DOI.</li>
+    </ul>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <p>Part of the <a href="./">STEMEd+ Digest</a>. Something missing or out of date? <a href="https://github.com/JLib271/STEMEd-Digest/issues/new?title=Publishing+venue%3A+">Tell us</a>. The list lives in <a href="https://github.com/JLib271/STEMEd-Digest/blob/main/config/venues.json">config/venues.json</a>.</p>
+  </div>
+</footer>
+<script>
+(function () {
+  function el(id) { return document.getElementById(id); }
+  function node(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+  var D = null;
+  var FREE = { diamond: 1, hybrid: 1, subscription: 1, proceedings: 1 };
+  function month(m) { var p = m.split('-'); return ['Jan.', 'Feb.', 'March', 'April', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'][+p[1] - 1] + ' ' + p[0]; }
+  function render() {
+    var q = el('q').value.trim().toLowerCase(), disc = el('disc').value, kind = el('kind').value, acc = el('access').value, first = el('first').checked;
+    var shown = D.venues.filter(function (v) {
+      return (!q || (v.name + ' ' + v.publisher + ' ' + v.scope).toLowerCase().indexOf(q) !== -1) &&
+        (!disc || (disc === '*' ? !v.disciplines.length : v.disciplines.indexOf(disc) !== -1 || !v.disciplines.length)) &&
+        (!kind || v.kind === kind) && (!acc || (acc === 'free' ? FREE[v.access] : v.access === acc)) && (!first || v.first_timer);
+    });
+    el('count').textContent = shown.length + (shown.length === 1 ? ' venue' : ' venues') + (shown.length < D.venues.length ? ' of ' + D.venues.length : '');
+    var list = el('list'); list.textContent = '';
+    shown.forEach(function (v) {
+      var li = node('li'), a = node('a', 't', v.name); a.href = v.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; li.appendChild(a);
+      li.appendChild(node('div', 'meta', v.publisher + ' · ' + D.kinds[v.kind]));
+      li.appendChild(node('p', 'scope', v.scope));
+      var dl = node('dl', 'facts');
+      [['Disciplines', v.disciplines.length ? v.disciplines.join(', ') : 'All STEM+'], ['Levels', v.levels.join(', ')], ['Review', v.review],
+       ['Access', D.access[v.access]], ['Author fees', v.fees + (v.checked ? ' (confirmed ' + month(v.checked) + ')' : '')]].forEach(function (r) {
+        dl.appendChild(node('dt', '', r[0])); dl.appendChild(node('dd', '', r[1]));
+      });
+      li.appendChild(dl);
+      var tags = node('div', 'tags');
+      if (v.first_timer) tags.appendChild(node('span', 'tag first', 'Good first venue'));
+      if (v.access === 'diamond') tags.appendChild(node('span', 'tag open', 'Free to publish and read'));
+      if (tags.childNodes.length) li.appendChild(tags);
+      list.appendChild(li);
+    });
+    if (!shown.length) list.appendChild(node('li', 'empty', 'No venues match. Try fewer filters.'));
+  }
+  fetch('venues.json').then(function (r) { return r.json(); }).then(function (d) {
+    D = d;
+    var discs = {}; d.venues.forEach(function (v) { v.disciplines.forEach(function (x) { discs[x] = 1; }); });
+    var o = node('option', '', 'Cross-disciplinary only'); o.value = '*'; el('disc').appendChild(o);
+    Object.keys(discs).sort().forEach(function (x) { var o = node('option', '', x); o.value = x; el('disc').appendChild(o); });
+    Object.keys(d.kinds).forEach(function (k) { var o = node('option', '', d.kinds[k]); o.value = k; el('kind').appendChild(o); });
+    Object.keys(d.access).forEach(function (k) { var o = node('option', '', d.access[k]); o.value = k; el('access').appendChild(o); });
+    if (/first/.test(location.hash)) el('first').checked = true;
+    ['q', 'disc', 'kind', 'access', 'first'].forEach(function (id) { el(id).addEventListener(id === 'q' ? 'input' : 'change', render); });
+    el('firstbtn').addEventListener('click', function () { el('first').checked = true; render(); });
+    render();
+  });
+})();
+</script>
+</body>
+</html>

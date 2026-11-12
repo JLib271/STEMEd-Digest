@@ -7,6 +7,7 @@ Output (all static, served by GitHub Pages):
     items.json        everything currently listed (also the state for the next run)
     digest.html/.md   the last week: "Recently added to STEMEd+ Commons", journals, preprints, dissertations
     classroom.html/.md  "For the classroom": the last month of articles in journals written for teachers and instructors
+    publish.html, venues.json  "Where to publish your teaching work": venues for teaching innovations and SoTL
     feeds/*.xml       RSS: all, STEMEd+ Commons, preprints, dissertations, and one per discipline
 """
 import argparse
@@ -18,7 +19,7 @@ from pathlib import Path
 from typing import Dict, List, Optional
 from urllib.request import Request, urlopen
 
-from . import commons, crossref, digest, dissertations, feeds, keywords, preprints
+from . import commons, crossref, digest, dissertations, feeds, keywords, preprints, venues
 from .disciplines import DISCIPLINES
 from .http import user_agent
 from .models import Item
@@ -139,6 +140,8 @@ def run(out: Path, previous: Optional[str], now: dt.datetime, fetch_journals=cro
     }
     (out / "items.json").write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     shutil.copyfile(ROOT / "site" / "index.html", out / "index.html")
+    shutil.copyfile(ROOT / "site" / "publish.html", out / "publish.html")
+    venues.write(out)
     for name in ("stemedplus-commons-logo.png", "stemedplus-commons-logo-white.png", "stemedplus-theme.css", "manrope.woff"):
         shutil.copyfile(ROOT / "site" / name, out / name)
     classroom = {j["name"] for j in journals["journals"] if j.get("classroom")}
