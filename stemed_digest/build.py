@@ -6,6 +6,7 @@ Output (all static, served by GitHub Pages):
     index.html        searchable list
     items.json        everything currently listed (also the state for the next run)
     digest.html/.md   the last week: "Recently added to STEMEd+ Commons", journals, preprints, dissertations
+    classroom.html/.md  "For the classroom": the last month of articles in journals written for teachers and instructors
     feeds/*.xml       RSS: all, STEMEd+ Commons, preprints, dissertations, and one per discipline
 """
 import argparse
@@ -128,7 +129,9 @@ def run(out: Path, previous: Optional[str], now: dt.datetime, fetch_journals=cro
         "keywords": keywords.summary(),
         "keep_days": site["keep_days"],
         "journals": [{"name": j["name"], "publisher": j.get("publisher", ""), "society": j.get("society", ""),
-                      "disciplines": j.get("disciplines", []), "url": j.get("url", "")} for j in journals["journals"]],
+                      "disciplines": j.get("disciplines", []), "url": j.get("url", ""), "classroom": bool(j.get("classroom"))}
+                     for j in journals["journals"]],
+        "classroom_days": site.get("classroom_days", 30),
         "preprint_servers": [{"name": v["name"], "url": v["url"]} for k, v in servers.items() if not k.startswith("_")],
         "dissertations": {"name": diss_cfg["name"], "url": diss_cfg["url"]},
         "status": status,
@@ -138,8 +141,11 @@ def run(out: Path, previous: Optional[str], now: dt.datetime, fetch_journals=cro
     shutil.copyfile(ROOT / "site" / "index.html", out / "index.html")
     for name in ("stemedplus-commons-logo.png", "stemedplus-commons-logo-white.png", "stemedplus-theme.css", "manrope.woff"):
         shutil.copyfile(ROOT / "site" / name, out / name)
-    feeds.write_all(out / "feeds", items, site, commons_cfg, now)
-    digest.write(out, items, site, commons_cfg, now, {j["name"]: j["url"] for j in journals["journals"] if j.get("url")})
+    classroom = {j["name"] for j in journals["journals"] if j.get("classroom")}
+    feeds.write_all(out / "feeds", items, site, commons_cfg, now, classroom)
+    journal_urls = {j["name"]: j["url"] for j in journals["journals"] if j.get("url")}
+    digest.write(out, items, site, commons_cfg, now, journal_urls)
+    digest.write_classroom(out, items, site, now, classroom, journal_urls)
     counts = ", ".join(f"{sum(i.source == s for i in items)} {s}" for s in ("journal", "commons", "preprint", "dissertation"))
     print(f"Wrote {len(items)} items ({counts}); "
           f"{len(failed)} source(s) failed.")

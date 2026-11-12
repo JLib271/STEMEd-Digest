@@ -73,6 +73,7 @@
     <p id="tagline"></p>
     <div class="links">
       <a class="btn" href="digest.html">This week's digest</a>
+      <a class="btn secondary" href="classroom.html">For the classroom (monthly)</a>
       <a class="btn secondary" href="#feeds">RSS feeds</a>
       <a class="btn secondary" id="suggest" href="#">Suggest a journal</a>
     </div>
@@ -91,7 +92,7 @@
     <div class="search"><label for="q">Search</label><input id="q" type="search" placeholder="Title, author, or journal" autocomplete="off"></div>
     <div><label for="keyword">Keyword</label><select id="keyword"><option value="">All</option></select></div>
     <div><label for="discipline">Discipline</label><select id="discipline"><option value="">All</option></select></div>
-    <div><label for="source">Source</label><select id="source"><option value="">All</option><option value="journal">Journals</option><option value="commons">STEMEd+ Commons</option><option value="preprint">Preprints</option><option value="dissertation">Dissertations and theses</option></select></div>
+    <div><label for="source">Source</label><select id="source"><option value="">All</option><option value="journal">Journals</option><option value="classroom">Journals for the classroom</option><option value="commons">STEMEd+ Commons</option><option value="preprint">Preprints</option><option value="dissertation">Dissertations and theses</option></select></div>
     <div><label for="venue">Journal, collection, or server</label><select id="venue"><option value="">All</option></select></div>
     <div><label for="days">Added in the last</label><select id="days"><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option><option value="365">12 months</option><option value="">Any time</option></select></div>
   </div>
@@ -127,7 +128,7 @@
 </footer>
 <script>
 (function () {
-  var PAGE = 100, state = { d: null, shown: PAGE, kw: {}, jurl: {} };
+  var PAGE = 100, state = { d: null, shown: PAGE, kw: {}, jurl: {}, classroom: {} };
   var el = function (id) { return document.getElementById(id); };
   function node(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
   function slug(s) { return s.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
@@ -147,7 +148,7 @@
     var q = el('q').value.trim().toLowerCase(), kw = el('keyword').value, disc = el('discipline').value, src = el('source').value, v = el('venue').value, c = cutoff();
     return state.d.items.filter(function (i) {
       return (!q || (i.title + ' ' + i.authors.join(' ') + ' ' + i.venue + ' ' + i.collections.join(' ')).toLowerCase().indexOf(q) !== -1) &&
-        (!kw || i.keywords.indexOf(kw) !== -1) && (!disc || i.disciplines.indexOf(disc) !== -1) && (!src || i.source === src) &&
+        (!kw || i.keywords.indexOf(kw) !== -1) && (!disc || i.disciplines.indexOf(disc) !== -1) && (!src || (src === 'classroom' ? i.source === 'journal' && state.classroom[i.venue] : i.source === src)) &&
         (!v || i.venue === v || i.collections.indexOf(v) !== -1) && (!c || i.added >= c);
     });
   }
@@ -176,6 +177,7 @@
       li.appendChild(m);
       var tags = node('div', 'tags');
       if (i.source === 'commons') tags.appendChild(node('span', 'tag src', 'STEMEd+ Commons'));
+      if (i.source === 'journal' && state.classroom[i.venue]) tags.appendChild(node('span', 'tag src', 'For the classroom'));
       if (i.source === 'preprint') tags.appendChild(node('span', 'tag pre', 'Preprint'));
       if (i.source === 'dissertation') tags.appendChild(node('span', 'tag pre', 'Dissertation or thesis'));
       i.disciplines.forEach(function (x) { tags.appendChild(node('span', 'tag', x)); });
@@ -221,17 +223,18 @@
       el('keyword').appendChild(og);
     });
     var h = /keyword=([^&]+)/.exec(location.hash); if (h && state.kw[decodeURIComponent(h[1])]) { el('keyword').value = decodeURIComponent(h[1]); el('days').value = ''; }
-    state.jurl = {}; d.journals.forEach(function (j) { if (j.url) state.jurl[j.name] = j.url; });
+    state.jurl = {}; state.classroom = {}; d.journals.forEach(function (j) { if (j.url) state.jurl[j.name] = j.url; if (j.classroom) state.classroom[j.name] = true; });
+    if (/source=classroom/.test(location.hash)) el('source').value = 'classroom';
     var venues = d.journals.map(function (j) { return j.name; }).sort(function (a, b) { return a.localeCompare(b); });
     var colls = []; d.items.forEach(function (i) { i.collections.forEach(function (c) { if (colls.indexOf(c) === -1) colls.push(c); }); });
     var servers = (d.preprint_servers || []).map(function (p) { return p.name; });
     fill(el('venue'), [d.commons.name].concat(colls.sort(), servers, venues));
     var fl = el('feedlist');
-    [['All new work', 'all'], [d.commons.name, 'stemed-commons'], ['Preprints', 'preprints'], ['Dissertations and theses', 'dissertations']].concat(d.disciplines.map(function (x) { return [x, slug(x)]; }))
+    [['All new work', 'all'], ['For the classroom', 'classroom'], [d.commons.name, 'stemed-commons'], ['Preprints', 'preprints'], ['Dissertations and theses', 'dissertations']].concat(d.disciplines.map(function (x) { return [x, slug(x)]; }))
       .forEach(function (f) { var li = document.createElement('li'), a = node('a', '', f[0]); a.href = 'feeds/' + f[1] + '.xml'; li.appendChild(a); fl.appendChild(li); });
     var jl = el('journallist'), js = d.journals.slice().sort(function (a, b) { return a.name.replace(/^The /, '').localeCompare(b.name.replace(/^The /, '')); });
     js.forEach(function (j) {
-      var li = node('li'); li.appendChild(j.url ? link(j.url, j.name) : document.createTextNode(j.name)); li.appendChild(node('span', 's', ' · ' + (j.society ? j.society : j.publisher)));
+      var li = node('li'); li.appendChild(j.url ? link(j.url, j.name) : document.createTextNode(j.name)); li.appendChild(node('span', 's', ' · ' + (j.society ? j.society : j.publisher) + (j.classroom ? ' · for the classroom' : '')));
       jl.appendChild(li);
     });
     el('jsummary').textContent = 'Show all ' + js.length + ' journals (' + js.filter(function (j) { return j.society; }).length +

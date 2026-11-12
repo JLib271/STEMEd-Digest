@@ -138,3 +138,63 @@ def write(out: Path, items: List[Item], site: dict, commons_cfg: dict, now: dt.d
     d = build(items, site, commons_cfg, now, journal_urls)
     (out / "digest.md").write_text(to_markdown(d, site, commons_cfg), encoding="utf-8")
     (out / "digest.html").write_text(to_html(d, site, commons_cfg), encoding="utf-8")
+
+
+# "For the classroom": a monthly digest of journals written for teachers and instructors.
+
+CLASSROOM_NOTE = ("New articles from journals written for teachers and instructors, from pre-K through college: "
+                  "classroom activities, labs, teaching practice, and research made for practice.")
+
+
+def build_classroom(items: List[Item], site: dict, now: dt.datetime, classroom_journals, journal_urls=None) -> dict:
+    days = site.get("classroom_days", 30)
+    recent = [i for i in window(items, now, days) if i.source == "journal" and i.venue in classroom_journals]
+    by_journal: "OrderedDict[str, List[Item]]" = OrderedDict()
+    for i in sorted(recent, key=lambda i: (i.venue.lower(), i.title.lower())):
+        by_journal.setdefault(i.venue, []).append(i)
+    return {"dates": _dates(now, days), "journals": by_journal, "journal_urls": journal_urls or {},
+            "count": len(recent), "followed": sorted(classroom_journals, key=str.lower)}
+
+
+def classroom_markdown(d: dict, site: dict) -> str:
+    out = [f"# {site['title']}: For the classroom, {d['dates']}", "", CLASSROOM_NOTE, "",
+           f"This month: {_n(d['count'], 'new article', 'new articles')} from {_n(len(d['journals']), 'journal', 'journals')}.", ""]
+    if not d["journals"]:
+        out.append("No new articles this month.")
+    for venue, its in d["journals"].items():
+        url = d["journal_urls"].get(venue)
+        heading = f"[{_md_escape(venue)}]({url})" if url else venue
+        out += [f"## {heading} ({len(its)})", ""] + [f"- [{_md_escape(i.title)}]({i.url}). {describe(i)}" for i in its] + [""]
+    out += ["", "Journals followed: " + "; ".join(d["followed"]) + "."]
+    return "\n".join(out).rstrip() + "\n"
+
+
+def classroom_html(d: dict, site: dict) -> str:
+    md_title = f"{site['title']}: For the classroom, {d['dates']}"
+    urls = d["journal_urls"]
+
+    def heading(v: str) -> str:
+        if not urls.get(v):
+            return html.escape(v)
+        return f'<a href="{html.escape(urls[v])}" target="_blank" rel="noopener noreferrer">{html.escape(v)}</a>'
+
+    body = "".join(f"<h2>{heading(v)} <span class=\"n\">({len(its)})</span></h2><ul>{''.join(_li(i) for i in its)}</ul>"
+                   for v, its in d["journals"].items()) or "<p class=\"none\">No new articles this month.</p>"
+    page = to_html({"dates": "", "commons": [], "journals": {}, "preprints": [], "dissertations": [], "journal_count": 0},
+                   site, {"name": "", "collection_url": ""})
+    head, rest = page.split("<main>", 1)
+    head = head.replace(f"<title>{html.escape(site['title'] + ': ')}</title>", f"<title>{html.escape(md_title)}</title>")
+    lede = (f"This month: {_n(d['count'], 'new article', 'new articles')} from "
+            f"{_n(len(d['journals']), 'journal', 'journals')}. {CLASSROOM_NOTE}")
+    return (head + "<main>\n" + f"<h1>{html.escape(md_title)}</h1>\n<p class=\"lede\">{html.escape(lede)}</p>\n" + body +
+            f"\n<p class=\"note\">Journals followed: {html.escape('; '.join(d['followed']))}.</p>"
+            "\n<footer><a href=\"./#source=classroom\">Browse all classroom articles</a> · "
+            "<a href=\"feeds/classroom.xml\">RSS feed</a> · <a href=\"classroom.md\">This digest as Markdown</a> · "
+            "<a href=\"digest.html\">This week's full digest</a></footer>\n</main></body></html>\n")
+
+
+def write_classroom(out: Path, items: List[Item], site: dict, now: dt.datetime, classroom_journals,
+                    journal_urls: Optional[dict] = None) -> None:
+    d = build_classroom(items, site, now, classroom_journals, journal_urls)
+    (out / "classroom.md").write_text(classroom_markdown(d, site), encoding="utf-8")
+    (out / "classroom.html").write_text(classroom_html(d, site), encoding="utf-8")

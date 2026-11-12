@@ -5,5 +5,6 @@
   "commons_home": "https://stemedplus.hcommons.org/",
   "lookback_days": 14,
   "keep_days": 365,
-  "digest_days": 7
+  "digest_days": 7,
+  "classroom_days": 30
 }

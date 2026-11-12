@@ -62,7 +62,12 @@ def _write(path: Path, title: str, link: str, description: str, items: List[Item
     path.write_bytes(b'<?xml version="1.0" encoding="utf-8"?>\n' + ET.tostring(rss, encoding="utf-8") + b"\n")
 
 
-def write_all(folder: Path, items: List[Item], site: dict, commons_cfg: dict, now: dt.datetime) -> None:
+def is_classroom(item: Item, classroom_journals) -> bool:
+    return item.source == "journal" and item.venue in classroom_journals
+
+
+def write_all(folder: Path, items: List[Item], site: dict, commons_cfg: dict, now: dt.datetime,
+              classroom_journals=frozenset()) -> None:
     folder.mkdir(parents=True, exist_ok=True)
     link = site["repo_url"]
     _write(folder / "all.xml", site["title"], link, site["tagline"], items, now)
@@ -75,6 +80,9 @@ def write_all(folder: Path, items: List[Item], site: dict, commons_cfg: dict, no
     _write(folder / "dissertations.xml", f"{site['title']}: Dissertations and theses", link,
            "New STEM+ education dissertations and theses from university repositories, via OpenAlex.",
            [i for i in items if i.source == "dissertation"], now)
+    _write(folder / "classroom.xml", f"{site['title']}: For the classroom", link,
+           "New articles from journals written for teachers and instructors: classroom activities, labs, and teaching practice.",
+           [i for i in items if is_classroom(i, classroom_journals)], now)
     for d in DISCIPLINES:
         _write(folder / f"{slug(d)}.xml", f"{site['title']}: {d}", link, f"New work in {d}." if d in FIELD_DISCIPLINES else f"New work in {d} education.",
                [i for i in items if d in i.disciplines], now)

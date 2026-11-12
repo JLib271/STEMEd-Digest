@@ -244,6 +244,32 @@ class BuildTests(unittest.TestCase):
             self.assertIn("### [Chemistry Education Research and Practice](https://pubs.rsc.org/en/journals/journalissues/rp) (4)", journal_part)
             self.assertLess(md.index("Recently added to STEMEd+ Commons"), md.index("New in journals"))
 
+    def test_classroom_digest_lists_only_classroom_journals(self):
+        def fetch(journal, since):
+            # The same fixture articles, once for a research journal and once for a classroom journal.
+            return crossref.parse_works(CROSSREF, journal) if journal["issn"] in ("1756-1108", "0021-9584") else []
+
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            with mock.patch.object(commons, "get_json", side_effect=fake_kc_get):
+                payload = build.run(out, None, NOW, fetch_journals=fetch)
+            flags = {j["name"]: j["classroom"] for j in payload["journals"]}
+            self.assertTrue(flags["Journal of Chemical Education"])
+            self.assertTrue(flags["The Physics Teacher"])
+            self.assertTrue(flags["Science Scope"])
+            self.assertFalse(flags["Chemistry Education Research and Practice"])
+            md = (out / "classroom.md").read_text(encoding="utf-8")
+            self.assertIn("For the classroom", md)
+            self.assertIn("Journal of Chemical Education", md)
+            self.assertNotIn("## [Chemistry Education Research and Practice]", md)
+            html_page = (out / "classroom.html").read_text(encoding="utf-8")
+            self.assertIn("<h1>STEMEd+ Digest: For the classroom", html_page)
+            self.assertIn('class="sp-bar"', html_page)
+            rss = ET.parse(out / "feeds" / "classroom.xml").getroot()
+            venues = {i.findtext("description") for i in rss.findall("./channel/item")}
+            self.assertTrue(venues)
+            self.assertTrue(all("Journal of Chemical Education" in v for v in venues))
+
     def test_preprints_and_dissertations_flow_through_to_digest_and_feeds(self):
         asked = {}
 
