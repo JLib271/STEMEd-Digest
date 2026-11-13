@@ -1,0 +1,19 @@
+{
+  "asset_dirs": [
+    "site"
+  ],
+  "bars": [
+    {
+      "file": "site/index.html",
+      "current": "https://jlib271.github.io/STEMEd-Digest/"
+    },
+    {
+      "file": "site/publish.html",
+      "current": "https://jlib271.github.io/STEMEd-Digest/"
+    },
+    {
+      "file": "stemed_digest/digest.py",
+      "current": "https://jlib271.github.io/STEMEd-Digest/"
+    }
+  ]
+}
