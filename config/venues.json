@@ -1,11 +1,12 @@
 {
-  "_about": "Where to publish: curated venues for teaching innovations, classroom-ready materials, and scholarship of teaching and learning (SoTL) in STEM+. The page also lists every journal the Digest follows (config/journals.json); stemed_digest/venues.py combines the two into the Teaching & SoTL and Research sections, and a journal that takes both kinds of paper is listed in both. digest_names: the Digest journal names that a combined entry stands for. sections: set it to override where a venue is listed (teaching, research, or both). 'access' is one of: diamond (free to publish and free to read), gold (free to read; authors pay an article fee), hybrid (free to publish; open access optional for a fee), subscription (free to publish; readers need a subscription or membership), proceedings (free to read; you present at the conference and pay registration). 'checked' is the month the access and fee details were last confirmed from the journal, DOAJ, or the society; venues without it need a look at the journal's own page before you rely on the fee.",
+  "_about": "Where to publish: curated venues for teaching innovations, classroom-ready materials, and scholarship of teaching and learning (SoTL) in STEM+. The page also lists every journal the Digest follows (config/journals.json); stemed_digest/venues.py combines the two into the Teaching & SoTL and Research sections, and if in doubt, a journal is listed in both, and that is the default for any journal added later. Only practitioner magazines and lesson journals (kind practice or materials), the journals named in teaching_only, and the journals named in research_only or covering only research_only_disciplines are kept to one section. digest_names: the Digest journal names that a combined entry stands for. sections: set it on a venue to override the rules (teaching, research, or both). 'access' is one of: diamond (free to publish and free to read), gold (free to read; authors pay an article fee), hybrid (free to publish; open access optional for a fee), subscription (free to publish; readers need a subscription or membership), proceedings (free to read; you present at the conference and pay registration). 'checked' is the month the access and fee details were last confirmed from the journal, DOAJ, or the society; venues without it need a look at the journal's own page before you rely on the fee.",
   "kinds": {
     "research": "Research and SoTL journal",
     "practice": "Practitioner journal or magazine",
     "materials": "Peer-reviewed teaching materials",
     "proceedings": "Conference proceedings",
-    "journal": "Research journal"
+    "journal": "Research journal",
+    "education": "Education journal: teaching and research"
   },
   "access": {
     "diamond": "Diamond open access: free to publish, free to read",
@@ -14,6 +15,9 @@
     "subscription": "Free to publish; subscription or membership to read",
     "proceedings": "Free to read; requires presenting at the conference"
   },
+  "teaching_only": ["Connected Science Learning"],
+  "research_only": ["Journal of Research in Science Teaching", "Science Education", "Studies in Science Education", "Cultural Studies of Science Education", "International Journal of Science Education", "Research in Science Education", "Research in Science & Technological Education", "Journal for Research in Mathematics Education", "Educational Studies in Mathematics", "Mathematical Thinking and Learning", "Journal for STEM Education Research", "Disciplinary and Interdisciplinary Science Education Research", "Environmental Education Research", "Advances in Health Sciences Education"],
+  "research_only_disciplines": ["History & Philosophy of Science", "Human Dimensions", "Science & Health Communication", "Learning Science"],
   "venues": [
     {
       "name": "Teaching & Learning Inquiry",
@@ -44,6 +48,7 @@
     },
     {
       "name": "College Teaching",
+      "sections": ["teaching", "research"],
       "url": "https://www.tandfonline.com/journals/vcol20",
       "publisher": "Taylor & Francis",
       "disciplines": [],
@@ -69,6 +74,7 @@
     },
     {
       "name": "Journal of College Science Teaching",
+      "sections": ["teaching", "research"],
       "url": "https://www.tandfonline.com/journals/ujcs20",
       "publisher": "NSTA, with Taylor & Francis",
       "disciplines": ["Bioscience", "Chemistry", "Earth Science", "Physics"],
@@ -237,6 +243,7 @@
     },
     {
       "name": "American Journal of Physics",
+      "sections": ["teaching", "research"],
       "url": "https://pubs.aip.org/aapt/ajp",
       "publisher": "American Association of Physics Teachers",
       "disciplines": ["Physics"],
@@ -263,6 +270,7 @@
     },
     {
       "name": "PRIMUS",
+      "sections": ["teaching", "research"],
       "url": "https://www.tandfonline.com/journals/upri20",
       "publisher": "Taylor & Francis",
       "disciplines": ["Mathematics"],
@@ -356,6 +364,7 @@
     },
     {
       "name": "The Clinical Teacher",
+      "sections": ["teaching", "research"],
       "url": "https://asmepublications.onlinelibrary.wiley.com/journal/1743498x",
       "publisher": "Association for the Study of Medical Education, with Wiley",
       "disciplines": ["Health Education"],

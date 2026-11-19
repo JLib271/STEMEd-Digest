@@ -6,11 +6,14 @@ Two sources are combined into one list with two sections:
   materials, and SoTL, with scope, review, access, and fee details.
 * config/journals.json: every journal the Digest follows.
 
-Every curated venue is in the Teaching & SoTL section. A curated venue of
-kind "research" that the Digest also follows takes education research as well
-as SoTL, so it is in the Research section too. Digest journals that are not
-curated go in Teaching & SoTL if they are marked classroom, and in Research
-otherwise. A venue's own "sections" field overrides these rules.
+If in doubt, a journal is in both sections, and that is the default for
+any journal added later. A journal is kept to one section only when:
+
+* its own "sections" field says so (this overrides everything else),
+* it is named in "teaching_only" or "research_only" in config/venues.json,
+* every one of its disciplines is in "research_only_disciplines", or
+* it is a curated practitioner magazine or lesson journal (kind "practice"
+  or "materials"), which go in Teaching & SoTL.
 """
 from __future__ import annotations
 
@@ -58,32 +61,45 @@ def check(data: dict) -> None:
 
 def key(name: str) -> str:
     """Match journal names across the two lists: case, a leading "The",
-    a parenthetical abbreviation, and punctuation do not matter."""
-    s = re.sub(r"\(.*?\)", "", name.lower())
+    a parenthetical abbreviation, "&" for "and", and punctuation do not matter."""
+    s = re.sub(r"\(.*?\)", "", name.lower()).replace("&", " and ")
     s = re.sub(r"^\s*the\s+", "", s)
     return re.sub(r"[^a-z0-9]", "", s)
 
 
+def sections_for(v: dict, data: dict, curated: bool) -> list:
+    """Where one journal is listed: both sections unless something says otherwise."""
+    if v.get("sections"):
+        return list(v["sections"])
+    names = {key(n) for n in v.get("digest_names") or [v["name"]]}
+    if names & {key(n) for n in data.get("teaching_only", [])}:
+        return ["teaching"]
+    if names & {key(n) for n in data.get("research_only", [])}:
+        return ["research"]
+    discs = v.get("disciplines") or []
+    if discs and all(d in data.get("research_only_disciplines", []) for d in discs):
+        return ["research"]
+    if curated and v.get("kind") in ("practice", "materials"):
+        return ["teaching"]
+    return ["teaching", "research"]
+
+
 def combine(data: dict, journals: list) -> dict:
     """Return data with every Digest journal added and a sections list on each venue."""
-    followed = {key(j["name"]): j for j in journals}
+    followed = {key(j["name"]) for j in journals}
     out, covered = [], set()
     for v in data["venues"]:
         names = v.get("digest_names") or [v["name"]]
-        in_digest = any(key(n) in followed for n in names)
         covered.update(key(n) for n in names)
-        sections = v.get("sections") or (["teaching", "research"] if v["kind"] == "research" and in_digest else ["teaching"])
-        out.append(dict(v, sections=sections, digest=in_digest))
+        out.append(dict(v, sections=sections_for(v, data, True), digest=any(key(n) in followed for n in names)))
     for j in journals:
         if key(j["name"]) in covered:
             continue
-        classroom = bool(j.get("classroom"))
+        sections = sections_for(j, data, False)
+        kind = "practice" if j.get("classroom") else "journal" if sections == ["research"] else "education"
         out.append({
             "name": j["name"], "url": j["url"], "publisher": j["publisher"],
-            "disciplines": j.get("disciplines", []),
-            "kind": "practice" if classroom else "journal",
-            "sections": ["teaching"] if classroom else ["research"],
-            "digest": True,
+            "disciplines": j.get("disciplines", []), "kind": kind, "sections": sections, "digest": True,
         })
     return dict(data, venues=out, sections=SECTIONS)
 

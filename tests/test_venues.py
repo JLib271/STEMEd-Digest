@@ -36,26 +36,36 @@ class VenueTests(unittest.TestCase):
         for needed in ("venues.json", "journals.json", 'id="sec"', "IRB", "CIRTL", "stemed-conferences", "stemed-deadlines", "stemedplus-theme.css"):
             self.assertIn(needed, page)
 
-    def test_combine_lists_digest_journals_in_two_sections(self):
+    def test_combine_puts_journals_in_both_sections_when_in_doubt(self):
         data = venues.load()
         journals = [
             {"name": "CBE-Life Sciences Education", "url": "https://x.org", "publisher": "ASCB", "disciplines": ["Bioscience"]},
             {"name": "Journal of Research in Science Teaching", "url": "https://y.org", "publisher": "Wiley", "disciplines": ["Science Education"]},
             {"name": "Science Scope", "url": "https://z.org", "publisher": "NSTA", "disciplines": ["Science Education"], "classroom": True},
             {"name": "Physics Education", "url": "https://w.org", "publisher": "IOP", "disciplines": ["Physics"], "classroom": True},
+            {"name": "Connected Science Learning", "url": "https://c.org", "publisher": "T&F", "disciplines": ["Science Education"], "classroom": True},
+            {"name": "Isis", "url": "https://i.org", "publisher": "Chicago", "disciplines": ["History & Philosophy of Science"]},
+            {"name": "A Journal Added Next Year", "url": "https://n.org", "publisher": "New", "disciplines": ["Chemistry"]},
+            {"name": "Science & Education", "url": "https://s.org", "publisher": "Springer", "disciplines": ["History & Philosophy of Science", "Science Education"]},
         ]
         out = {v["name"]: v for v in venues.combine(data, journals)["venues"]}
-        # A curated research venue the Digest follows is in both sections.
-        self.assertEqual(out["CBE—Life Sciences Education"]["sections"], ["teaching", "research"])
+        both, teaching, research = ["teaching", "research"], ["teaching"], ["research"]
+        self.assertEqual(out["CBE—Life Sciences Education"]["sections"], both)
         self.assertNotIn("CBE-Life Sciences Education", out)
-        # A curated SoTL venue the Digest does not follow stays in Teaching & SoTL.
-        self.assertEqual(out["Teaching & Learning Inquiry"]["sections"], ["teaching"])
-        # A practitioner journal can be put in both by hand.
-        self.assertEqual(out["Journal of Chemical Education"]["sections"], ["teaching", "research"])
-        # Digest-only journals: research goes to Research, classroom to Teaching & SoTL.
-        self.assertEqual(out["Journal of Research in Science Teaching"]["sections"], ["research"])
+        self.assertEqual(out["Teaching & Learning Inquiry"]["sections"], both)
+        self.assertEqual(out["Journal of Chemical Education"]["sections"], both)
+        self.assertEqual(out["PERC Proceedings" if "PERC Proceedings" in out else "Physics Education Research Conference (PERC) Proceedings"]["sections"], both)
+        # In doubt, and any new journal: both.
+        self.assertEqual(out["Physics Education"]["sections"], both)
+        self.assertEqual(out["A Journal Added Next Year"]["sections"], both)
+        self.assertEqual(out["A Journal Added Next Year"]["kind"], "education")
+        self.assertEqual(out["Science & Education"]["sections"], both)
+        # Clearly one kind only.
+        self.assertEqual(out["The Physics Teacher"]["sections"], teaching)
+        self.assertEqual(out["Connected Science Learning"]["sections"], teaching)
+        self.assertEqual(out["Journal of Research in Science Teaching"]["sections"], research)
         self.assertEqual(out["Journal of Research in Science Teaching"]["kind"], "journal")
-        self.assertEqual(out["Physics Education"]["sections"], ["teaching"])
+        self.assertEqual(out["Isis"]["sections"], research)
         # The combined NSTA entry stands for Science Scope.
         self.assertNotIn("Science Scope", out)
 
