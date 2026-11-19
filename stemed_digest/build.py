@@ -7,7 +7,7 @@ Output (all static, served by GitHub Pages):
     items.json        everything currently listed (also the state for the next run)
     digest.html/.md   the last week: "Recently added to STEMEd+ Commons", journals, preprints, dissertations
     classroom.html/.md  "For the classroom": the last month of articles in journals written for teachers and instructors
-    publish.html, venues.json  "Where to publish your teaching work": venues for teaching innovations and SoTL
+    publish.html, venues.json  "Where to publish": Teaching & SoTL and Research sections (venues.json + journals.json)
     feeds/*.xml       RSS: all, STEMEd+ Commons, preprints, dissertations, and one per discipline
 """
 import argparse

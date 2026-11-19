@@ -1,10 +1,11 @@
 {
-  "_about": "Where to publish your teaching work. Venues that publish teaching innovations, classroom-ready materials, and scholarship of teaching and learning (SoTL) in STEM+. 'access' is one of: diamond (free to publish and free to read), gold (free to read; authors pay an article fee), hybrid (free to publish; open access optional for a fee), subscription (free to publish; readers need a subscription or membership), proceedings (free to read; you present at the conference and pay registration). 'checked' is the month the access and fee details were last confirmed from the journal, DOAJ, or the society; venues without it need a look at the journal's own page before you rely on the fee.",
+  "_about": "Where to publish: curated venues for teaching innovations, classroom-ready materials, and scholarship of teaching and learning (SoTL) in STEM+. The page also lists every journal the Digest follows (config/journals.json); stemed_digest/venues.py combines the two into the Teaching & SoTL and Research sections, and a journal that takes both kinds of paper is listed in both. digest_names: the Digest journal names that a combined entry stands for. sections: set it to override where a venue is listed (teaching, research, or both). 'access' is one of: diamond (free to publish and free to read), gold (free to read; authors pay an article fee), hybrid (free to publish; open access optional for a fee), subscription (free to publish; readers need a subscription or membership), proceedings (free to read; you present at the conference and pay registration). 'checked' is the month the access and fee details were last confirmed from the journal, DOAJ, or the society; venues without it need a look at the journal's own page before you rely on the fee.",
   "kinds": {
     "research": "Research and SoTL journal",
     "practice": "Practitioner journal or magazine",
     "materials": "Peer-reviewed teaching materials",
-    "proceedings": "Conference proceedings"
+    "proceedings": "Conference proceedings",
+    "journal": "Research journal"
   },
   "access": {
     "diamond": "Diamond open access: free to publish, free to read",
@@ -171,6 +172,7 @@
     },
     {
       "name": "Journal of Chemical Education",
+      "sections": ["teaching", "research"],
       "url": "https://pubs.acs.org/journal/jceda8",
       "publisher": "ACS Division of Chemical Education",
       "disciplines": ["Chemistry"],
@@ -392,6 +394,7 @@
     },
     {
       "name": "Science Scope, The Science Teacher, and Science and Children",
+      "digest_names": ["Science Scope", "The Science Teacher", "Science and Children"],
       "url": "https://think.taylorandfrancis.com/national-science-teaching-association/",
       "publisher": "National Science Teaching Association",
       "disciplines": [],
