@@ -26,11 +26,11 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: write
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -60,5 +60,22 @@ jobs:
       - uses: actions/upload-pages-artifact@v5
         with:
           path: output
-      - id: deployment
+
+  publish:
+    # Publishing is its own job, after the build, as GitHub recommends for Pages. If it ever
+    # fails, "Re-run failed jobs" publishes the same build again without uploading it twice.
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v5
