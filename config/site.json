@@ -1,7 +1,7 @@
 {
   "title": "STEMEd+ Digest",
   "tagline": "Twelve months of new work in STEM+ teaching and STEM+ education research, in one place: journal tables of contents, preprints, dissertations, and the STEMEd+ Commons Collection from the past year, updated daily. Older items drop off as new ones arrive.",
-  "repo_url": "https://github.com/JLib271/STEMEd-Digest",
+  "repo_url": "https://github.com/stemedplus/STEMEd-Digest",
   "commons_home": "https://stemedplus.hcommons.org/",
   "lookback_days": 14,
   "keep_days": 365,

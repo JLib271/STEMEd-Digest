@@ -57,7 +57,7 @@ def _write(path: Path, title: str, link: str, description: str, items: List[Item
             ET.SubElement(e, "category").text = d
         for k in item.keywords:
             if k in labels:
-                ET.SubElement(e, "category", domain="https://github.com/JLib271/HuMeta").text = labels[k]
+                ET.SubElement(e, "category", domain="https://github.com/stemedplus/HuMeta").text = labels[k]
     ET.indent(rss)
     path.write_bytes(b'<?xml version="1.0" encoding="utf-8"?>\n' + ET.tostring(rss, encoding="utf-8") + b"\n")
 

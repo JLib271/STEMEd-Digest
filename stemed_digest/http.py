@@ -7,7 +7,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
-USER_AGENT = "STEMEd-Digest/1.0 (+https://github.com/JLib271/STEMEd-Digest)"
+USER_AGENT = "STEMEd-Digest/1.0 (+https://github.com/stemedplus/STEMEd-Digest)"
 
 
 def user_agent() -> str:
